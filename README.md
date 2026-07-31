@@ -104,67 +104,32 @@ They simply describe the deepest point of stillness reached during a meditation 
 
 ---
 
-# Screenshots
+# Screenshots 
 
-## iOS App
+## iOS App with 4 available theme options
 
-### Home
+<p align="center">
+  <img src="screenshots/ios/ios-1.jpeg" width="220">
+  <img src="screenshots/ios/ios-2.jpeg" width="220">
+  <img src="screenshots/ios/ios-3.jpeg" width="220">
+</p>
 
-![](screenshots/ios/ios-1.jpeg)
+<p align="center">
+  <img src="screenshots/ios/ios-4.jpeg" width="220">
+  <img src="screenshots/ios/ios-5.jpeg" width="220">
+  <img src="screenshots/ios/ios-6.jpeg" width="220">
+</p>
 
----
-
-### Log Reflection
-
-![](screenshots/ios/ios-2.jpeg)
-
----
-
-### Patanjali's Eight Limbs
-
-![](screenshots/ios/ios-3.jpeg)
-
----
-
-### Eight Limbs Reference
-
-![](screenshots/ios/ios-4.jpeg)
-
----
-
-### Stage Descriptions
-
-![](screenshots/ios/ios-5.jpeg)
-
----
-
-### Themes
-
-![](screenshots/ios/ios-6.jpeg)
-
----
-
-### Nature Theme
-
-![](screenshots/ios/ios-7.jpeg)
-
----
-
-### Earth Theme
-
-![](screenshots/ios/ios-8.jpeg)
+<p align="center">
+  <img src="screenshots/ios/ios-7.jpeg" width="220">
+  <img src="screenshots/ios/ios-8.jpeg" width="220">
+</p>
 
 ---
 
 # Web Dashboard
 
-### Landing Page
-
 ![](screenshots/webapp/web-1.png)
-
----
-
-### Meditation Dashboard
 
 ![](screenshots/webapp/web-2.png)
 
