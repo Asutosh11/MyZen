@@ -476,16 +476,13 @@ function renderEmpty(){
   document.getElementById('lsTitle').textContent = 'No sessions yet';
   document.getElementById('lsStage').textContent = 'The first dive is still ahead';
   document.getElementById('lsDate').textContent = '';
-  document.getElementById('depthChartHolder').innerHTML = '<div class="depth-empty">Nothing logged yet.</div>';
   document.getElementById('logHolder').innerHTML = '<div class="empty-state">Sessions will appear here as soon as they sync from the app.</div>';
-  renderZoneRows();
 }
 
 function render(sessions){
   if (!sessions.length){ renderEmpty(); return; }
   renderStats(sessions);
   renderLastSession(sessions);
-  renderDepthChart(sessions);
   renderCalendar(sessions);
   renderLog(sessions);
   const peak = Math.max(...sessions.map(s=>s.depth));
@@ -533,44 +530,7 @@ function renderLastSession(sessions){
   });
 }
 
-function renderZoneRows(){
-  const holder = document.getElementById('zoneRows');
-  holder.innerHTML = LIMBS.slice().reverse().map(l=>`<div class="zone-row"><span class="zn">${l.key}. ${l.name}</span></div>`).join('');
-}
 
-function renderDepthChart(sessions){
-  renderZoneRows();
-  const width = 900;
-  const rowH = 34;
-  const height = rowH * MAX_DEPTH;
-  const padX = 130;
-
-  const first = sessions[0].jsDate.getTime();
-  const last = sessions[sessions.length-1].jsDate.getTime();
-  const span = Math.max(last-first, 1);
-  const maxDur = Math.max(...sessions.map(s=>s.durationInMinutes));
-
-  const points = sessions.map(s=>{
-    const x = padX + ((s.jsDate.getTime()-first)/span) * (width-padX-24);
-    const y = rowH*(MAX_DEPTH - s.depth) + rowH/2;
-    const r = 3 + (s.durationInMinutes/Math.max(maxDur,1))*6;
-    return {x,y,r,s};
-  });
-
-  const linePath = points.map((p,i)=>(i===0?'M':'L')+p.x.toFixed(1)+' '+p.y.toFixed(1)).join(' ');
-  const circles = points.map(p=>`
-    <circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="${p.r.toFixed(1)}"
-      fill="var(--accent)" fill-opacity="${points.length>40?0.55:0.85}" stroke="var(--accent-strong)" stroke-width="0.6">
-      <title>${p.s.jsDate.toDateString()} — ${p.s.durationInMinutes} min — ${LIMBS[p.s.depth-1].name}</title>
-    </circle>`).join('');
-
-  document.getElementById('depthChartHolder').innerHTML = `
-    <svg id="depthChart" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="position:absolute; top:18px; left:18px; width:calc(100% - 36px); height:${height}px;">
-      <path d="${linePath}" fill="none" stroke="var(--accent)" stroke-opacity="0.25" stroke-width="1"/>
-      ${circles}
-    </svg>`;
-  document.getElementById('zoneRows').style.position = 'relative';
-}
 
 function renderCalendar(sessions){
   const minutesByDay = {};
