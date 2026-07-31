@@ -1,9 +1,5 @@
 # MyZen
 
-<p align="center">
-  <i>Grounded and Present.</i>
-</p>
-
 MyZen is a minimalist meditation journal that measures **depth, not just duration**.
 
 Instead of treating meditation as a timer or streak tracker, MyZen records the **deepest state of awareness** reached during each meditation session using **Patanjali's Eight Limbs of Yoga** as an internal reference.
