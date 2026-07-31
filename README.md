@@ -1,35 +1,35 @@
 # MyZen
 
-> *Grounded and Present.*
+<p align="center">
+  <i>Grounded and Present.</i>
+</p>
 
 MyZen is a minimalist meditation journal that measures **depth, not just duration**.
 
-Instead of treating meditation as a streak counter or a timer, MyZen records the **deepest state of stillness** reached during each session using **Patanjali's Eight Limbs of Yoga** as an internal reference.
+Instead of treating meditation as a timer or streak tracker, MyZen records the **deepest state of awareness** reached during each meditation session using **Patanjali's Eight Limbs of Yoga** as an internal reference.
 
-Every session is automatically synchronized to GitHub, and the accompanying website reflects the journey in real time.
+Every session automatically syncs to GitHub, powering a live website that visualizes the journey.
 
 ---
 
 ## Philosophy
 
-Most meditation apps answer:
+Most meditation apps answer one question:
 
-> *"How long did you meditate?"*
+> **How long did you meditate?**
 
-MyZen also asks:
+MyZen asks another:
 
-> *"How deep did your awareness become?"*
+> **How deeply did you arrive?**
 
-The app doesn't attempt to judge meditation or gamify spirituality.
+Rather than rewarding streaks or gamifying meditation, MyZen quietly records:
 
-Instead, it provides a simple journal where each session records:
+- Meditation duration
+- Date & time
+- Deepest internal state reached
+- Complete meditation history
 
-- duration
-- timestamp
-- deepest limb reached
-- complete meditation history
-
-The website simply visualizes that journal.
+The accompanying website simply reflects this journal.
 
 ---
 
@@ -39,10 +39,10 @@ The meditation technique I currently follow is intentionally simple.
 
 - Begin with physical movement—yoga, exercise, running, or any sport—to prepare the body (**Asana**).
 - Sit comfortably and observe the breath.
-- As awareness naturally settles, the sensation of the breath gathers around the point between the eyebrows.
+- As awareness naturally settles, the sensation of breathing is felt at the point between the eyebrows.
 - Attention then simply remains there while the deeper stages of meditation unfold internally.
 
-The Eight Limbs of Patanjali are used only as a gentle reference for describing the deepest point touched during a session—not as a rigid ladder that must be climbed in sequence.
+Patanjali's Eight Limbs are used only as a gentle language for describing the deepest point touched during a session—not as a rigid ladder to climb.
 
 ---
 
@@ -51,12 +51,12 @@ The Eight Limbs of Patanjali are used only as a gentle reference for describing 
 ## iOS App
 
 - Minimal distraction-free interface
-- Log meditation duration
-- Record deepest Patanjali stage reached
-- Edit previous sessions
-- Automatic streak calculation
+- Log meditation sessions
+- Record the deepest limb reached
+- Meditation history
+- Current streak
 - Total meditation hours
-- Peak depth reached
+- Peak meditation depth
 - Beautiful ambient themes
 - Font customization
 - Share meditation cards
@@ -64,33 +64,31 @@ The Eight Limbs of Patanjali are used only as a gentle reference for describing 
 
 ---
 
-## Website
+## Web Dashboard
 
-The website is generated entirely from the meditation journal.
+The website is automatically generated from the meditation journal.
 
-It automatically displays:
+It displays:
 
-- Total meditation hours
+- Live meditation statistics
 - Current streak
-- Last meditation session
-- Peak meditation depth
-- Interactive depth reference
+- Total meditation hours
+- Latest session
+- Peak depth
+- Interactive Eight Limbs reference
 - Meditation timeline
 - Consistency heatmap
 - Session history
-- Theme switching
 - Responsive design
-
-No manual updates are required.
 
 ---
 
 # Measuring Meditation Depth
 
-MyZen uses Patanjali's Eight Limbs as an internal ruler.
+Instead of scoring meditation, MyZen uses Patanjali's Eight Limbs as a reference.
 
-| Level | Limb |
-|-------:|------|
+| Stage | Limb |
+|------:|------|
 | 1 | Yama |
 | 2 | Niyama |
 | 3 | Asana |
@@ -100,9 +98,75 @@ MyZen uses Patanjali's Eight Limbs as an internal ruler.
 | 7 | Dhyana |
 | 8 | Samadhi |
 
-These are **not treated as achievements or levels to unlock.**
+These are **not achievements** or levels to unlock.
 
-They simply provide language for describing the deepest point of stillness reached during a meditation session.
+They simply describe the deepest point of stillness reached during a meditation session.
+
+---
+
+# Screenshots
+
+## iOS App
+
+### Home
+
+![](screenshots/ios/ios-1.jpeg)
+
+---
+
+### Log Reflection
+
+![](screenshots/ios/ios-2.jpeg)
+
+---
+
+### Patanjali's Eight Limbs
+
+![](screenshots/ios/ios-3.jpeg)
+
+---
+
+### Eight Limbs Reference
+
+![](screenshots/ios/ios-4.jpeg)
+
+---
+
+### Stage Descriptions
+
+![](screenshots/ios/ios-5.jpeg)
+
+---
+
+### Themes
+
+![](screenshots/ios/ios-6.jpeg)
+
+---
+
+### Nature Theme
+
+![](screenshots/ios/ios-7.jpeg)
+
+---
+
+### Earth Theme
+
+![](screenshots/ios/ios-8.jpeg)
+
+---
+
+# Web Dashboard
+
+### Landing Page
+
+![](screenshots/webapp/web-1.png)
+
+---
+
+### Meditation Dashboard
+
+![](screenshots/webapp/web-2.png)
 
 ---
 
@@ -123,20 +187,37 @@ They simply provide language for describing the deepest point of stillness reach
 - SVG
 - GitHub Pages
 
-### Sync
+### Sync Pipeline
 
+```text
+Meditation Session
+        │
+        ▼
+     sessions.json
+        │
+        ▼
+ GitHub Repository
+        │
+        ▼
+ GitHub Pages Website
 ```
-MyZen App
-      │
-      ▼
-sessions.json
-      │
-      ▼
-GitHub Repository
-      │
-      ▼
-GitHub Pages Website
+
+---
+
+# Repository Structure
+
+```text
+MyZen
+├── MyZen/
+├── docs/
+├── screenshots/
+│   ├── ios/
+│   └── webapp/
+├── sessions.json
+└── README.md
 ```
+
+---
 
 # Why I Built This
 
@@ -153,3 +234,4 @@ Before reaching that ultimate state, there are intermediate states, which also n
 
 ---
 
+> *"What we know is a drop, what we don't know is an ocean."*
