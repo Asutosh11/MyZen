@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 
-<html data-theme="abyssal" lang="en">
-<head>
-<meta charset="utf-8"/>
+<!-- saved from url=(0034)https://asutosh11.github.io/myzen/ -->
+<html data-ps-script-executed="true" data-theme="abyssal" lang="en"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>MyZen — Grounded and Present</title>
 <meta content="A living record of a daily meditation practice, synced from the MyZen app — hours, streaks, and the depth reached through Patanjali's eight limbs." name="description"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="./MyZen — Grounded and Present_files/css2" rel="stylesheet"/>
 <style>
   /* Shared accent (teal/mint) stays constant across themes — only background & surface tint change. */
   :root{
@@ -222,7 +221,7 @@
 </button>
 <div class="popover" id="themePop">
 <div class="pop-label">Theme</div>
-<div class="theme-opt" data-theme-choice="abyssal"><span class="swatch sw-abyssal"></span>Abyssal Storm</div>
+<div class="theme-opt active" data-theme-choice="abyssal"><span class="swatch sw-abyssal"></span>Abyssal Storm</div>
 <div class="theme-opt" data-theme-choice="forest"><span class="swatch sw-forest"></span>Forest Moss</div>
 <div class="theme-opt" data-theme-choice="cocoa"><span class="swatch sw-cocoa"></span>Cocoa Zen</div>
 <div class="theme-opt" data-theme-choice="dark"><span class="swatch sw-dark"></span>Complete Dark</div>
@@ -276,9 +275,9 @@ gentle reference.
 <div class="section-head"><span class="label">Live Time Stats</span></div>
 <div class="card">
 <div class="stat-row">
-<div class="stat-cell"><div class="lbl">Total Hours</div><div class="val" id="statHours">–</div><div class="bar"><i></i></div></div>
-<div class="stat-cell"><div class="lbl">Current Streak</div><div class="val" id="statStreak">–</div><div class="bar"><i></i></div></div>
-<div class="stat-cell"><div class="lbl">Peak Depth</div><div class="val" id="statDepth">–</div><div class="bar"><i></i></div></div>
+<div class="stat-cell"><div class="lbl">Total Hours</div><div class="val" id="statHours">4.9</div><div class="bar"><i></i></div></div>
+<div class="stat-cell"><div class="lbl">Current Streak</div><div class="val" id="statStreak">2</div><div class="bar"><i></i></div></div>
+<div class="stat-cell"><div class="lbl">Peak Depth</div><div class="val" id="statDepth">6/8</div><div class="bar"><i></i></div></div>
 </div>
 </div>
 </section>
@@ -286,11 +285,11 @@ gentle reference.
 <div class="section-head"><span class="label">Last Session Stats</span></div>
 <div class="card">
 <div class="last-session" id="lastSessionHolder">
-<div class="depth-circle"><span class="n">–</span><span class="t">Depth</span></div>
+<div class="depth-circle"><span class="n">6</span><span class="t">Depth</span></div>
 <div class="info">
-<div class="title" id="lsTitle">—</div>
-<div class="stage" id="lsStage">—</div>
-<div class="date" id="lsDate">—</div>
+<div class="title" id="lsTitle">"21 Minute Session"</div>
+<div class="stage" id="lsStage">Stage 6: DHARANA</div>
+<div class="date" id="lsDate">02 Aug 2026, 22:28</div>
 </div>
 </div>
 </div>
@@ -304,12 +303,67 @@ gentle reference.
       </button>
 </div>
 <p class="section-head desc" style="margin-top:-10px;">Patanjali's eight limbs, used as a ruler for the single highest point of stillness reached in a sit — not a ladder to climb in order.</p>
-<div class="limb-grid" id="limbGrid"></div>
+<div class="limb-grid" id="limbGrid">
+<div class="limb-card reached">
+<div class="num">1</div>
+<div>
+<div class="name">YAMA</div>
+<div class="desc"><strong style="color:var(--text-dim);">Ethical Restraints.</strong> Harmonizing external relationships — non-violence, truthfulness, kindness.</div>
+</div>
+</div>
+<div class="limb-card reached">
+<div class="num">2</div>
+<div>
+<div class="name">NIYAMA</div>
+<div class="desc"><strong style="color:var(--text-dim);">Inner Disciplines.</strong> Personal habits and contentment — gratitude and self-reflection.</div>
+</div>
+</div>
+<div class="limb-card reached">
+<div class="num">3</div>
+<div>
+<div class="name">ASANA</div>
+<div class="desc"><strong style="color:var(--text-dim);">Steady Posture.</strong> A comfortable, steady seat that keeps the body out of the way.</div>
+</div>
+</div>
+<div class="limb-card reached">
+<div class="num">4</div>
+<div>
+<div class="name">PRANAYAMA</div>
+<div class="desc"><strong style="color:var(--text-dim);">Breath Integration.</strong> Slowing internal rhythms to signal complete physical ease.</div>
+</div>
+</div>
+<div class="limb-card reached">
+<div class="num">5</div>
+<div>
+<div class="name">PRATYAHARA</div>
+<div class="desc"><strong style="color:var(--text-dim);">Sensory Withdrawal.</strong> Turning attention inward, away from the pull of the senses.</div>
+</div>
+</div>
+<div class="limb-card reached">
+<div class="num">6</div>
+<div>
+<div class="name">DHARANA</div>
+<div class="desc"><strong style="color:var(--text-dim);">One-Pointed Focus.</strong> A single point of concentration, undistracted.</div>
+</div>
+</div>
+<div class="limb-card">
+<div class="num">7</div>
+<div>
+<div class="name">DHYANA</div>
+<div class="desc"><strong style="color:var(--text-dim);">Effortless Flow.</strong> Meditation sustaining itself, without strain.</div>
+</div>
+</div>
+<div class="limb-card">
+<div class="num">8</div>
+<div>
+<div class="name">SAMADHI</div>
+<div class="desc"><strong style="color:var(--text-dim);">Pure Oneness.</strong> Absorption — the boundary between self and stillness dissolves.</div>
+</div>
+</div></div>
 </section>
-
 <section id="tide">
-<div class="section-head"><span class="label">Consistency</span><span class="desc">Darker means longer.</span></div>
-<div class="cal-wrap"><div id="calGrid"></div></div>
+<div class="section-head"><span class="label">Consistency</span><span class="desc">Brighter means longer.</span></div>
+<div class="cal-wrap"><div id="calGrid"><div class="cal-cell" title="Sun Feb 15 2026 — no session"></div><div class="cal-cell" title="Mon Feb 16 2026 — no session"></div><div class="cal-cell" title="Tue Feb 17 2026 — no session"></div><div class="cal-cell" title="Wed Feb 18 2026 — no session"></div><div class="cal-cell" title="Thu Feb 19 2026 — no session"></div><div class="cal-cell" title="Fri Feb 20 2026 — no session"></div><div class="cal-cell" title="Sat Feb 21 2026 — no session"></div><div class="cal-cell" title="Sun Feb 22 2026 — no session"></div><div class="cal-cell" title="Mon Feb 23 2026 — no session"></div><div class="cal-cell" title="Tue Feb 24 2026 — no session"></div><div class="cal-cell" title="Wed Feb 25 2026 — no session"></div><div class="cal-cell" title="Thu Feb 26 2026 — no session"></div><div class="cal-cell" title="Fri Feb 27 2026 — no session"></div><div class="cal-cell" title="Sat Feb 28 2026 — no session"></div><div class="cal-cell" title="Sun Mar 01 2026 — no session"></div><div class="cal-cell" title="Mon Mar 02 2026 — no session"></div><div class="cal-cell" title="Tue Mar 03 2026 — no session"></div><div class="cal-cell" title="Wed Mar 04 2026 — no session"></div><div class="cal-cell" title="Thu Mar 05 2026 — no session"></div><div class="cal-cell" title="Fri Mar 06 2026 — no session"></div><div class="cal-cell" title="Sat Mar 07 2026 — no session"></div><div class="cal-cell" title="Sun Mar 08 2026 — no session"></div><div class="cal-cell" title="Mon Mar 09 2026 — no session"></div><div class="cal-cell" title="Tue Mar 10 2026 — no session"></div><div class="cal-cell" title="Wed Mar 11 2026 — no session"></div><div class="cal-cell" title="Thu Mar 12 2026 — no session"></div><div class="cal-cell" title="Fri Mar 13 2026 — no session"></div><div class="cal-cell" title="Sat Mar 14 2026 — no session"></div><div class="cal-cell" title="Sun Mar 15 2026 — no session"></div><div class="cal-cell" title="Mon Mar 16 2026 — no session"></div><div class="cal-cell" title="Tue Mar 17 2026 — no session"></div><div class="cal-cell" title="Wed Mar 18 2026 — no session"></div><div class="cal-cell" title="Thu Mar 19 2026 — no session"></div><div class="cal-cell" title="Fri Mar 20 2026 — no session"></div><div class="cal-cell" title="Sat Mar 21 2026 — no session"></div><div class="cal-cell" title="Sun Mar 22 2026 — no session"></div><div class="cal-cell" title="Mon Mar 23 2026 — no session"></div><div class="cal-cell" title="Tue Mar 24 2026 — no session"></div><div class="cal-cell" title="Wed Mar 25 2026 — no session"></div><div class="cal-cell" title="Thu Mar 26 2026 — no session"></div><div class="cal-cell" title="Fri Mar 27 2026 — no session"></div><div class="cal-cell" title="Sat Mar 28 2026 — no session"></div><div class="cal-cell" title="Sun Mar 29 2026 — no session"></div><div class="cal-cell" title="Mon Mar 30 2026 — no session"></div><div class="cal-cell" title="Tue Mar 31 2026 — no session"></div><div class="cal-cell" title="Wed Apr 01 2026 — no session"></div><div class="cal-cell" title="Thu Apr 02 2026 — no session"></div><div class="cal-cell" title="Fri Apr 03 2026 — no session"></div><div class="cal-cell" title="Sat Apr 04 2026 — no session"></div><div class="cal-cell" title="Sun Apr 05 2026 — no session"></div><div class="cal-cell" title="Mon Apr 06 2026 — no session"></div><div class="cal-cell" title="Tue Apr 07 2026 — no session"></div><div class="cal-cell" title="Wed Apr 08 2026 — no session"></div><div class="cal-cell" title="Thu Apr 09 2026 — no session"></div><div class="cal-cell" title="Fri Apr 10 2026 — no session"></div><div class="cal-cell" title="Sat Apr 11 2026 — no session"></div><div class="cal-cell" title="Sun Apr 12 2026 — no session"></div><div class="cal-cell" title="Mon Apr 13 2026 — no session"></div><div class="cal-cell" title="Tue Apr 14 2026 — no session"></div><div class="cal-cell" title="Wed Apr 15 2026 — no session"></div><div class="cal-cell" title="Thu Apr 16 2026 — no session"></div><div class="cal-cell" title="Fri Apr 17 2026 — no session"></div><div class="cal-cell" title="Sat Apr 18 2026 — no session"></div><div class="cal-cell" title="Sun Apr 19 2026 — no session"></div><div class="cal-cell" title="Mon Apr 20 2026 — no session"></div><div class="cal-cell" title="Tue Apr 21 2026 — no session"></div><div class="cal-cell" title="Wed Apr 22 2026 — no session"></div><div class="cal-cell" title="Thu Apr 23 2026 — no session"></div><div class="cal-cell" title="Fri Apr 24 2026 — no session"></div><div class="cal-cell" title="Sat Apr 25 2026 — no session"></div><div class="cal-cell" title="Sun Apr 26 2026 — no session"></div><div class="cal-cell" title="Mon Apr 27 2026 — no session"></div><div class="cal-cell" title="Tue Apr 28 2026 — no session"></div><div class="cal-cell" title="Wed Apr 29 2026 — no session"></div><div class="cal-cell" title="Thu Apr 30 2026 — no session"></div><div class="cal-cell" title="Fri May 01 2026 — no session"></div><div class="cal-cell" title="Sat May 02 2026 — no session"></div><div class="cal-cell" title="Sun May 03 2026 — no session"></div><div class="cal-cell" title="Mon May 04 2026 — no session"></div><div class="cal-cell" title="Tue May 05 2026 — no session"></div><div class="cal-cell" title="Wed May 06 2026 — no session"></div><div class="cal-cell" title="Thu May 07 2026 — no session"></div><div class="cal-cell" title="Fri May 08 2026 — no session"></div><div class="cal-cell" title="Sat May 09 2026 — no session"></div><div class="cal-cell" title="Sun May 10 2026 — no session"></div><div class="cal-cell" title="Mon May 11 2026 — no session"></div><div class="cal-cell" title="Tue May 12 2026 — no session"></div><div class="cal-cell" title="Wed May 13 2026 — no session"></div><div class="cal-cell" title="Thu May 14 2026 — no session"></div><div class="cal-cell" title="Fri May 15 2026 — no session"></div><div class="cal-cell" title="Sat May 16 2026 — no session"></div><div class="cal-cell" title="Sun May 17 2026 — no session"></div><div class="cal-cell" title="Mon May 18 2026 — no session"></div><div class="cal-cell" title="Tue May 19 2026 — no session"></div><div class="cal-cell" title="Wed May 20 2026 — no session"></div><div class="cal-cell" title="Thu May 21 2026 — no session"></div><div class="cal-cell" title="Fri May 22 2026 — no session"></div><div class="cal-cell" title="Sat May 23 2026 — no session"></div><div class="cal-cell" title="Sun May 24 2026 — no session"></div><div class="cal-cell" title="Mon May 25 2026 — no session"></div><div class="cal-cell" title="Tue May 26 2026 — no session"></div><div class="cal-cell" title="Wed May 27 2026 — no session"></div><div class="cal-cell" title="Thu May 28 2026 — no session"></div><div class="cal-cell" title="Fri May 29 2026 — no session"></div><div class="cal-cell" title="Sat May 30 2026 — no session"></div><div class="cal-cell" title="Sun May 31 2026 — no session"></div><div class="cal-cell" title="Mon Jun 01 2026 — no session"></div><div class="cal-cell" title="Tue Jun 02 2026 — no session"></div><div class="cal-cell" title="Wed Jun 03 2026 — no session"></div><div class="cal-cell" title="Thu Jun 04 2026 — no session"></div><div class="cal-cell" title="Fri Jun 05 2026 — no session"></div><div class="cal-cell" title="Sat Jun 06 2026 — no session"></div><div class="cal-cell" title="Sun Jun 07 2026 — no session"></div><div class="cal-cell" title="Mon Jun 08 2026 — no session"></div><div class="cal-cell" title="Tue Jun 09 2026 — no session"></div><div class="cal-cell" title="Wed Jun 10 2026 — no session"></div><div class="cal-cell" title="Thu Jun 11 2026 — no session"></div><div class="cal-cell" title="Fri Jun 12 2026 — no session"></div><div class="cal-cell" title="Sat Jun 13 2026 — no session"></div><div class="cal-cell" title="Sun Jun 14 2026 — no session"></div><div class="cal-cell" title="Mon Jun 15 2026 — no session"></div><div class="cal-cell" title="Tue Jun 16 2026 — no session"></div><div class="cal-cell" title="Wed Jun 17 2026 — no session"></div><div class="cal-cell" title="Thu Jun 18 2026 — no session"></div><div class="cal-cell" title="Fri Jun 19 2026 — no session"></div><div class="cal-cell" title="Sat Jun 20 2026 — no session"></div><div class="cal-cell" title="Sun Jun 21 2026 — no session"></div><div class="cal-cell" title="Mon Jun 22 2026 — no session"></div><div class="cal-cell" style="background: var(--accent); opacity: 1; border-color: var(--accent);" title="Tue Jun 23 2026 — 115 min"></div><div class="cal-cell" title="Wed Jun 24 2026 — no session"></div><div class="cal-cell" title="Thu Jun 25 2026 — no session"></div><div class="cal-cell" title="Fri Jun 26 2026 — no session"></div><div class="cal-cell" title="Sat Jun 27 2026 — no session"></div><div class="cal-cell" title="Sun Jun 28 2026 — no session"></div><div class="cal-cell" title="Mon Jun 29 2026 — no session"></div><div class="cal-cell" title="Tue Jun 30 2026 — no session"></div><div class="cal-cell" title="Wed Jul 01 2026 — no session"></div><div class="cal-cell" title="Thu Jul 02 2026 — no session"></div><div class="cal-cell" title="Fri Jul 03 2026 — no session"></div><div class="cal-cell" title="Sat Jul 04 2026 — no session"></div><div class="cal-cell" title="Sun Jul 05 2026 — no session"></div><div class="cal-cell" title="Mon Jul 06 2026 — no session"></div><div class="cal-cell" title="Tue Jul 07 2026 — no session"></div><div class="cal-cell" title="Wed Jul 08 2026 — no session"></div><div class="cal-cell" title="Thu Jul 09 2026 — no session"></div><div class="cal-cell" title="Fri Jul 10 2026 — no session"></div><div class="cal-cell" title="Sat Jul 11 2026 — no session"></div><div class="cal-cell" title="Sun Jul 12 2026 — no session"></div><div class="cal-cell" title="Mon Jul 13 2026 — no session"></div><div class="cal-cell" title="Tue Jul 14 2026 — no session"></div><div class="cal-cell" title="Wed Jul 15 2026 — no session"></div><div class="cal-cell" title="Thu Jul 16 2026 — no session"></div><div class="cal-cell" title="Fri Jul 17 2026 — no session"></div><div class="cal-cell" title="Sat Jul 18 2026 — no session"></div><div class="cal-cell" title="Sun Jul 19 2026 — no session"></div><div class="cal-cell" title="Mon Jul 20 2026 — no session"></div><div class="cal-cell" title="Tue Jul 21 2026 — no session"></div><div class="cal-cell" title="Wed Jul 22 2026 — no session"></div><div class="cal-cell" title="Thu Jul 23 2026 — no session"></div><div class="cal-cell" title="Fri Jul 24 2026 — no session"></div><div class="cal-cell" title="Sat Jul 25 2026 — no session"></div><div class="cal-cell" title="Sun Jul 26 2026 — no session"></div><div class="cal-cell" style="background: var(--accent); opacity: 0.37; border-color: var(--accent);" title="Mon Jul 27 2026 — 25 min"></div><div class="cal-cell" style="background: var(--accent); opacity: 0.48; border-color: var(--accent);" title="Tue Jul 28 2026 — 40 min"></div><div class="cal-cell" style="background: var(--accent); opacity: 0.36; border-color: var(--accent);" title="Wed Jul 29 2026 — 23 min"></div><div class="cal-cell" style="background: var(--accent); opacity: 0.3; border-color: var(--accent);" title="Thu Jul 30 2026 — 15 min"></div><div class="cal-cell" title="Fri Jul 31 2026 — no session"></div><div class="cal-cell" style="background: var(--accent); opacity: 0.41; border-color: var(--accent);" title="Sat Aug 01 2026 — 30 min"></div><div class="cal-cell" style="background: var(--accent); opacity: 0.52; border-color: var(--accent);" title="Sun Aug 02 2026 — 46 min"></div><div class="cal-cell" title="Mon Aug 03 2026 — no session"></div></div></div>
 <div class="cal-legend">
 <span>less</span>
 <span class="cal-cell" style="background:var(--bg-card);"></span>
@@ -322,7 +376,61 @@ gentle reference.
 </section>
 <section id="log">
 <div class="section-head"><span class="label">Session Log</span></div>
-<div id="logHolder"></div>
+<div id="logHolder">
+<table class="log-table">
+<thead><tr><th>Date</th><th>Depth Reached</th><th>Duration</th></tr></thead>
+<tbody>
+<tr>
+<td class="col-date">2 Aug 2026</td>
+<td class="col-depth">6/8 · DHARANA</td>
+<td>21 min</td>
+</tr>
+<tr>
+<td class="col-date">2 Aug 2026</td>
+<td class="col-depth">5/8 · PRATYAHARA</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td class="col-date">1 Aug 2026</td>
+<td class="col-depth">5/8 · PRATYAHARA</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td class="col-date">30 Jul 2026</td>
+<td class="col-depth">4/8 · PRANAYAMA</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td class="col-date">29 Jul 2026</td>
+<td class="col-depth">5/8 · PRATYAHARA</td>
+<td>23 min</td>
+</tr>
+<tr>
+<td class="col-date">28 Jul 2026</td>
+<td class="col-depth">5/8 · PRATYAHARA</td>
+<td>40 min</td>
+</tr>
+<tr>
+<td class="col-date">27 Jul 2026</td>
+<td class="col-depth">5/8 · PRATYAHARA</td>
+<td>25 min</td>
+</tr>
+<tr>
+<td class="col-date">23 Jun 2026</td>
+<td class="col-depth">5/8 · PRATYAHARA</td>
+<td>45 min</td>
+</tr>
+<tr>
+<td class="col-date">23 Jun 2026</td>
+<td class="col-depth">5/8 · PRATYAHARA</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td class="col-date">23 Jun 2026</td>
+<td class="col-depth">5/8 · PRATYAHARA</td>
+<td>55 min</td>
+</tr></tbody>
+</table></div>
 </section>
 <section class="connect" id="connect">
 <div class="section-head" style="justify-content:center;flex-direction:column;align-items:center;">
@@ -330,7 +438,7 @@ gentle reference.
 <h2 style="margin-top:8px;">Follow along</h2>
 </div>
 <p>I share reflections, meditation practice, silence, and the journey inward on Instagram.</p>
-<a class="btn-primary" href="https://instagram.com/searching_the_self" rel="noopener" target="_blank">@searching_the_self</a>
+<a class="btn-primary" href="https://instagram.com/searching_the_self" rel="noopener" target="_blank">@searching_the_self</a><a class="btn-primary" href="https://github.com/Asutosh11/myzen" rel="noopener" style="margin-left:12px;background:transparent;color:var(--text);border:1px solid var(--border);" target="_blank">GitHub</a>
 </section>
 <footer>
 <span class="fmark">the ocean within</span>
@@ -353,14 +461,14 @@ gentle reference.
 const DATA_URL = "https://raw.githubusercontent.com/Asutosh11/myzen/main/sessions.json";
 
 const LIMBS = [
-  { key:1, name:"YAMA",       sub:"Ethical Restraints", desc:"Harmonizing external relationships — non-violence, truthfulness, kindness." },
-  { key:2, name:"NIYAMA",     sub:"Inner Disciplines",  desc:"Personal habits and contentment — gratitude and self-reflection." },
-  { key:3, name:"ASANA",      sub:"Steady Posture",     desc:"A comfortable, steady seat that keeps the body out of the way." },
-  { key:4, name:"PRANAYAMA",  sub:"Breath Integration", desc:"Slowing internal rhythms to signal complete physical ease." },
-  { key:5, name:"PRATYAHARA", sub:"Sensory Withdrawal", desc:"Turning attention inward, away from the pull of the senses." },
-  { key:6, name:"DHARANA",    sub:"One-Pointed Focus",  desc:"A single point of concentration, undistracted." },
-  { key:7, name:"DHYANA",     sub:"Effortless Flow",    desc:"Meditation sustaining itself, without strain." },
-  { key:8, name:"SAMADHI",    sub:"Pure Oneness",       desc:"Absorption — the boundary between self and stillness dissolves." }
+  { key:1, name:"YAMA", sub:"Harmonizing with the world.", desc:"Living in a way that reduces inner conflict so the mind becomes lighter." },
+  { key:2, name:"NIYAMA", sub:"Harmonizing with yourself.", desc:"Discipline, contentment and surrender make meditation a way of living." },
+  { key:3, name:"ASANA", sub:"Steady body.", desc:"Yoga, exercise or any movement prepares the body; the goal is a posture so comfortable the body disappears from attention." },
+  { key:4, name:"PRANAYAMA", sub:"Refined breath.", desc:"The breath naturally becomes slower and subtler, calming the mind without force." },
+  { key:5, name:"PRATYAHARA", sub:"Turning inward.", desc:"The senses continue working, but attention no longer runs after them." },
+  { key:6, name:"DHARANA", sub:"Notice → Return.", desc:"Attention repeatedly leaves the breath and returns. Every gentle return strengthens concentration." },
+  { key:7, name:"DHYANA", sub:"Effortless meditation.", desc:"Attention remains by itself; awareness flows naturally, often resting in Kūṭastha." },
+  { key:8, name:"SAMADHI", sub:"Pure awareness.", desc:"Even the meditator dissolves into stillness." },
 ];
 const MAX_DEPTH = LIMBS.length;
 
@@ -582,5 +690,4 @@ function renderLog(sessions){
 
 loadSessions();
 </script>
-</body>
-</html>
+</body></html>
