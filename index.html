@@ -1937,35 +1937,15 @@
             </section>
 
             <section id="log">
-                <div class="section-head">
+                <div class="section-head" style="justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
                     <span class="label">Session Log</span>
-                </div>
-                <div class="disabled-section-wrap" id="logWrap">
-                    <div class="disabled-content">
-                        <div id="logHolder"></div>
-                    </div>
-                    <div class="disabled-overlay">
-                        <div class="disabled-overlay-title">
-                            🔒 Session History Locked
-                        </div>
-                        <div class="disabled-overlay-desc">
-                            Sign in with GitHub to view your complete meditation
-                            history, edit past reflections, and sync to your
-                            <code>sessions.json</code>.
-                        </div>
-                        <button
-                            class="btn-log-main"
-                            style="
-                                width: auto;
-                                padding: 10px 22px;
-                                font-size: 0.84375rem;
-                            "
-                            onclick="openGHAuthModal()"
-                        >
-                            Sign In with GitHub
-                        </button>
+                    <div id="logAuthBadge" style="display: none; font-size: 0.75rem; color: var(--text-dim); background: var(--bg-card); border: 1px solid var(--border-soft); padding: 5px 14px; border-radius: 20px; align-items: center; gap: 6px;">
+                        <span>🔒 Session Log Preview</span>
+                        <span style="opacity: 0.4;">|</span>
+                        <button onclick="openGHAuthModal()" style="background: none; border: none; color: var(--accent-strong); font-weight: 500; cursor: pointer; padding: 0; font-family: inherit; font-size: inherit; text-decoration: underline;">Sign in to log</button>
                     </div>
                 </div>
+                <div id="logHolder"></div>
             </section>
 
             <!-- 6. How Web App & GitHub Data Sync Works -->
@@ -2840,13 +2820,13 @@
                 const statsWrap = document.getElementById("statsWrap");
                 const lastSessionWrap = document.getElementById("lastSessionWrap");
                 const tideWrap = document.getElementById("tideWrap");
-                const logWrap = document.getElementById("logWrap");
+                const logAuthBadge = document.getElementById("logAuthBadge");
 
                 if (currentUser && currentToken) {
                     if (statsWrap) statsWrap.classList.remove("disabled");
                     if (lastSessionWrap) lastSessionWrap.classList.remove("disabled");
                     if (tideWrap) tideWrap.classList.remove("disabled");
-                    if (logWrap) logWrap.classList.remove("disabled");
+                    if (logAuthBadge) logAuthBadge.style.display = "none";
 
                     container.innerHTML = `
       <div style="position:relative;">
@@ -2899,7 +2879,7 @@
                     if (statsWrap) statsWrap.classList.add("disabled");
                     if (lastSessionWrap) lastSessionWrap.classList.add("disabled");
                     if (tideWrap) tideWrap.classList.add("disabled");
-                    if (logWrap) logWrap.classList.add("disabled");
+                    if (logAuthBadge) logAuthBadge.style.display = "inline-flex";
 
                     container.innerHTML = `
       <button class="icon-btn" id="ghLoginBtn" style="padding:0 12px;">
@@ -3518,6 +3498,8 @@
                 }
                 return streak;
             }
+
+
 
             function renderLastSession(sessions) {
                 const last = sessions[sessions.length - 1];
