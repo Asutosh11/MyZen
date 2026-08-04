@@ -2726,13 +2726,62 @@
 
             /* Security & String Helpers */
             function escapeHtml(str) {
-                if (!str) return "";
+                if (str === null || str === undefined) return "";
                 return String(str)
                     .replace(/&/g, "&amp;")
                     .replace(/</g, "&lt;")
                     .replace(/>/g, "&gt;")
                     .replace(/"/g, "&quot;")
                     .replace(/'/g, "&#039;");
+            }
+
+            /* ---------- Input / Data Validators ---------- */
+            // Allow only UUID-shaped IDs (alphanumeric, hyphens) — blocks injection via data-id
+            function sanitizeId(id) {
+                if (typeof id !== "string") return "";
+                return id.replace(/[^a-zA-Z0-9\-]/g, "").slice(0, 64);
+            }
+            // Allow only safe GitHub repo names
+            function sanitizeRepoName(name) {
+                if (typeof name !== "string") return "myzen";
+                return name.replace(/[^a-zA-Z0-9_\-.]/g, "").slice(0, 100) || "myzen";
+            }
+            // Returns a positive integer or the fallback
+            function validatePositiveInt(val, fallback) {
+                const n = parseInt(val, 10);
+                return Number.isFinite(n) && n > 0 ? n : fallback;
+            }
+            // Returns depth clamped to [1, MAX_DEPTH] or 1
+            function validateDepth(val) {
+                const n = parseInt(val, 10);
+                return Number.isFinite(n) && n >= 1 && n <= MAX_DEPTH ? n : 1;
+            }
+            // Returns a safe GitHub CDN avatar URL or empty string
+            function sanitizeAvatarUrl(url) {
+                try {
+                    const u = new URL(url);
+                    if (
+                        (u.hostname === "avatars.githubusercontent.com" ||
+                         u.hostname.endsWith(".githubusercontent.com")) &&
+                        (u.protocol === "https:")
+                    ) return url;
+                } catch (_) {}
+                return "";
+            }
+            // Validate and sanitize a raw session object from JSON
+            function validateSession(s) {
+                if (!s || typeof s !== "object") return null;
+                const id = sanitizeId(String(s.id || ""));
+                if (!id) return null;
+                const duration = validatePositiveInt(s.durationInMinutes, 1);
+                if (duration > 1440) return null; // sanity cap: 24 hours
+                // statePath must be an array of positive ints
+                if (!Array.isArray(s.statePath) || s.statePath.length === 0) return null;
+                const safePath = s.statePath.map((v) => validatePositiveInt(v, 1)).filter((v) => v <= MAX_DEPTH);
+                if (safePath.length === 0) return null;
+                const date = typeof s.date === "number" ? s.date : parseFloat(s.date);
+                if (!Number.isFinite(date)) return null;
+                return { id, date, statePath: safePath, durationInMinutes: duration };
             }
 
             /* Date Helpers */
@@ -2886,12 +2935,22 @@
                 if (savedUser && currentToken) {
                     try {
                         currentUser = JSON.parse(savedUser);
-                        verifyGitHubToken(currentToken, currentRepo, false);
+                        // Await so loadSessions runs AFTER auth is settled
+                        const ok = await verifyGitHubToken(currentToken, currentRepo, false);
+                        if (!ok) {
+                            // Token invalid — clear stale credentials
+                            currentUser = null;
+                            renderAuthUI();
+                            loadSessions();
+                        }
+                        // verifyGitHubToken already calls renderAuthUI + loadSessions on success
+                        return;
                     } catch (e) {
                         currentUser = null;
                     }
                 }
                 renderAuthUI();
+                loadSessions();
             }
 
             async function verifyGitHubToken(
@@ -2915,7 +2974,7 @@
 
                     currentToken = token;
                     currentUser = user;
-                    currentRepo = repoName || "myzen";
+                    currentRepo = sanitizeRepoName(repoName || "myzen");
                     localStorage.setItem("myzen_gh_token", token);
                     localStorage.setItem("myzen_gh_user", JSON.stringify(user));
                     localStorage.setItem("myzen_gh_repo", currentRepo);
@@ -2961,7 +3020,7 @@
                     container.innerHTML = `
       <div style="position:relative;">
         <button class="auth-pill" id="userMenuBtn">
-          <img class="auth-avatar" src="${escapeHtml(currentUser.avatar_url)}" alt="${escapeHtml(currentUser.login)}"/>
+          <img class="auth-avatar" src="${escapeHtml(sanitizeAvatarUrl(currentUser.avatar_url))}" alt="${escapeHtml(currentUser.login)}"/>
           <span>@${escapeHtml(currentUser.login)}</span>
         </button>
         <div class="auth-popover" id="userPop">
@@ -3085,6 +3144,24 @@
                 });
 
             /* ============================================================
+   Base64 ↔ UTF-8 helpers (handles emoji, Devanagari, etc.)
+   ============================================================ */
+            function utf8ToBase64(str) {
+                const bytes = new TextEncoder().encode(str);
+                let binary = "";
+                bytes.forEach((b) => (binary += String.fromCharCode(b)));
+                return btoa(binary);
+            }
+            function base64ToUtf8(b64) {
+                const cleaned = b64.replace(/\n/g, "");
+                const binary = atob(cleaned);
+                const bytes = new Uint8Array(binary.length);
+                for (let i = 0; i < binary.length; i++)
+                    bytes[i] = binary.charCodeAt(i);
+                return new TextDecoder().decode(bytes);
+            }
+
+            /* ============================================================
    Data Loading & GitHub API Sync
    ============================================================ */
             async function loadSessions() {
@@ -3103,14 +3180,19 @@
                         if (res.ok) {
                             const fileData = await res.json();
                             currentSHA = fileData.sha;
-                            const cleanedBase64 = (
-                                fileData.content || ""
-                            ).replace(/\n/g, "");
-                            const decodedStr = decodeURIComponent(
-                                escape(atob(cleanedBase64)),
-                            );
-                            rawSessions = JSON.parse(decodedStr);
+                            const parsed = JSON.parse(base64ToUtf8(fileData.content || ""));
+                            if (!Array.isArray(parsed)) throw new Error("sessions.json is not an array");
+                            // Validate and sanitize every session entry
+                            rawSessions = parsed
+                                .map(validateSession)
+                                .filter(Boolean);
                             processAndRenderSessions();
+                            return;
+                        } else if (res.status === 404) {
+                            // Repo exists but sessions.json doesn't yet — new user or new repo
+                            rawSessions = [];
+                            parsedSessions = [];
+                            renderLoggedInEmpty();
                             return;
                         }
                     } catch (e) {
@@ -3118,6 +3200,13 @@
                             "Could not fetch sessions from user GitHub repo...",
                             e,
                         );
+                        // Fall through to logged-in empty state (not the blurred demo)
+                        if (currentUser && currentToken) {
+                            rawSessions = [];
+                            parsedSessions = [];
+                            renderLoggedInEmpty();
+                            return;
+                        }
                     }
                 }
 
@@ -3171,9 +3260,7 @@
                     }
 
                     const jsonStr = JSON.stringify(rawSessions, null, 2);
-                    const base64Content = btoa(
-                        unescape(encodeURIComponent(jsonStr)),
-                    );
+                    const base64Content = utf8ToBase64(jsonStr);
 
                     const putBody = {
                         message: "Log meditation session via MyZen Web App",
@@ -3731,7 +3818,12 @@
 
             function render(sessions) {
                 if (!sessions.length) {
-                    renderEmpty();
+                    // Logged-in users with 0 sessions → friendly empty (not blurred demo)
+                    if (currentUser && currentToken) {
+                        renderLoggedInEmpty();
+                    } else {
+                        renderEmpty();
+                    }
                     return;
                 }
                 renderStats(sessions);
@@ -3740,6 +3832,33 @@
                 renderLog(sessions);
                 const peak = Math.max(...sessions.map((s) => s.depth));
                 renderLimbGrid(peak);
+            }
+
+            function renderLoggedInEmpty() {
+                document.getElementById("statHours").textContent = "0";
+                document.getElementById("statStreak").textContent = "0";
+                document.getElementById("statDepth").textContent = "—";
+                document.getElementById("lsTitle").textContent = "No sessions yet";
+                document.getElementById("lsStage").textContent = "Your first dive awaits";
+                document.getElementById("lsDate").textContent = "";
+                renderCalendar([]);
+                renderLimbGrid(0);
+                document.getElementById("logHolder").innerHTML = `
+                    <div style="
+                        display:flex;flex-direction:column;align-items:center;
+                        justify-content:center;gap:14px;padding:48px 24px;
+                        text-align:center;
+                    ">
+                        <div style="font-size:2.5rem;">🧘</div>
+                        <div style="font-size:1rem;font-weight:600;color:var(--text);">
+                            Welcome, @${escapeHtml(currentUser ? currentUser.login : "")}!
+                        </div>
+                        <div style="font-size:0.84375rem;color:var(--text-dim);max-width:280px;line-height:1.6;">
+                            Your session journal is empty. Log your first meditation above
+                            using the <strong>Commit to Journal</strong> button — it will be
+                            saved to <code>${escapeHtml(currentUser ? currentUser.login : "")}/${escapeHtml(currentRepo)}/sessions.json</code> on GitHub.
+                        </div>
+                    </div>`;
             }
 
             function renderStats(sessions) {
@@ -3855,21 +3974,32 @@
                     .reverse()
                     .slice(0, 60)
                     .map(
-                        (s) => `
+                        (s) => {
+                            const safeId = sanitizeId(s.id);
+                            const safeDepth = validateDepth(s.depth);
+                            const safeDur = validatePositiveInt(s.durationInMinutes, 1);
+                            const limbName = escapeHtml(LIMBS[safeDepth - 1]?.name || "");
+                            const dateStr = escapeHtml(
+                                s.jsDate.toLocaleDateString(undefined, {
+                                    month: "short", day: "numeric", year: "numeric",
+                                })
+                            );
+                            return `
     <tr>
-      <td class="col-date">${s.jsDate.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}</td>
-      <td class="col-depth">${s.depth}/${MAX_DEPTH} · ${LIMBS[s.depth - 1].name}</td>
-      <td>${s.durationInMinutes} min</td>
+      <td class="col-date">${dateStr}</td>
+      <td class="col-depth">${safeDepth}/${MAX_DEPTH} &middot; ${limbName}</td>
+      <td>${safeDur} min</td>
       ${
           showActions
               ? `
         <td style="text-align:right;">
-          <button class="table-act-btn edit-row-btn" data-id="${s.id}" title="Edit session">✏️</button>
-          <button class="table-act-btn table-del-btn del-row-btn" data-id="${s.id}" title="Delete session">🗑️</button>
+          <button class="table-act-btn edit-row-btn" data-id="${escapeHtml(safeId)}" title="Edit session">✏️</button>
+          <button class="table-act-btn table-del-btn del-row-btn" data-id="${escapeHtml(safeId)}" title="Delete session">🗑️</button>
         </td>`
               : ""
       }
-    </tr>`,
+    </tr>`;
+                        }
                     )
                     .join("");
 
@@ -3884,8 +4014,9 @@
                         .querySelectorAll(".edit-row-btn")
                         .forEach((btn) => {
                             btn.addEventListener("click", () => {
+                                const safeId = sanitizeId(btn.dataset.id);
                                 const s = parsedSessions.find(
-                                    (item) => item.id === btn.dataset.id,
+                                    (item) => sanitizeId(item.id) === safeId,
                                 );
                                 if (s) openReflectionModal(s);
                             });
@@ -3893,8 +4024,9 @@
                     document.querySelectorAll(".del-row-btn").forEach((btn) => {
                         btn.addEventListener("click", async () => {
                             if (confirm("Delete this meditation entry?")) {
+                                const safeId = sanitizeId(btn.dataset.id);
                                 rawSessions = rawSessions.filter(
-                                    (item) => item.id !== btn.dataset.id,
+                                    (item) => sanitizeId(item.id) !== safeId,
                                 );
                                 await saveSessionsToGitHub(rawSessions);
                             }
@@ -3903,9 +4035,8 @@
                 }
             }
 
-            /* Initialize */
+            /* Initialize — loadSessions() is called inside initAuth() after auth settles */
             initAuth();
-            loadSessions();
         </script>
     </body>
 </html>
