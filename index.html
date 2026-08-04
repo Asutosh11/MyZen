@@ -1634,793 +1634,1186 @@
 
             <!-- Tab navigation (fixed bottom bar on mobile, segmented control on desktop) -->
             <nav class="tab-bar" id="tabBar" aria-label="Sections">
-                <button class="tab-btn active" data-tab="practice" type="button">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="2"></circle><path d="M12 6.5v3.5"></path><path d="M9 10c-1.8 .6-3 2-3.5 4"></path><path d="M15 10c1.8 .6 3 2 3.5 4"></path><path d="M5.5 14h13"></path><path d="M8 14c0 2.5 1.8 4.5 4 4.5s4-2 4-4.5"></path></svg>
+                <button
+                    class="tab-btn active"
+                    data-tab="practice"
+                    type="button"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="12" cy="4.5" r="2"></circle>
+                        <path d="M12 6.5v3.5"></path>
+                        <path d="M9 10c-1.8 .6-3 2-3.5 4"></path>
+                        <path d="M15 10c1.8 .6 3 2 3.5 4"></path>
+                        <path d="M5.5 14h13"></path>
+                        <path d="M8 14c0 2.5 1.8 4.5 4 4.5s4-2 4-4.5"></path>
+                    </svg>
                     <span>Practice</span>
                 </button>
                 <button class="tab-btn" data-tab="log" type="button">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.5 2"></path></svg>
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M12 7v5l3.5 2"></path>
+                    </svg>
                     <span>Log</span>
                 </button>
                 <button class="tab-btn" data-tab="progress" type="button">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10"></path><path d="M12 19V5"></path><path d="M20 19v-7"></path></svg>
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M4 19V10"></path>
+                        <path d="M12 19V5"></path>
+                        <path d="M20 19v-7"></path>
+                    </svg>
                     <span>Progress</span>
                 </button>
                 <button class="tab-btn" data-tab="about" type="button">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M12 16v-4M12 8h.01"></path>
+                    </svg>
                     <span>About</span>
                 </button>
             </nav>
 
             <div class="tab-panel active" id="tabPanel-practice">
-            <section class="about">
-                <p class="quote">
-                    "What we know is a drop, what we don't know is an ocean."
-                </p>
-                <p>
-                    If you've landed here carrying stress, mental noise, or
-                    anxiety—welcome. Meditation isn't about fighting your
-                    thoughts or achieving perfection. It is simply a gentle
-                    return home to quiet stillness inside yourself.
-                </p>
-                <div class="app-note">
-                    <span class="dot"></span> A sanctuary for your mental
-                    well-being
-                </div>
-            </section>
-
-            <!-- 1. 3-Minute Immediate Remedy (Do Now) -->
-            <section id="stepByStepGuide" style="padding: 16px 0">
-                <div class="card" style="padding: 24px; position: relative">
-                    <div
-                        class="section-head"
-                        style="
-                            margin-bottom: 8px;
-                            justify-content: center;
-                            flex-direction: column;
-                            align-items: center;
-                        "
-                    >
-                        <span class="label">Immediate Remedy · Do Now</span>
-                        <h2
-                            style="
-                                font-size: 1.25rem;
-                                font-weight: 500;
-                                color: var(--text);
-                                margin-top: 4px;
-                                text-align: center;
-                            "
-                        >
-                            3-Minute Immediate Mind Declutter Sit
-                        </h2>
-                    </div>
-                    <p
-                        style="
-                            font-size: 0.84375rem;
-                            color: var(--text-dim);
-                            text-align: center;
-                            max-width: 580px;
-                            margin: 0 auto 16px;
-                            line-height: 1.6;
-                        "
-                    >
-                        If your mind is currently carrying stress, anxiety, or
-                        racing thoughts, do this 3-minute breath exercise right
-                        now for an immediate mental reset. It requires no prior
-                        preparation—simply follow the expanding and contracting
-                        breath circle below.
+                <section class="about">
+                    <p class="quote">
+                        "What we know is a drop, what we don't know is an
+                        ocean."
                     </p>
-
-                    <!-- Breathing Pacer Widget -->
-                    <div class="breathing-ring-container">
-                        <div class="label" style="margin-bottom: 8px">
-                            Interactive Practice
-                        </div>
-                        <div class="breathing-ring-wrapper">
-                            <div class="breathing-ring" id="breathingRing">
-                                <span
-                                    style="
-                                        font-size: 0.75rem;
-                                        color: var(--accent-strong);
-                                        font-weight: 500;
-                                    "
-                                    id="ringInnerLabel"
-                                    >Breathe</span
-                                >
-                            </div>
-                        </div>
-                        <div
-                            class="breathing-state-text"
-                            id="breathingStateText"
-                        >
-                            Press start to take a 3-minute calm break
-                        </div>
-                        <div
-                            class="breathing-timer-text"
-                            id="breathingTimerText"
-                        >
-                            Inhale 4s · Hold 4s · Exhale 4s · Rest 4s
-                        </div>
-                        <button
-                            class="btn-log-main"
-                            id="startBreathingBtn"
-                            style="
-                                max-width: 260px;
-                                margin-top: 16px;
-                                padding: 12px;
-                                font-size: 0.84375rem;
-                            "
-                        >
-                            🧘 Start 3-Minute Breathing Sit
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 2. The Main Daily Practice -->
-            <section id="howToPractice" style="padding: 12px 0">
-                <div class="card" style="padding: 24px; position: relative">
-                    <div
-                        class="section-head"
-                        style="
-                            margin-bottom: 8px;
-                            justify-content: center;
-                            flex-direction: column;
-                            align-items: center;
-                        "
-                    >
-                        <span
-                            class="label"
-                            style="
-                                font-size: 0.72rem;
-                                letter-spacing: 0.12em;
-                                color: var(--accent-strong);
-                            "
-                            >DAILY MEDITATION</span
-                        >
-                        <h2
-                            style="
-                                font-size: 1.45rem;
-                                font-weight: 600;
-                                color: var(--text);
-                                margin-top: 6px;
-                                text-align: center;
-                                letter-spacing: -0.01em;
-                            "
-                        >
-                            🧘 The Main Daily Practice
-                        </h2>
-                    </div>
-                    <p
-                        style="
-                            font-size: 0.84375rem;
-                            color: var(--text-dim);
-                            text-align: center;
-                            max-width: 580px;
-                            margin: 0 auto 18px;
-                            line-height: 1.6;
-                        "
-                    >
-                        When sitting for your main daily session, follow these 4
-                        simple steps to quiet the mind:
+                    <p>
+                        If you've landed here carrying stress, mental noise, or
+                        anxiety—welcome. Meditation isn't about fighting your
+                        thoughts or achieving perfection. It is simply a gentle
+                        return home to quiet stillness inside yourself.
                     </p>
-
-                    <div class="practice-step-grid">
-                        <div class="practice-step-card">
-                            <span class="step-num-badge">1</span>
-                            <div class="step-title">Prepare the Body</div>
-                            <div class="step-desc">
-                                Do light stretching or movement first so your
-                                body can sit upright and still without
-                                restlessness.
-                            </div>
-                        </div>
-
-                        <div class="practice-step-card">
-                            <span class="step-num-badge">2</span>
-                            <div class="step-title">Observe Natural Breath</div>
-                            <div class="step-desc">
-                                Sit comfortably, close your eyes, and watch your
-                                breath flow naturally without forcing it.
-                            </div>
-                        </div>
-
-                        <div class="practice-step-card">
-                            <span class="step-num-badge">3</span>
-                            <div class="step-title">Anchor Focus Inward</div>
-                            <div class="step-desc">
-                                Feel the breath sensation at the space between
-                                your eyebrows (<em>Kūṭastha</em>). Gently return
-                                focus here if thoughts wander.
-                            </div>
-                        </div>
-
-                        <div class="practice-step-card">
-                            <span class="step-num-badge">4</span>
-                            <div class="step-title">Rest in Stillness</div>
-                            <div class="step-desc">
-                                Effortlessly remain aware. Let thoughts pass
-                                like clouds—rest as the calm observer.
-                            </div>
-                        </div>
+                    <div class="app-note">
+                        <span class="dot"></span> A sanctuary for your mental
+                        well-being
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- Arrow Connector: Flow from Practice to Quality Measurement -->
-            <div
-                style="
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    margin: 8px 0 12px;
-                    text-align: center;
-                "
-            >
-                <button
-                    type="button"
-                    onclick="window.myZenShowTab && window.myZenShowTab('log')"
-                    style="
-                        font-size: 0.75rem;
-                        letter-spacing: 0.06em;
-                        color: var(--accent-strong);
-                        font-weight: 500;
-                        background: var(--bg-card);
-                        border: 1px solid var(--border-soft);
-                        padding: 7px 18px;
-                        border-radius: 20px;
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 8px;
-                        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-                        cursor: pointer;
-                        font-family: inherit;
-                        max-width: 420px;
-                        text-align: left;
-                        line-height: 1.5;
-                    "
-                >
-                    <span
-                        >Everything should be measured for quality &amp;
-                        improvement. Measure and log your session in the next
-                        tab (Log tab)</span
-                    >
-                    <span
-                        style="
-                            font-size: 0.95rem;
-                            line-height: 1;
-                            color: var(--accent);
-                            flex-shrink: 0;
-                        "
-                        >→</span
-                    >
-                </button>
-            </div>
-            </div><!-- /tabPanel-practice -->
-
-            <div class="tab-panel" id="tabPanel-log">
-            <!-- 3. Integrated Section: How Effectiveness is Measured & Log Session Widget -->
-            <section id="depth" style="padding: 6px 0 12px">
-                <div
-                    class="section-head"
-                    style="
-                        margin-bottom: 14px;
-                        justify-content: space-between;
-                        align-items: flex-end;
-                        text-align: left;
-                        flex-wrap: wrap;
-                        gap: 8px;
-                    "
-                >
-                    <div style="min-width: 0">
-                        <h2
-                            style="
-                                font-size: 1.2rem;
-                                font-weight: 500;
-                                margin: 0;
-                            "
-                        >
-                            How effectiveness of a meditation session be measured?
-                        </h2>
+                <!-- 1. 3-Minute Immediate Remedy (Do Now) -->
+                <section id="stepByStepGuide" style="padding: 16px 0">
+                    <div class="card" style="padding: 24px; position: relative">
                         <div
+                            class="section-head"
                             style="
-                                margin-top: 4px;
-                                font-size: 0.78125rem;
-                                color: var(--text-faint);
-                            "
-                        >
-                            Using Patanjali's 8 Limbs
-                        </div>
-                    </div>
-                    <span
-                        id="inlineLogStatus"
-                        style="font-size: 0.72rem; color: var(--text-faint)"
-                    ></span>
-                </div>
-                <div class="card" style="padding: 24px; position: relative">
-                    <!-- Explanation: What is 8 Limbs & How it measures meditation -->
-                    <div
-                        style="
-                            background: var(--bg-card-2);
-                            border: 1px solid var(--border-soft);
-                            border-radius: 14px;
-                            padding: 16px 20px;
-                            margin-bottom: 20px;
-                        "
-                    >
-                        <div
-                            style="
-                                font-size: 0.875rem;
-                                font-weight: 600;
-                                color: var(--accent-strong);
                                 margin-bottom: 8px;
-                                display: flex;
+                                justify-content: center;
+                                flex-direction: column;
                                 align-items: center;
-                                justify-content: space-between;
-                                flex-wrap: wrap;
-                                gap: 10px;
+                            "
+                        >
+                            <span class="label">Immediate Remedy · Do Now</span>
+                            <h2
+                                style="
+                                    font-size: 1.25rem;
+                                    font-weight: 500;
+                                    color: var(--text);
+                                    margin-top: 4px;
+                                    text-align: center;
+                                "
+                            >
+                                3-Minute Immediate Mind Declutter Sit
+                            </h2>
+                        </div>
+                        <p
+                            style="
+                                font-size: 0.84375rem;
+                                color: var(--text-dim);
+                                text-align: center;
+                                max-width: 580px;
+                                margin: 0 auto 16px;
+                                line-height: 1.6;
+                            "
+                        >
+                            If your mind is currently carrying stress, anxiety,
+                            or racing thoughts, do this 3-minute breath exercise
+                            right now for an immediate mental reset. It requires
+                            no prior preparation—simply follow the expanding and
+                            contracting breath circle below.
+                        </p>
+
+                        <!-- Breathing Pacer Widget -->
+                        <div class="breathing-ring-container">
+                            <div class="label" style="margin-bottom: 8px">
+                                Interactive Practice
+                            </div>
+                            <div class="breathing-ring-wrapper">
+                                <div class="breathing-ring" id="breathingRing">
+                                    <span
+                                        style="
+                                            font-size: 0.75rem;
+                                            color: var(--accent-strong);
+                                            font-weight: 500;
+                                        "
+                                        id="ringInnerLabel"
+                                        >Breathe</span
+                                    >
+                                </div>
+                            </div>
+                            <div
+                                class="breathing-state-text"
+                                id="breathingStateText"
+                            >
+                                Press start to take a 3-minute calm break
+                            </div>
+                            <div
+                                class="breathing-timer-text"
+                                id="breathingTimerText"
+                            >
+                                Inhale 4s · Hold 4s · Exhale 4s · Rest 4s
+                            </div>
+                            <button
+                                class="btn-log-main"
+                                id="startBreathingBtn"
+                                style="
+                                    max-width: 260px;
+                                    margin-top: 16px;
+                                    padding: 12px;
+                                    font-size: 0.84375rem;
+                                "
+                            >
+                                🧘 Start 3-Minute Breathing Sit
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. The Main Daily Practice -->
+                <section id="howToPractice" style="padding: 12px 0">
+                    <div class="card" style="padding: 24px; position: relative">
+                        <div
+                            class="section-head"
+                            style="
+                                margin-bottom: 8px;
+                                justify-content: center;
+                                flex-direction: column;
+                                align-items: center;
                             "
                         >
                             <span
-                                >💡 What are Patanjali's 8 Limbs &amp; How do
-                                they measure meditation?</span
-                            >
-                            <button
-                                onclick="openLimbsDetailModal()"
+                                class="label"
                                 style="
-                                    background: var(--accent-soft);
-                                    border: 1px solid var(--accent);
+                                    font-size: 0.72rem;
+                                    letter-spacing: 0.12em;
                                     color: var(--accent-strong);
-                                    padding: 5px 14px;
-                                    border-radius: 8px;
-                                    font-size: 0.78125rem;
+                                "
+                                >DAILY MEDITATION</span
+                            >
+                            <h2
+                                style="
+                                    font-size: 1.45rem;
                                     font-weight: 600;
-                                    cursor: pointer;
-                                    font-family: inherit;
-                                    transition: all 0.2s;
+                                    color: var(--text);
+                                    margin-top: 6px;
+                                    text-align: center;
+                                    letter-spacing: -0.01em;
                                 "
                             >
-                                📖 Understand All 8 Limbs in Detail
-                            </button>
+                                🧘 The Main Daily Practice
+                            </h2>
                         </div>
                         <p
                             style="
-                                font-size: 0.8125rem;
+                                font-size: 0.84375rem;
                                 color: var(--text-dim);
+                                text-align: center;
+                                max-width: 580px;
+                                margin: 0 auto 18px;
                                 line-height: 1.6;
-                                margin: 0 0 8px 0;
                             "
                         >
-                            <strong>What are the 8 Limbs?</strong> Patanjali's 8
-                            Limbs (<em>Ashtanga</em>) are eight interconnected
-                            branches of internal yoga—ranging from external
-                            ethics (<em>Yama/Niyama</em>), steady posture
-                            (<em>Asana</em>), and breath refining
-                            (<em>Pranayama</em>), to sensory withdrawal
-                            (<em>Pratyahara</em>), single-pointed focus
-                            (<em>Dharana</em>), effortlessness
-                            (<em>Dhyana</em>), and pure absorption
-                            (<em>Samadhi</em>). They grow together like branches
-                            of a single living tree.
+                            When sitting for your main daily session, follow
+                            these 4 simple steps to quiet the mind:
                         </p>
-                        <p
-                            style="
-                                font-size: 0.8125rem;
-                                color: var(--text-dim);
-                                line-height: 1.6;
-                                margin: 0;
-                            "
-                        >
-                            <strong>How they measure effectiveness:</strong>
-                            While clock duration tracks physical effort,
-                            Patanjali's 8 Limbs serve as an internal ruler for
-                            quality. By logging both
-                            <strong>Time</strong> (duration in minutes) and
-                            <strong>Highest Limb Touched</strong> (depth 1–8),
-                            you measure both time length and the far more vital
-                            dimension: true internal depth of attention.
-                            <strong>
-                                In every session, the depth achieved means far
-                                more than time spent.
-                            </strong>
-                        </p>
-                    </div>
 
-                    <!-- Duration Picker -->
-                    <div class="sheet-section">
-                        <div class="sheet-label">
-                            <span>Duration</span>
-                            <button
-                                class="custom-dur-btn"
-                                id="inlineCustomDurBtn"
-                            >
-                                ⏱ Custom...
-                            </button>
-                        </div>
-                        <div class="duration-picker">
-                            <div class="duration-slider-row">
-                                <input
-                                    type="range"
-                                    min="1"
-                                    max="180"
-                                    value="15"
-                                    class="duration-slider"
-                                    id="inlineDurationSlider"
-                                />
-                                <span
-                                    class="duration-val"
-                                    id="inlineDurationVal"
-                                    >&quot;15 m&quot;</span
-                                >
+                        <div class="practice-step-grid">
+                            <div class="practice-step-card">
+                                <span class="step-num-badge">1</span>
+                                <div class="step-title">Prepare the Body</div>
+                                <div class="step-desc">
+                                    Do light stretching or movement first so
+                                    your body can sit upright and still without
+                                    restlessness.
+                                </div>
+                            </div>
+
+                            <div class="practice-step-card">
+                                <span class="step-num-badge">2</span>
+                                <div class="step-title">
+                                    Observe Natural Breath
+                                </div>
+                                <div class="step-desc">
+                                    Sit comfortably, close your eyes, and watch
+                                    your breath flow naturally without forcing
+                                    it.
+                                </div>
+                            </div>
+
+                            <div class="practice-step-card">
+                                <span class="step-num-badge">3</span>
+                                <div class="step-title">
+                                    Anchor Focus Inward
+                                </div>
+                                <div class="step-desc">
+                                    Feel the breath sensation at the space
+                                    between your eyebrows (<em>Kūṭastha</em>).
+                                    Gently return focus here if thoughts wander.
+                                </div>
+                            </div>
+
+                            <div class="practice-step-card">
+                                <span class="step-num-badge">4</span>
+                                <div class="step-title">Rest in Stillness</div>
+                                <div class="step-desc">
+                                    Effortlessly remain aware. Let thoughts pass
+                                    like clouds—rest as the calm observer.
+                                </div>
                             </div>
                         </div>
                     </div>
+                </section>
 
-                    <!-- Depth Grid -->
-                    <div class="sheet-section">
-                        <div
-                            class="sheet-label"
+                <!-- Arrow Connector: Flow from Practice to Quality Measurement -->
+                <div
+                    style="
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        margin: 8px 0 12px;
+                        text-align: center;
+                    "
+                >
+                    <button
+                        type="button"
+                        onclick="
+                            window.myZenShowTab && window.myZenShowTab('log')
+                        "
+                        style="
+                            font-size: 0.75rem;
+                            letter-spacing: 0.06em;
+                            color: var(--accent-strong);
+                            font-weight: 500;
+                            background: var(--bg-card);
+                            border: 1px solid var(--border-soft);
+                            padding: 7px 18px;
+                            border-radius: 20px;
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 8px;
+                            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+                            cursor: pointer;
+                            font-family: inherit;
+                            max-width: 420px;
+                            text-align: left;
+                            line-height: 1.5;
+                        "
+                    >
+                        <span
+                            >Everything should be measured for quality &amp;
+                            improvement. Measure and log your session in the
+                            next tab (Log tab)</span
+                        >
+                        <span
                             style="
-                                display: flex;
-                                justify-content: space-between;
-                                align-items: center;
+                                font-size: 0.95rem;
+                                line-height: 1;
+                                color: var(--accent);
+                                flex-shrink: 0;
+                            "
+                            >→</span
+                        >
+                    </button>
+                </div>
+            </div>
+            <!-- /tabPanel-practice -->
+
+            <div class="tab-panel" id="tabPanel-log">
+                <!-- 3. Integrated Section: How Effectiveness is Measured & Log Session Widget -->
+                <section id="depth" style="padding: 6px 0 12px">
+                    <div
+                        class="section-head"
+                        style="
+                            margin-bottom: 14px;
+                            justify-content: space-between;
+                            align-items: flex-end;
+                            text-align: left;
+                            flex-wrap: wrap;
+                            gap: 8px;
+                        "
+                    >
+                        <div style="min-width: 0">
+                            <h2
+                                style="
+                                    font-size: 1.2rem;
+                                    font-weight: 500;
+                                    margin: 0;
+                                "
+                            >
+                                How effectiveness of a meditation session be
+                                measured?
+                            </h2>
+                            <div
+                                style="
+                                    margin-top: 4px;
+                                    font-size: 0.78125rem;
+                                    color: var(--text-faint);
+                                "
+                            >
+                                Using Patanjali's 8 Limbs
+                            </div>
+                        </div>
+                        <span
+                            id="inlineLogStatus"
+                            style="font-size: 0.72rem; color: var(--text-faint)"
+                        ></span>
+                    </div>
+                    <div class="card" style="padding: 24px; position: relative">
+                        <!-- Explanation: What is 8 Limbs & How it measures meditation -->
+                        <div
+                            style="
+                                background: var(--bg-card-2);
+                                border: 1px solid var(--border-soft);
+                                border-radius: 14px;
+                                padding: 16px 20px;
+                                margin-bottom: 20px;
                             "
                         >
-                            <span>Select Highest Internal Depth Reached</span>
-                            <button
-                                onclick="openLimbsDetailModal()"
+                            <div
                                 style="
-                                    background: none;
-                                    border: none;
+                                    font-size: 0.875rem;
+                                    font-weight: 600;
                                     color: var(--accent-strong);
-                                    cursor: pointer;
-                                    font-size: 0.75rem;
-                                    display: inline-flex;
+                                    margin-bottom: 8px;
+                                    display: flex;
                                     align-items: center;
-                                    gap: 4px;
-                                    font-family: inherit;
+                                    justify-content: space-between;
+                                    flex-wrap: wrap;
+                                    gap: 10px;
                                 "
                             >
-                                <svg
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="1.6"
-                                    viewBox="0 0 24 24"
-                                    style="width: 13px; height: 13px"
+                                <span
+                                    >💡 What are Patanjali's 8 Limbs &amp; How
+                                    do they measure meditation?</span
                                 >
-                                    <circle cx="12" cy="12" r="9.5"></circle>
-                                    <path
-                                        d="M12 16v-4M12 8h.01"
-                                        stroke-linecap="round"
-                                    ></path>
-                                </svg>
-                                What is it?
-                            </button>
-                        </div>
-                        <div
-                            class="depth-select-grid"
-                            id="inlineDepthGrid"
-                        ></div>
-
-                        <div class="depth-summary-box">
-                            <div class="depth-summary-head">
-                                MAXIMUM DEPTH ACHIEVED
+                                <button
+                                    onclick="openLimbsDetailModal()"
+                                    style="
+                                        background: var(--accent-soft);
+                                        border: 1px solid var(--accent);
+                                        color: var(--accent-strong);
+                                        padding: 5px 14px;
+                                        border-radius: 8px;
+                                        font-size: 0.78125rem;
+                                        font-weight: 600;
+                                        cursor: pointer;
+                                        font-family: inherit;
+                                        transition: all 0.2s;
+                                    "
+                                >
+                                    📖 Understand All 8 Limbs in Detail
+                                </button>
                             </div>
-                            <div
-                                class="depth-summary-title"
-                                id="inlineDepthTitle"
-                            >
-                                STAGE 4: PRANAYAMA
-                            </div>
-                            <div
-                                class="depth-summary-desc"
-                                id="inlineDepthDesc"
-                            ></div>
-                            <div
+                            <p
                                 style="
-                                    margin-top: 10px;
-                                    border-top: 1px solid var(--border-soft);
-                                    padding-top: 8px;
+                                    font-size: 0.8125rem;
+                                    color: var(--text-dim);
+                                    line-height: 1.6;
+                                    margin: 0 0 8px 0;
                                 "
                             >
+                                <strong>What are the 8 Limbs?</strong>
+                                Patanjali's 8 Limbs (<em>Ashtanga</em>) are
+                                eight interconnected branches of internal
+                                yoga—ranging from external ethics
+                                (<em>Yama/Niyama</em>), steady posture
+                                (<em>Asana</em>), and breath refining
+                                (<em>Pranayama</em>), to sensory withdrawal
+                                (<em>Pratyahara</em>), single-pointed focus
+                                (<em>Dharana</em>), effortlessness
+                                (<em>Dhyana</em>), and pure absorption
+                                (<em>Samadhi</em>). They grow together like
+                                branches of a single living tree.
+                            </p>
+                            <p
+                                style="
+                                    font-size: 0.8125rem;
+                                    color: var(--text-dim);
+                                    line-height: 1.6;
+                                    margin: 0;
+                                "
+                            >
+                                <strong>How they measure effectiveness:</strong>
+                                While clock duration tracks physical effort,
+                                Patanjali's 8 Limbs serve as an internal ruler
+                                for quality. By logging both
+                                <strong>Time</strong> (duration in minutes) and
+                                <strong>Highest Limb Touched</strong> (depth
+                                1–8), you measure both time length and the far
+                                more vital dimension: true internal depth of
+                                attention.
+                                <strong>
+                                    In every session, the depth achieved means
+                                    far more than time spent.
+                                </strong>
+                            </p>
+                        </div>
+
+                        <!-- Duration Picker -->
+                        <div class="sheet-section">
+                            <div class="sheet-label">
+                                <span>Duration</span>
+                                <button
+                                    class="custom-dur-btn"
+                                    id="inlineCustomDurBtn"
+                                >
+                                    ⏱ Custom...
+                                </button>
+                            </div>
+                            <div class="duration-picker">
+                                <div class="duration-slider-row">
+                                    <input
+                                        type="range"
+                                        min="1"
+                                        max="180"
+                                        value="15"
+                                        class="duration-slider"
+                                        id="inlineDurationSlider"
+                                    />
+                                    <span
+                                        class="duration-val"
+                                        id="inlineDurationVal"
+                                        >&quot;15 m&quot;</span
+                                    >
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Depth Grid -->
+                        <div class="sheet-section">
+                            <div
+                                class="sheet-label"
+                                style="
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                "
+                            >
+                                <span
+                                    >Select Highest Internal Depth Reached</span
+                                >
                                 <button
                                     onclick="openLimbsDetailModal()"
                                     style="
                                         background: none;
                                         border: none;
-                                        color: var(--accent);
-                                        font-size: 0.78125rem;
-                                        font-weight: 500;
+                                        color: var(--accent-strong);
                                         cursor: pointer;
-                                        padding: 0;
+                                        font-size: 0.75rem;
+                                        display: inline-flex;
+                                        align-items: center;
+                                        gap: 4px;
                                         font-family: inherit;
                                     "
                                 >
-                                    📖 Understand Patanjali's 8 Limbs in detail
-                                    &rarr;
+                                    <svg
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.6"
+                                        viewBox="0 0 24 24"
+                                        style="width: 13px; height: 13px"
+                                    >
+                                        <circle
+                                            cx="12"
+                                            cy="12"
+                                            r="9.5"
+                                        ></circle>
+                                        <path
+                                            d="M12 16v-4M12 8h.01"
+                                            stroke-linecap="round"
+                                        ></path>
+                                    </svg>
+                                    What is it?
                                 </button>
                             </div>
+                            <div
+                                class="depth-select-grid"
+                                id="inlineDepthGrid"
+                            ></div>
+
+                            <div class="depth-summary-box">
+                                <div class="depth-summary-head">
+                                    MAXIMUM DEPTH ACHIEVED
+                                </div>
+                                <div
+                                    class="depth-summary-title"
+                                    id="inlineDepthTitle"
+                                >
+                                    STAGE 4: PRANAYAMA
+                                </div>
+                                <div
+                                    class="depth-summary-desc"
+                                    id="inlineDepthDesc"
+                                ></div>
+                                <div
+                                    style="
+                                        margin-top: 10px;
+                                        border-top: 1px solid var(--border-soft);
+                                        padding-top: 8px;
+                                    "
+                                >
+                                    <button
+                                        onclick="openLimbsDetailModal()"
+                                        style="
+                                            background: none;
+                                            border: none;
+                                            color: var(--accent);
+                                            font-size: 0.78125rem;
+                                            font-weight: 500;
+                                            cursor: pointer;
+                                            padding: 0;
+                                            font-family: inherit;
+                                        "
+                                    >
+                                        📖 Understand Patanjali's 8 Limbs in
+                                        detail &rarr;
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Commit or Login -->
+                        <div id="inlineCommitArea">
+                            <!-- Populated by renderAuthUI -->
                         </div>
                     </div>
 
-                    <!-- Commit or Login -->
-                    <div id="inlineCommitArea">
-                        <!-- Populated by renderAuthUI -->
-                    </div>
-                </div>
-
-                <!-- Hidden elements for compatibility -->
-                <div id="limbGrid" style="display: none"></div>
-                <div id="lastSessionHolder" style="display: none"></div>
-                <div id="lsTitle" style="display: none"></div>
-                <div id="lsStage" style="display: none"></div>
-                <div id="lsDate" style="display: none"></div>
-            </section>
-            </div><!-- /tabPanel-log -->
+                    <!-- Hidden elements for compatibility -->
+                    <div id="limbGrid" style="display: none"></div>
+                    <div id="lastSessionHolder" style="display: none"></div>
+                    <div id="lsTitle" style="display: none"></div>
+                    <div id="lsStage" style="display: none"></div>
+                    <div id="lsDate" style="display: none"></div>
+                </section>
+            </div>
+            <!-- /tabPanel-log -->
 
             <div class="tab-panel" id="tabPanel-progress">
-            <!-- 5. Consistency Heatmap & Session Log -->
-            <section id="tide">
-                <div class="section-head">
-                    <span class="label">Consistency</span
-                    ><span class="desc">Brighter means longer.</span>
-                </div>
-                <div class="disabled-section-wrap" id="tideWrap">
-                    <div class="disabled-content">
-                        <div class="cal-wrap"><div id="calGrid"></div></div>
-                        <div class="cal-legend">
-                            <span>less</span>
-                            <span
-                                class="cal-cell"
-                                style="background: var(--bg-card)"
-                            ></span>
-                            <span
-                                class="cal-cell"
-                                style="background: var(--accent); opacity: 0.25"
-                            ></span>
-                            <span
-                                class="cal-cell"
-                                style="background: var(--accent); opacity: 0.55"
-                            ></span>
-                            <span
-                                class="cal-cell"
-                                style="background: var(--accent); opacity: 0.85"
-                            ></span>
-                            <span
-                                class="cal-cell"
-                                style="background: var(--accent-strong)"
-                            ></span>
-                            <span>more</span>
+                <!-- 5. Consistency Heatmap & Session Log -->
+                <section id="tide">
+                    <div class="section-head">
+                        <span class="label">Consistency</span
+                        ><span class="desc">Brighter means longer.</span>
+                    </div>
+                    <div class="disabled-section-wrap" id="tideWrap">
+                        <div class="disabled-content">
+                            <div class="cal-wrap"><div id="calGrid"></div></div>
+                            <div class="cal-legend">
+                                <span>less</span>
+                                <span
+                                    class="cal-cell"
+                                    style="background: var(--bg-card)"
+                                ></span>
+                                <span
+                                    class="cal-cell"
+                                    style="
+                                        background: var(--accent);
+                                        opacity: 0.25;
+                                    "
+                                ></span>
+                                <span
+                                    class="cal-cell"
+                                    style="
+                                        background: var(--accent);
+                                        opacity: 0.55;
+                                    "
+                                ></span>
+                                <span
+                                    class="cal-cell"
+                                    style="
+                                        background: var(--accent);
+                                        opacity: 0.85;
+                                    "
+                                ></span>
+                                <span
+                                    class="cal-cell"
+                                    style="background: var(--accent-strong)"
+                                ></span>
+                                <span>more</span>
+                            </div>
+                        </div>
+                        <div class="disabled-overlay">
+                            <div class="disabled-overlay-title">
+                                🔒 Consistency Heatmap Locked
+                            </div>
+                            <div class="disabled-overlay-desc">
+                                Connect your GitHub account to unlock your
+                                personal meditation consistency calendar and
+                                view session frequency over time.
+                            </div>
+                            <button
+                                class="btn-log-main"
+                                style="
+                                    width: auto;
+                                    padding: 10px 22px;
+                                    font-size: 0.84375rem;
+                                "
+                                onclick="openGHAuthModal()"
+                            >
+                                Sign In with GitHub
+                            </button>
                         </div>
                     </div>
-                    <div class="disabled-overlay">
-                        <div class="disabled-overlay-title">
-                            🔒 Consistency Heatmap Locked
-                        </div>
-                        <div class="disabled-overlay-desc">
-                            Connect your GitHub account to unlock your personal
-                            meditation consistency calendar and view session
-                            frequency over time.
-                        </div>
-                        <button
-                            class="btn-log-main"
-                            style="
-                                width: auto;
-                                padding: 10px 22px;
-                                font-size: 0.84375rem;
-                            "
-                            onclick="openGHAuthModal()"
-                        >
-                            Sign In with GitHub
-                        </button>
-                    </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="log">
-                <!-- Stats Row -->
-                <div
-                    id="statsWrap"
-                    class="disabled-section-wrap"
-                    style="margin-bottom: 28px"
-                >
-                    <div class="disabled-content">
-                        <div style="font-size:0.7rem;letter-spacing:0.08em;color:var(--text-faint);margin-bottom:10px;text-transform:uppercase;">Lifetime Stats</div>
-                        <div
-                            style="
-                                display: flex;
-                                gap: 12px;
-                                justify-content: space-between;
-                                flex-wrap: wrap;
-                            "
-                        >
-                            <div
-                                style="
-                                    flex: 1;
-                                    min-width: 90px;
-                                    background: var(--bg-card);
-                                    border: 1px solid var(--border-soft);
-                                    border-radius: 14px;
-                                    padding: 14px 16px;
-                                    text-align: center;
-                                "
-                            >
-                                <div
-                                    id="statHours"
-                                    style="
-                                        font-size: 1.6rem;
-                                        font-weight: 700;
-                                        color: var(--accent-strong);
-                                        line-height: 1;
-                                    "
-                                >
-                                    0
-                                </div>
-                                <div
-                                    style="
-                                        font-size: 0.72rem;
-                                        color: var(--text-faint);
-                                        margin-top: 4px;
-                                        letter-spacing: 0.04em;
-                                    "
-                                >
-                                    HOURS
-                                </div>
-                            </div>
-                            <div
-                                style="
-                                    flex: 1;
-                                    min-width: 90px;
-                                    background: var(--bg-card);
-                                    border: 1px solid var(--border-soft);
-                                    border-radius: 14px;
-                                    padding: 14px 16px;
-                                    text-align: center;
-                                "
-                            >
-                                <div
-                                    id="statStreak"
-                                    style="
-                                        font-size: 1.6rem;
-                                        font-weight: 700;
-                                        color: var(--accent-strong);
-                                        line-height: 1;
-                                    "
-                                >
-                                    0
-                                </div>
-                                <div
-                                    style="
-                                        font-size: 0.72rem;
-                                        color: var(--text-faint);
-                                        margin-top: 4px;
-                                        letter-spacing: 0.04em;
-                                    "
-                                >
-                                    DAY STREAK
-                                </div>
-                            </div>
-                            <div
-                                style="
-                                    flex: 1;
-                                    min-width: 90px;
-                                    background: var(--bg-card);
-                                    border: 1px solid var(--border-soft);
-                                    border-radius: 14px;
-                                    padding: 14px 16px;
-                                    text-align: center;
-                                "
-                            >
-                                <div
-                                    id="statDepth"
-                                    style="
-                                        font-size: 1.6rem;
-                                        font-weight: 700;
-                                        color: var(--accent-strong);
-                                        line-height: 1;
-                                    "
-                                >
-                                    &mdash;
-                                </div>
-                                <div
-                                    style="
-                                        font-size: 0.72rem;
-                                        color: var(--text-faint);
-                                        margin-top: 4px;
-                                        letter-spacing: 0.04em;
-                                    "
-                                >
-                                    PEAK DEPTH
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="disabled-overlay" style="border-radius: 14px">
-                        <div
-                            class="disabled-overlay-title"
-                            style="font-size: 0.84rem"
-                        >
-                            Stats unlocked after sign-in
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="section-head"
-                    style="
-                        justify-content: space-between;
-                        align-items: center;
-                        flex-wrap: wrap;
-                        gap: 8px;
-                        margin-bottom: 8px;
-                    "
-                >
-                    <span class="label">Session Log - last 10</span>
+                <section id="log">
+                    <!-- Stats Row -->
                     <div
-                        id="logAuthBadge"
-                        style="
-                            display: none;
-                            font-size: 0.75rem;
-                            color: var(--text-dim);
-                            background: var(--bg-card);
-                            border: 1px solid var(--border-soft);
-                            padding: 5px 14px;
-                            border-radius: 20px;
-                            align-items: center;
-                            gap: 6px;
-                        "
+                        id="statsWrap"
+                        class="disabled-section-wrap"
+                        style="margin-bottom: 28px"
                     >
-                        <span>🔒 Session Log Preview</span>
-                        <span style="opacity: 0.4">|</span>
-                        <button
-                            onclick="openGHAuthModal()"
-                            style="
-                                background: none;
-                                border: none;
-                                color: var(--accent-strong);
-                                font-weight: 500;
-                                cursor: pointer;
-                                padding: 0;
-                                font-family: inherit;
-                                font-size: inherit;
-                                text-decoration: underline;
-                            "
+                        <div class="disabled-content">
+                            <div
+                                style="
+                                    font-size: 0.7rem;
+                                    letter-spacing: 0.08em;
+                                    color: var(--text-faint);
+                                    margin-bottom: 10px;
+                                    text-transform: uppercase;
+                                "
+                            >
+                                Lifetime Stats
+                            </div>
+                            <div
+                                style="
+                                    display: flex;
+                                    gap: 12px;
+                                    justify-content: space-between;
+                                    flex-wrap: wrap;
+                                "
+                            >
+                                <div
+                                    style="
+                                        flex: 1;
+                                        min-width: 90px;
+                                        background: var(--bg-card);
+                                        border: 1px solid var(--border-soft);
+                                        border-radius: 14px;
+                                        padding: 14px 16px;
+                                        text-align: center;
+                                    "
+                                >
+                                    <div
+                                        id="statHours"
+                                        style="
+                                            font-size: 1.6rem;
+                                            font-weight: 700;
+                                            color: var(--accent-strong);
+                                            line-height: 1;
+                                        "
+                                    >
+                                        0
+                                    </div>
+                                    <div
+                                        style="
+                                            font-size: 0.72rem;
+                                            color: var(--text-faint);
+                                            margin-top: 4px;
+                                            letter-spacing: 0.04em;
+                                        "
+                                    >
+                                        HOURS
+                                    </div>
+                                </div>
+                                <div
+                                    style="
+                                        flex: 1;
+                                        min-width: 90px;
+                                        background: var(--bg-card);
+                                        border: 1px solid var(--border-soft);
+                                        border-radius: 14px;
+                                        padding: 14px 16px;
+                                        text-align: center;
+                                    "
+                                >
+                                    <div
+                                        id="statStreak"
+                                        style="
+                                            font-size: 1.6rem;
+                                            font-weight: 700;
+                                            color: var(--accent-strong);
+                                            line-height: 1;
+                                        "
+                                    >
+                                        0
+                                    </div>
+                                    <div
+                                        style="
+                                            font-size: 0.72rem;
+                                            color: var(--text-faint);
+                                            margin-top: 4px;
+                                            letter-spacing: 0.04em;
+                                        "
+                                    >
+                                        DAY STREAK
+                                    </div>
+                                </div>
+                                <div
+                                    style="
+                                        flex: 1;
+                                        min-width: 90px;
+                                        background: var(--bg-card);
+                                        border: 1px solid var(--border-soft);
+                                        border-radius: 14px;
+                                        padding: 14px 16px;
+                                        text-align: center;
+                                    "
+                                >
+                                    <div
+                                        id="statDepth"
+                                        style="
+                                            font-size: 1.6rem;
+                                            font-weight: 700;
+                                            color: var(--accent-strong);
+                                            line-height: 1;
+                                        "
+                                    >
+                                        &mdash;
+                                    </div>
+                                    <div
+                                        style="
+                                            font-size: 0.72rem;
+                                            color: var(--text-faint);
+                                            margin-top: 4px;
+                                            letter-spacing: 0.04em;
+                                        "
+                                    >
+                                        PEAK DEPTH
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                            class="disabled-overlay"
+                            style="border-radius: 14px"
                         >
-                            Sign in to log
-                        </button>
+                            <div
+                                class="disabled-overlay-title"
+                                style="font-size: 0.84rem"
+                            >
+                                Stats unlocked after sign-in
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div id="logHolder"></div>
-            </section>
-            </div><!-- /tabPanel-progress -->
 
-            <div class="tab-panel" id="tabPanel-about">
-            <!-- 6. How Web App & GitHub Data Sync Works -->
-            <section id="howWorksSection" style="padding: 20px 0">
-                <div class="card" style="padding: 24px; position: relative">
                     <div
                         class="section-head"
                         style="
-                            margin-bottom: 18px;
                             justify-content: space-between;
                             align-items: center;
                             flex-wrap: wrap;
-                            gap: 10px;
+                            gap: 8px;
+                            margin-bottom: 8px;
                         "
                     >
-                        <span class="label"
-                            >How The Web App & GitHub Sync Work</span
+                        <span class="label">Session Log - last 10</span>
+                        <div
+                            id="logAuthBadge"
+                            style="
+                                display: none;
+                                font-size: 0.75rem;
+                                color: var(--text-dim);
+                                background: var(--bg-card);
+                                border: 1px solid var(--border-soft);
+                                padding: 5px 14px;
+                                border-radius: 20px;
+                                align-items: center;
+                                gap: 6px;
+                            "
+                        >
+                            <span>🔒 Session Log Preview</span>
+                            <span style="opacity: 0.4">|</span>
+                            <button
+                                onclick="openGHAuthModal()"
+                                style="
+                                    background: none;
+                                    border: none;
+                                    color: var(--accent-strong);
+                                    font-weight: 500;
+                                    cursor: pointer;
+                                    padding: 0;
+                                    font-family: inherit;
+                                    font-size: inherit;
+                                    text-decoration: underline;
+                                "
+                            >
+                                Sign in to log
+                            </button>
+                        </div>
+                    </div>
+                    <div id="logHolder"></div>
+                </section>
+            </div>
+            <!-- /tabPanel-progress -->
+
+            <div class="tab-panel" id="tabPanel-about">
+                <!-- 6. How Web App & GitHub Data Sync Works -->
+                <section id="howWorksSection" style="padding: 20px 0">
+                    <div class="card" style="padding: 24px; position: relative">
+                        <div
+                            class="section-head"
+                            style="
+                                margin-bottom: 18px;
+                                justify-content: space-between;
+                                align-items: center;
+                                flex-wrap: wrap;
+                                gap: 10px;
+                            "
+                        >
+                            <span class="label"
+                                >How The Web App & GitHub Sync Work</span
+                            >
+                            <a
+                                href="https://github.com/Asutosh11/myzen"
+                                target="_blank"
+                                rel="noopener"
+                                class="open-source-tag"
+                            >
+                                <svg
+                                    width="13"
+                                    height="13"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                                    />
+                                </svg>
+                                <span>100% Open Source Repository ↗</span>
+                            </a>
+                        </div>
+
+                        <!-- Pictorial Diagram -->
+                        <div class="sync-flow-wrapper">
+                            <div class="sync-diagram">
+                                <div class="sync-step">
+                                    <div class="sync-step-badge">1</div>
+                                    <div class="sync-step-icon">🧘</div>
+                                    <div class="sync-step-title">
+                                        Practice & Log
+                                    </div>
+                                    <div class="sync-step-desc">
+                                        Enter session time and select deepest
+                                        Patanjali limb state reached.
+                                    </div>
+                                </div>
+                                <div class="sync-arrow">➔</div>
+                                <div class="sync-step">
+                                    <div class="sync-step-badge">2</div>
+                                    <div class="sync-step-icon">🔑</div>
+                                    <div class="sync-step-title">
+                                        Browser PAT Auth
+                                    </div>
+                                    <div class="sync-step-desc">
+                                        Authenticated via Personal Access Token
+                                        stored locally in your browser.
+                                    </div>
+                                </div>
+                                <div class="sync-arrow">➔</div>
+                                <div class="sync-step">
+                                    <div class="sync-step-badge">3</div>
+                                    <div class="sync-step-icon">⚡</div>
+                                    <div class="sync-step-title">
+                                        Direct REST API
+                                    </div>
+                                    <div class="sync-step-desc">
+                                        Encrypted HTTPS payload sent directly to
+                                        GitHub. 0 middleman servers.
+                                    </div>
+                                </div>
+                                <div class="sync-arrow">➔</div>
+                                <div class="sync-step">
+                                    <div class="sync-step-badge">4</div>
+                                    <div class="sync-step-icon">📁</div>
+                                    <div class="sync-step-title">
+                                        Your GitHub Repo
+                                    </div>
+                                    <div class="sync-step-desc">
+                                        Session committed straight to
+                                        <code>sessions.json</code> in your own
+                                        account!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Detailed Context Grid -->
+                        <div
+                            style="
+                                display: grid;
+                                grid-template-columns: 1fr 1fr;
+                                gap: 18px;
+                            "
+                        >
+                            <div
+                                style="
+                                    background: var(--bg-card);
+                                    border: 1px solid var(--border-soft);
+                                    border-radius: 14px;
+                                    padding: 18px;
+                                "
+                            >
+                                <div
+                                    style="
+                                        font-size: 0.875rem;
+                                        font-weight: 500;
+                                        color: var(--accent-strong);
+                                        margin-bottom: 6px;
+                                    "
+                                >
+                                    🌐 What & How The Web App Works
+                                </div>
+                                <p
+                                    style="
+                                        font-size: 0.8125rem;
+                                        color: var(--text-dim);
+                                        line-height: 1.6;
+                                    "
+                                >
+                                    MyZen is a minimalist meditation journal
+                                    that measures
+                                    <strong>depth, not just duration</strong>.
+                                    The web app acts as your live personal
+                                    reflection dashboard. Anyone can view the
+                                    overall depth philosophy, but when you log
+                                    in, it becomes your private interactive
+                                    meditation journal.
+                                </p>
+                            </div>
+                            <div
+                                style="
+                                    background: var(--bg-card);
+                                    border: 1px solid var(--border-soft);
+                                    border-radius: 14px;
+                                    padding: 18px;
+                                "
+                            >
+                                <div
+                                    style="
+                                        font-size: 0.875rem;
+                                        font-weight: 500;
+                                        color: var(--accent-strong);
+                                        margin-bottom: 6px;
+                                    "
+                                >
+                                    ⚡ GitHub Sync & Data Ownership
+                                </div>
+                                <p
+                                    style="
+                                        font-size: 0.8125rem;
+                                        color: var(--text-dim);
+                                        line-height: 1.6;
+                                    "
+                                >
+                                    Your entries are saved to
+                                    <code>sessions.json</code> in your own
+                                    Github repository. The Login process creates
+                                    a public Github repo in your own account, if
+                                    it doesn't exist. Else uses existing. By
+                                    signing in with a Personal Access Token,
+                                    updates commit straight to your own GitHub
+                                    via the REST API - no middleman servers.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 7. Why I Built This Section (Inside a Box with Meditation & Peace Icons) -->
+                <section class="about" id="why" style="padding: 12px 0">
+                    <div
+                        class="card"
+                        style="
+                            padding: 26px 24px;
+                            text-align: center;
+                            position: relative;
+                        "
+                    >
+                        <div
+                            style="
+                                font-size: 2.2rem;
+                                margin-bottom: 10px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                gap: 12px;
+                            "
+                        >
+                            <span>🧘</span>
+                            <span style="font-size: 1.6rem; opacity: 0.9"
+                                >☮️</span
+                            >
+                            <span style="font-size: 1.6rem; opacity: 0.9"
+                                >🕊️</span
+                            >
+                        </div>
+                        <div
+                            class="section-head"
+                            style="justify-content: center; margin-bottom: 14px"
+                        >
+                            <span class="label"
+                                ><h2
+                                    style="
+                                        margin: 0;
+                                        font-size: 1.2rem;
+                                        font-weight: 500;
+                                    "
+                                >
+                                    Why I Built This
+                                </h2></span
+                            >
+                        </div>
+                        <p
+                            style="
+                                font-size: 0.9375rem;
+                                color: var(--text);
+                                font-weight: 400;
+                                margin-bottom: 10px;
+                            "
+                        >
+                            Meditation is deeply personal.
+                        </p>
+                        <p
+                            style="
+                                color: var(--text-dim);
+                                font-size: 0.875rem;
+                                margin-bottom: 6px;
+                            "
+                        >
+                            Most apps focus on productivity metrics—minutes,
+                            streaks, badges, and achievements.
+                        </p>
+                        <p
+                            style="
+                                color: var(--text-dim);
+                                font-size: 0.875rem;
+                                margin-bottom: 6px;
+                            "
+                        >
+                            I wanted something quieter.
+                        </p>
+                        <p
+                            style="
+                                color: var(--text-dim);
+                                font-size: 0.875rem;
+                                margin-bottom: 12px;
+                            "
+                        >
+                            A journal that simply reflects practice over time.
+                            To motivate me to maintain consistency.
+                        </p>
+                        <p
+                            style="
+                                margin-top: 12px;
+                                font-size: 0.84375rem;
+                                color: var(--text-dim);
+                                line-height: 1.6;
+                                max-width: 640px;
+                                margin-left: auto;
+                                margin-right: auto;
+                            "
+                        >
+                            The Goal of meditation is to finally reach Samadhi,
+                            and during the process you keep changing as a
+                            person. Before reaching that ultimate state, there
+                            are intermediate states, which also need constant
+                            practice to reach and I want to document my entire
+                            journey.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 8. Stay In Touch / Connect Links -->
+                <section class="connect" id="connect">
+                    <div
+                        class="section-head"
+                        style="
+                            justify-content: center;
+                            flex-direction: column;
+                            align-items: center;
+                        "
+                    >
+                        <span class="label">Stay In Touch</span>
+                        <h2 style="margin-top: 8px">Follow along</h2>
+                    </div>
+                    <p>
+                        I share reflections, meditation practice, silence, and
+                        the journey inward on Instagram.
+                    </p>
+                    <div
+                        style="
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 12px;
+                            flex-wrap: wrap;
+                            margin-top: 14px;
+                        "
+                    >
+                        <a
+                            class="btn-primary"
+                            href="https://instagram.com/searching_the_self"
+                            rel="noopener"
+                            target="_blank"
+                            >@searching_the_self</a
                         >
                         <a
+                            class="btn-primary"
                             href="https://github.com/Asutosh11/myzen"
-                            target="_blank"
                             rel="noopener"
-                            class="open-source-tag"
+                            style="
+                                background: transparent;
+                                color: var(--text);
+                                border: 1px solid var(--border);
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 8px;
+                            "
+                            target="_blank"
                         >
                             <svg
-                                width="13"
-                                height="13"
+                                width="15"
+                                height="15"
                                 viewBox="0 0 24 24"
                                 fill="currentColor"
                             >
@@ -2428,307 +2821,22 @@
                                     d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
                                 />
                             </svg>
-                            <span>100% Open Source Repository ↗</span>
+                            <span>GitHub Repo</span>
+                            <span
+                                class="open-source-tag"
+                                style="font-size: 0.65rem; padding: 2px 6px"
+                                >Open Source ↗</span
+                            >
                         </a>
                     </div>
+                </section>
 
-                    <!-- Pictorial Diagram -->
-                    <div class="sync-flow-wrapper">
-                        <div class="sync-diagram">
-                            <div class="sync-step">
-                                <div class="sync-step-badge">1</div>
-                                <div class="sync-step-icon">🧘</div>
-                                <div class="sync-step-title">
-                                    Practice & Log
-                                </div>
-                                <div class="sync-step-desc">
-                                    Enter session time and select deepest
-                                    Patanjali limb state reached.
-                                </div>
-                            </div>
-                            <div class="sync-arrow">➔</div>
-                            <div class="sync-step">
-                                <div class="sync-step-badge">2</div>
-                                <div class="sync-step-icon">🔑</div>
-                                <div class="sync-step-title">
-                                    Browser PAT Auth
-                                </div>
-                                <div class="sync-step-desc">
-                                    Authenticated via Personal Access Token
-                                    stored locally in your browser.
-                                </div>
-                            </div>
-                            <div class="sync-arrow">➔</div>
-                            <div class="sync-step">
-                                <div class="sync-step-badge">3</div>
-                                <div class="sync-step-icon">⚡</div>
-                                <div class="sync-step-title">
-                                    Direct REST API
-                                </div>
-                                <div class="sync-step-desc">
-                                    Encrypted HTTPS payload sent directly to
-                                    GitHub. 0 middleman servers.
-                                </div>
-                            </div>
-                            <div class="sync-arrow">➔</div>
-                            <div class="sync-step">
-                                <div class="sync-step-badge">4</div>
-                                <div class="sync-step-icon">📁</div>
-                                <div class="sync-step-title">
-                                    Your GitHub Repo
-                                </div>
-                                <div class="sync-step-desc">
-                                    Session committed straight to
-                                    <code>sessions.json</code> in your own
-                                    account!
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Detailed Context Grid -->
-                    <div
-                        style="
-                            display: grid;
-                            grid-template-columns: 1fr 1fr;
-                            gap: 18px;
-                        "
-                    >
-                        <div
-                            style="
-                                background: var(--bg-card);
-                                border: 1px solid var(--border-soft);
-                                border-radius: 14px;
-                                padding: 18px;
-                            "
-                        >
-                            <div
-                                style="
-                                    font-size: 0.875rem;
-                                    font-weight: 500;
-                                    color: var(--accent-strong);
-                                    margin-bottom: 6px;
-                                "
-                            >
-                                🌐 What & How The Web App Works
-                            </div>
-                            <p
-                                style="
-                                    font-size: 0.8125rem;
-                                    color: var(--text-dim);
-                                    line-height: 1.6;
-                                "
-                            >
-                                MyZen is a minimalist meditation journal that
-                                measures
-                                <strong>depth, not just duration</strong>. The
-                                web app acts as your live personal reflection
-                                dashboard. Anyone can view the overall depth
-                                philosophy, but when you log in, it becomes your
-                                private interactive meditation journal.
-                            </p>
-                        </div>
-                        <div
-                            style="
-                                background: var(--bg-card);
-                                border: 1px solid var(--border-soft);
-                                border-radius: 14px;
-                                padding: 18px;
-                            "
-                        >
-                            <div
-                                style="
-                                    font-size: 0.875rem;
-                                    font-weight: 500;
-                                    color: var(--accent-strong);
-                                    margin-bottom: 6px;
-                                "
-                            >
-                                ⚡ GitHub Sync & Data Ownership
-                            </div>
-                            <p
-                                style="
-                                    font-size: 0.8125rem;
-                                    color: var(--text-dim);
-                                    line-height: 1.6;
-                                "
-                            >
-                                Your entries are saved to
-                                <code>sessions.json</code> in your own Github
-                                repository. The Login process creates a public
-                                Github repo in your own account, if it doesn't
-                                exist. Else uses existing. By signing in with a
-                                Personal Access Token, updates commit straight
-                                to your own GitHub via the REST API - no
-                                middleman servers.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 7. Why I Built This Section (Inside a Box with Meditation & Peace Icons) -->
-            <section class="about" id="why" style="padding: 12px 0">
-                <div
-                    class="card"
-                    style="
-                        padding: 26px 24px;
-                        text-align: center;
-                        position: relative;
-                    "
-                >
-                    <div
-                        style="
-                            font-size: 2.2rem;
-                            margin-bottom: 10px;
-                            display: flex;
-                            justify-content: center;
-                            align-items: center;
-                            gap: 12px;
-                        "
-                    >
-                        <span>🧘</span>
-                        <span style="font-size: 1.6rem; opacity: 0.9">☮️</span>
-                        <span style="font-size: 1.6rem; opacity: 0.9">🕊️</span>
-                    </div>
-                    <div
-                        class="section-head"
-                        style="justify-content: center; margin-bottom: 14px"
-                    >
-                        <span class="label"><h2 style="margin:0;font-size:1.2rem;font-weight:500;">Why I Built This</h2></span>
-                    </div>
-                    <p
-                        style="
-                            font-size: 0.9375rem;
-                            color: var(--text);
-                            font-weight: 400;
-                            margin-bottom: 10px;
-                        "
-                    >
-                        Meditation is deeply personal.
-                    </p>
-                    <p
-                        style="
-                            color: var(--text-dim);
-                            font-size: 0.875rem;
-                            margin-bottom: 6px;
-                        "
-                    >
-                        Most apps focus on productivity metrics—minutes,
-                        streaks, badges, and achievements.
-                    </p>
-                    <p
-                        style="
-                            color: var(--text-dim);
-                            font-size: 0.875rem;
-                            margin-bottom: 6px;
-                        "
-                    >
-                        I wanted something quieter.
-                    </p>
-                    <p
-                        style="
-                            color: var(--text-dim);
-                            font-size: 0.875rem;
-                            margin-bottom: 12px;
-                        "
-                    >
-                        A journal that simply reflects practice over time. To
-                        motivate me to maintain consistency.
-                    </p>
-                    <p
-                        style="
-                            margin-top: 12px;
-                            font-size: 0.84375rem;
-                            color: var(--text-dim);
-                            line-height: 1.6;
-                            max-width: 640px;
-                            margin-left: auto;
-                            margin-right: auto;
-                        "
-                    >
-                        The Goal of meditation is to finally reach Samadhi, and
-                        during the process you keep changing as a person. Before
-                        reaching that ultimate state, there are intermediate
-                        states, which also need constant practice to reach and I
-                        want to document my entire journey.
-                    </p>
-                </div>
-            </section>
-
-            <!-- 8. Stay In Touch / Connect Links -->
-            <section class="connect" id="connect">
-                <div
-                    class="section-head"
-                    style="
-                        justify-content: center;
-                        flex-direction: column;
-                        align-items: center;
-                    "
-                >
-                    <span class="label">Stay In Touch</span>
-                    <h2 style="margin-top: 8px">Follow along</h2>
-                </div>
-                <p>
-                    I share reflections, meditation practice, silence, and the
-                    journey inward on Instagram.
-                </p>
-                <div
-                    style="
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        gap: 12px;
-                        flex-wrap: wrap;
-                        margin-top: 14px;
-                    "
-                >
-                    <a
-                        class="btn-primary"
-                        href="https://instagram.com/searching_the_self"
-                        rel="noopener"
-                        target="_blank"
-                        >@searching_the_self</a
-                    >
-                    <a
-                        class="btn-primary"
-                        href="https://github.com/Asutosh11/myzen"
-                        rel="noopener"
-                        style="
-                            background: transparent;
-                            color: var(--text);
-                            border: 1px solid var(--border);
-                            display: inline-flex;
-                            align-items: center;
-                            gap: 8px;
-                        "
-                        target="_blank"
-                    >
-                        <svg
-                            width="15"
-                            height="15"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                        >
-                            <path
-                                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
-                            />
-                        </svg>
-                        <span>GitHub Repo</span>
-                        <span
-                            class="open-source-tag"
-                            style="font-size: 0.65rem; padding: 2px 6px"
-                            >Open Source ↗</span
-                        >
-                    </a>
-                </div>
-            </section>
-
-            <footer>
-                <span class="fmark">the ocean within</span>
-                Every drop counts. Come back and dive again.
-            </footer>
-            </div><!-- /tabPanel-about -->
+                <footer>
+                    <span class="fmark">the ocean within</span>
+                    Every drop counts. Come back and dive again.
+                </footer>
+            </div>
+            <!-- /tabPanel-about -->
         </main>
 
         <!-- Info Modal -->
@@ -2970,7 +3078,10 @@
                     btns.forEach((b) => {
                         b.classList.toggle("active", b.dataset.tab === name);
                     });
-                    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+                    window.scrollTo({
+                        top: 0,
+                        behavior: "instant" in window ? "instant" : "auto",
+                    });
                     if (persist !== false) {
                         try {
                             localStorage.setItem("myzenActiveTab", name);
@@ -3474,8 +3585,7 @@
                                 .classList.remove("open");
                             loadSessions();
                         });
-                    const shareNowBtn =
-                        document.getElementById("shareNowBtn");
+                    const shareNowBtn = document.getElementById("shareNowBtn");
                     if (shareNowBtn)
                         shareNowBtn.addEventListener(
                             "click",
@@ -4348,8 +4458,7 @@
                     Array.isArray(parsedSessions) && parsedSessions.length > 0;
                 const inlineShareBtn =
                     document.getElementById("inlineShareBtn");
-                const popoverShareBtn =
-                    document.getElementById("shareNowBtn");
+                const popoverShareBtn = document.getElementById("shareNowBtn");
                 [inlineShareBtn, popoverShareBtn].forEach((btn) => {
                     if (!btn) return;
                     btn.disabled = !hasSessions;
@@ -4416,7 +4525,8 @@
                         bgBottom: "#e8e5da",
                     },
                 };
-                const palette = paletteByTheme[themeName] || paletteByTheme.abyssal;
+                const palette =
+                    paletteByTheme[themeName] || paletteByTheme.abyssal;
                 return {
                     bgTop: palette.bgTop,
                     bgBottom: palette.bgBottom,
@@ -4429,9 +4539,7 @@
                         root.getPropertyValue("--border-soft") ||
                         "rgba(255,255,255,0.08)"
                     ).trim(),
-                    text: (
-                        root.getPropertyValue("--text") || "#eef1f5"
-                    ).trim(),
+                    text: (root.getPropertyValue("--text") || "#eef1f5").trim(),
                     textDim: (
                         root.getPropertyValue("--text-dim") || "#a8b4c4"
                     ).trim(),
@@ -4477,7 +4585,10 @@
                     return;
                 }
                 const totalWidth =
-                    chars.reduce((sum, ch) => sum + ctx.measureText(ch).width, 0) +
+                    chars.reduce(
+                        (sum, ch) => sum + ctx.measureText(ch).width,
+                        0,
+                    ) +
                     letterSpacing * Math.max(0, chars.length - 1);
                 // Per-character fillText always draws relative to the CURRENT
                 // ctx.textAlign. If that's "center" (or "right"), each glyph
@@ -4518,7 +4629,13 @@
                 return lines;
             }
 
-            function drawCenteredLines(ctx, lines, centerX, startY, lineHeight) {
+            function drawCenteredLines(
+                ctx,
+                lines,
+                centerX,
+                startY,
+                lineHeight,
+            ) {
                 lines.forEach((line, index) => {
                     ctx.fillText(line, centerX, startY + index * lineHeight);
                 });
@@ -4527,21 +4644,21 @@
             function getShareInnerSelfDepthLabel(level) {
                 switch (level) {
                     case 1:
-                        return "Experienced a baseline of total social ease, feeling your heart empty of grudges and filled with kindness for all.";
+                        return "Experienced a baseline of total social ease, empty of grudges, filled with kindness for all.";
                     case 2:
-                        return "Touched a state of pure contentment and inner clarity; feeling balanced, clean, and beautifully ready for silence.";
+                        return "Touched a state of contentment and clarity; feeling balanced, clean, and ready for silence.";
                     case 3:
-                        return "Settled into a perfectly still and easy posture, where your physical presence felt light, steady, and weightless.";
+                        return "Settled into a perfectly still and easy posture.";
                     case 4:
-                        return "Your physiological baseline and internal life-force slowed down wonderfully, bringing the nervous system to total ease.";
+                        return "Breath and internal life-force slowed down, bringing the nervous system to total ease.";
                     case 5:
-                        return "Profound sensory withdrawal, where the external world faded away completely into a quiet, warm inner space.";
+                        return "Sensory withdrawal, where the external world faded away into inner space.";
                     case 6:
-                        return "Achieved absolute laser-focus, your mind resting perfectly on your chosen technique or focal point without drifting.";
+                        return "Saw mind achieving focus on one point, also ocassions of drifting away with thoughts";
                     case 7:
-                        return "Entered a deep, effortless meditative flow where attention streamed automatically like an unbroken river of peace.";
+                        return "Finally entered a deep, effortless meditative flow where focus streamed automatically.";
                     case 8:
-                        return "Touched absolute oneness, where individual boundaries completely melted away into immense, timeless spaciousness.";
+                        return "Finally touched absolute oneness, where individual boundaries completely melted away.";
                     default:
                         return "";
                 }
@@ -4605,16 +4722,7 @@
                 ctx.fillStyle = bgGrad;
                 ctx.fillRect(0, 0, width, height);
 
-                drawRoundedRect(
-                    ctx,
-                    0,
-                    0,
-                    1200,
-                    1200,
-                    0,
-                    "transparent",
-                    null,
-                );
+                drawRoundedRect(ctx, 0, 0, 1200, 1200, 0, "transparent", null);
 
                 const fade = ctx.createLinearGradient(0, 0, 0, 1200);
                 fade.addColorStop(0, theme.bg);
@@ -4627,7 +4735,14 @@
                 ctx.lineWidth = 1;
                 ctx.strokeRect(0.5, 0.5, 1199, 1199);
 
-                const topGlow = ctx.createRadialGradient(600, 74, 8, 600, 74, 110);
+                const topGlow = ctx.createRadialGradient(
+                    600,
+                    74,
+                    8,
+                    600,
+                    74,
+                    110,
+                );
                 topGlow.addColorStop(0, theme.accent + "18");
                 topGlow.addColorStop(1, theme.accent + "00");
                 ctx.fillStyle = topGlow;
@@ -4644,14 +4759,54 @@
 
                 ctx.globalAlpha = 0.92;
                 const branches = [
-                    [[600, 49], [600, 68], [598, 80], [596, 95]],
-                    [[600, 49], [601, 68], [602, 80], [604, 95]],
-                    [[596, 86], [583, 96], [568, 107], [552, 126]],
-                    [[604, 86], [617, 96], [632, 107], [648, 126]],
-                    [[595, 95], [586, 113], [582, 129], [578, 149]],
-                    [[605, 95], [614, 113], [618, 129], [622, 149]],
-                    [[593, 149], [590, 175], [588, 201], [586, 233]],
-                    [[607, 149], [610, 175], [612, 201], [614, 233]],
+                    [
+                        [600, 49],
+                        [600, 68],
+                        [598, 80],
+                        [596, 95],
+                    ],
+                    [
+                        [600, 49],
+                        [601, 68],
+                        [602, 80],
+                        [604, 95],
+                    ],
+                    [
+                        [596, 86],
+                        [583, 96],
+                        [568, 107],
+                        [552, 126],
+                    ],
+                    [
+                        [604, 86],
+                        [617, 96],
+                        [632, 107],
+                        [648, 126],
+                    ],
+                    [
+                        [595, 95],
+                        [586, 113],
+                        [582, 129],
+                        [578, 149],
+                    ],
+                    [
+                        [605, 95],
+                        [614, 113],
+                        [618, 129],
+                        [622, 149],
+                    ],
+                    [
+                        [593, 149],
+                        [590, 175],
+                        [588, 201],
+                        [586, 233],
+                    ],
+                    [
+                        [607, 149],
+                        [610, 175],
+                        [612, 201],
+                        [614, 233],
+                    ],
                 ];
                 ctx.strokeStyle = theme.text;
                 branches.forEach((pts, idx) => {
@@ -4801,13 +4956,7 @@
                 );
                 ctx.fillStyle = theme.accentStrong;
                 ctx.font = "600 14px Inter, sans-serif";
-                drawTrackedText(
-                    ctx,
-                    `MYZEN`,
-                    600,
-                    1066,
-                    4,
-                );
+                drawTrackedText(ctx, `MYZEN`, 600, 1066, 4);
                 ctx.font = "500 13px Inter, sans-serif";
                 drawTrackedText(
                     ctx,
@@ -4818,13 +4967,10 @@
                 );
 
                 return new Promise((resolve, reject) => {
-                    canvas.toBlob(
-                        (blob) => {
-                            if (blob) resolve(blob);
-                            else reject(new Error("PNG export failed"));
-                        },
-                        "image/png",
-                    );
+                    canvas.toBlob((blob) => {
+                        if (blob) resolve(blob);
+                        else reject(new Error("PNG export failed"));
+                    }, "image/png");
                 });
             }
 
@@ -4890,7 +5036,7 @@
                     const ax = (fraction) =>
                         centerX + (fraction - 0.5) * treeScaleWidth;
 
-                    ctx.strokeStyle = `${ink}${alpha(0.40)}`;
+                    ctx.strokeStyle = `${ink}${alpha(0.4)}`;
                     ctx.lineWidth = 1.2;
                     ctx.lineCap = "round";
                     ctx.beginPath();
@@ -4906,36 +5052,36 @@
                     ctx.strokeStyle = `${ink}${alpha(0.75)}`;
                     ctx.lineCap = "round";
                     ctx.beginPath();
-                    ctx.moveTo(ax(0.47), geoH * 0.80);
+                    ctx.moveTo(ax(0.47), geoH * 0.8);
                     ctx.bezierCurveTo(
                         ax(0.49),
-                        geoH * 0.70,
+                        geoH * 0.7,
                         ax(0.46),
                         geoH * 0.56,
-                        ax(0.50),
+                        ax(0.5),
                         geoH * 0.45,
                     );
                     ctx.lineTo(ax(0.56), geoH * 0.41);
-                    ctx.moveTo(ax(0.50), geoH * 0.45);
+                    ctx.moveTo(ax(0.5), geoH * 0.45);
                     ctx.lineTo(ax(0.45), geoH * 0.39);
-                    ctx.moveTo(ax(0.53), geoH * 0.80);
+                    ctx.moveTo(ax(0.53), geoH * 0.8);
                     ctx.bezierCurveTo(
                         ax(0.53),
-                        geoH * 0.70,
-                        ax(0.50),
+                        geoH * 0.7,
+                        ax(0.5),
                         geoH * 0.58,
                         ax(0.51),
                         geoH * 0.48,
                     );
-                    ctx.moveTo(ax(0.50), geoH * 0.76);
+                    ctx.moveTo(ax(0.5), geoH * 0.76);
                     ctx.lineTo(ax(0.49), geoH * 0.55);
                     ctx.stroke();
 
                     const circles = [
                         [8, -12, 48, 26, 0.35],
                         [8, -12, 38, 20, 0.25],
-                        [-18, -18, 36, 20, 0.30],
-                        [20, -24, 42, 24, 0.40],
+                        [-18, -18, 36, 20, 0.3],
+                        [20, -24, 42, 24, 0.4],
                         [-8, -26, 44, 24, 0.32],
                         [26, -6, 30, 18, 0.22],
                         [4, -18, 50, 28, 0.28],
@@ -4947,7 +5093,7 @@
                         ctx.beginPath();
                         ctx.ellipse(
                             ax(0.5) + dx,
-                            geoH * 0.40 + dy - 4,
+                            geoH * 0.4 + dy - 4,
                             w / 2,
                             h / 2,
                             0,
@@ -4980,10 +5126,22 @@
 
                 ctx.fillStyle = shareTeal;
                 ctx.font = `700 10px ${shareFont}`;
-                drawTrackedText(ctx, "TODAY'S MEDITATION QUALITY", 210, 175, 2.5);
+                drawTrackedText(
+                    ctx,
+                    "TODAY'S MEDITATION QUALITY",
+                    210,
+                    175,
+                    2.5,
+                );
                 ctx.fillStyle = "rgba(255,255,255,0.75)";
                 ctx.font = `300 13px ${shareFont}`;
-                drawTrackedText(ctx, "DEPTH & ALIGNMENT PROFILE", 210, 193, 1.6);
+                drawTrackedText(
+                    ctx,
+                    "DEPTH & ALIGNMENT PROFILE",
+                    210,
+                    193,
+                    1.6,
+                );
 
                 drawRoundedRect(
                     ctx,
@@ -5042,13 +5200,10 @@
                 ctx.fillText("Grounded and Present", 219, 407);
 
                 return new Promise((resolve, reject) => {
-                    canvas.toBlob(
-                        (blob) => {
-                            if (blob) resolve(blob);
-                            else reject(new Error("PNG export failed"));
-                        },
-                        "image/png",
-                    );
+                    canvas.toBlob((blob) => {
+                        if (blob) resolve(blob);
+                        else reject(new Error("PNG export failed"));
+                    }, "image/png");
                 });
             }
 
@@ -5118,7 +5273,7 @@
                     const ax = (fraction) =>
                         centerX + (fraction - 0.5) * treeScaleWidth;
 
-                    ctx.strokeStyle = `${ink}${alpha(0.40)}`;
+                    ctx.strokeStyle = `${ink}${alpha(0.4)}`;
                     ctx.lineWidth = 1.15;
                     ctx.lineCap = "round";
                     ctx.beginPath();
@@ -5134,19 +5289,19 @@
                     ctx.strokeStyle = `${ink}${alpha(0.75)}`;
                     ctx.lineWidth = 1.15;
                     ctx.beginPath();
-                    ctx.moveTo(ax(0.50), geoH * 0.80);
+                    ctx.moveTo(ax(0.5), geoH * 0.8);
                     ctx.bezierCurveTo(
                         ax(0.49),
                         geoH * 0.69,
                         ax(0.47),
                         geoH * 0.56,
-                        ax(0.50),
+                        ax(0.5),
                         geoH * 0.45,
                     );
                     ctx.lineTo(ax(0.56), geoH * 0.41);
-                    ctx.moveTo(ax(0.50), geoH * 0.45);
+                    ctx.moveTo(ax(0.5), geoH * 0.45);
                     ctx.lineTo(ax(0.45), geoH * 0.39);
-                    ctx.moveTo(ax(0.53), geoH * 0.80);
+                    ctx.moveTo(ax(0.53), geoH * 0.8);
                     ctx.bezierCurveTo(
                         ax(0.53),
                         geoH * 0.69,
@@ -5155,7 +5310,7 @@
                         ax(0.51),
                         geoH * 0.48,
                     );
-                    ctx.moveTo(ax(0.50), geoH * 0.76);
+                    ctx.moveTo(ax(0.5), geoH * 0.76);
                     ctx.lineTo(ax(0.49), geoH * 0.56);
                     ctx.stroke();
 
@@ -5166,9 +5321,9 @@
                         [16, -29, 13, 0.32],
                         [30, -18, 13, 0.34],
                         [-40, -6, 12, 0.34],
-                        [-20, -7, 13, 0.30],
+                        [-20, -7, 13, 0.3],
                         [0, -7, 14, 0.28],
-                        [21, -7, 13, 0.30],
+                        [21, -7, 13, 0.3],
                     ];
                     canopy.forEach(([dx, dy, r, op]) => {
                         ctx.strokeStyle = `${ink}${alpha(op)}`;
@@ -5217,10 +5372,22 @@
 
                 ctx.fillStyle = shareTeal;
                 ctx.font = `700 10px ${shareFont}`;
-                drawTrackedText(ctx, "TODAY'S MEDITATION QUALITY", 210, 175, 3.0);
+                drawTrackedText(
+                    ctx,
+                    "TODAY'S MEDITATION QUALITY",
+                    210,
+                    175,
+                    3.0,
+                );
                 ctx.fillStyle = "rgba(255,255,255,0.75)";
                 ctx.font = `300 10px ${shareFont}`;
-                drawTrackedText(ctx, "DEPTH & ALIGNMENT PROFILE", 210, 191, 2.0);
+                drawTrackedText(
+                    ctx,
+                    "DEPTH & ALIGNMENT PROFILE",
+                    210,
+                    191,
+                    2.0,
+                );
 
                 drawRoundedRect(
                     ctx,
@@ -5245,7 +5412,13 @@
                 drawTrackedText(ctx, "MAXIMUM DEPTH ACHIEVED", 210, 303, 1.2);
                 ctx.fillStyle = "rgba(255,255,255,0.34)";
                 ctx.font = `500 7px ${shareFont}`;
-                drawTrackedText(ctx, "AS PER PATANJALI'S 8 LIMBS", 210, 316, 1.1);
+                drawTrackedText(
+                    ctx,
+                    "AS PER PATANJALI'S 8 LIMBS",
+                    210,
+                    316,
+                    1.1,
+                );
 
                 ctx.strokeStyle = "rgba(255,255,255,0.10)";
                 ctx.lineWidth = 1;
@@ -5274,13 +5447,10 @@
                 drawCenteredLines(ctx, quoteLines.slice(0, 3), 210, 391, 13);
 
                 return new Promise((resolve, reject) => {
-                    canvas.toBlob(
-                        (blob) => {
-                            if (blob) resolve(blob);
-                            else reject(new Error("PNG export failed"));
-                        },
-                        "image/png",
-                    );
+                    canvas.toBlob((blob) => {
+                        if (blob) resolve(blob);
+                        else reject(new Error("PNG export failed"));
+                    }, "image/png");
                 });
             }
 
@@ -5296,15 +5466,17 @@
             }
 
             async function shareProgressCard() {
-                if (!Array.isArray(parsedSessions) || parsedSessions.length === 0) {
+                if (
+                    !Array.isArray(parsedSessions) ||
+                    parsedSessions.length === 0
+                ) {
                     showToast("Log at least one session before sharing.");
                     return;
                 }
 
                 const data = buildProgressShareData();
                 const filename = `myzen-progress-${dayKey(new Date())}.png`;
-                const caption =
-                    `MyZen meditation progress: ${data.totalHours >= 100 ? Math.round(data.totalHours) : data.totalHours.toFixed(1)} total hours, ${data.streak} day streak, peak depth ${data.deepest}/${MAX_DEPTH}. Measured with Patanjali's 8 Limbs.`;
+                const caption = `MyZen meditation progress: ${data.totalHours >= 100 ? Math.round(data.totalHours) : data.totalHours.toFixed(1)} total hours, ${data.streak} day streak, peak depth ${data.deepest}/${MAX_DEPTH}. Measured with Patanjali's 8 Limbs.`;
 
                 try {
                     const pngBlob = await renderProgressShareCanvasIos(data);
