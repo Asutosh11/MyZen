@@ -2886,12 +2886,22 @@
                 if (savedUser && currentToken) {
                     try {
                         currentUser = JSON.parse(savedUser);
-                        verifyGitHubToken(currentToken, currentRepo, false);
+                        // Await so loadSessions runs AFTER auth is settled
+                        const ok = await verifyGitHubToken(currentToken, currentRepo, false);
+                        if (!ok) {
+                            // Token invalid — clear stale credentials
+                            currentUser = null;
+                            renderAuthUI();
+                            loadSessions();
+                        }
+                        // verifyGitHubToken already calls renderAuthUI + loadSessions on success
+                        return;
                     } catch (e) {
                         currentUser = null;
                     }
                 }
                 renderAuthUI();
+                loadSessions();
             }
 
             async function verifyGitHubToken(
@@ -3085,6 +3095,24 @@
                 });
 
             /* ============================================================
+   Base64 ↔ UTF-8 helpers (handles emoji, Devanagari, etc.)
+   ============================================================ */
+            function utf8ToBase64(str) {
+                const bytes = new TextEncoder().encode(str);
+                let binary = "";
+                bytes.forEach((b) => (binary += String.fromCharCode(b)));
+                return btoa(binary);
+            }
+            function base64ToUtf8(b64) {
+                const cleaned = b64.replace(/\n/g, "");
+                const binary = atob(cleaned);
+                const bytes = new Uint8Array(binary.length);
+                for (let i = 0; i < binary.length; i++)
+                    bytes[i] = binary.charCodeAt(i);
+                return new TextDecoder().decode(bytes);
+            }
+
+            /* ============================================================
    Data Loading & GitHub API Sync
    ============================================================ */
             async function loadSessions() {
@@ -3103,14 +3131,14 @@
                         if (res.ok) {
                             const fileData = await res.json();
                             currentSHA = fileData.sha;
-                            const cleanedBase64 = (
-                                fileData.content || ""
-                            ).replace(/\n/g, "");
-                            const decodedStr = decodeURIComponent(
-                                escape(atob(cleanedBase64)),
-                            );
-                            rawSessions = JSON.parse(decodedStr);
+                            rawSessions = JSON.parse(base64ToUtf8(fileData.content || ""));
                             processAndRenderSessions();
+                            return;
+                        } else if (res.status === 404) {
+                            // Repo exists but sessions.json doesn't yet — new user or new repo
+                            rawSessions = [];
+                            parsedSessions = [];
+                            renderLoggedInEmpty();
                             return;
                         }
                     } catch (e) {
@@ -3118,6 +3146,13 @@
                             "Could not fetch sessions from user GitHub repo...",
                             e,
                         );
+                        // Fall through to logged-in empty state (not the blurred demo)
+                        if (currentUser && currentToken) {
+                            rawSessions = [];
+                            parsedSessions = [];
+                            renderLoggedInEmpty();
+                            return;
+                        }
                     }
                 }
 
@@ -3171,9 +3206,7 @@
                     }
 
                     const jsonStr = JSON.stringify(rawSessions, null, 2);
-                    const base64Content = btoa(
-                        unescape(encodeURIComponent(jsonStr)),
-                    );
+                    const base64Content = utf8ToBase64(jsonStr);
 
                     const putBody = {
                         message: "Log meditation session via MyZen Web App",
@@ -3731,7 +3764,12 @@
 
             function render(sessions) {
                 if (!sessions.length) {
-                    renderEmpty();
+                    // Logged-in users with 0 sessions → friendly empty (not blurred demo)
+                    if (currentUser && currentToken) {
+                        renderLoggedInEmpty();
+                    } else {
+                        renderEmpty();
+                    }
                     return;
                 }
                 renderStats(sessions);
@@ -3740,6 +3778,33 @@
                 renderLog(sessions);
                 const peak = Math.max(...sessions.map((s) => s.depth));
                 renderLimbGrid(peak);
+            }
+
+            function renderLoggedInEmpty() {
+                document.getElementById("statHours").textContent = "0";
+                document.getElementById("statStreak").textContent = "0";
+                document.getElementById("statDepth").textContent = "—";
+                document.getElementById("lsTitle").textContent = "No sessions yet";
+                document.getElementById("lsStage").textContent = "Your first dive awaits";
+                document.getElementById("lsDate").textContent = "";
+                renderCalendar([]);
+                renderLimbGrid(0);
+                document.getElementById("logHolder").innerHTML = `
+                    <div style="
+                        display:flex;flex-direction:column;align-items:center;
+                        justify-content:center;gap:14px;padding:48px 24px;
+                        text-align:center;
+                    ">
+                        <div style="font-size:2.5rem;">🧘</div>
+                        <div style="font-size:1rem;font-weight:600;color:var(--text);">
+                            Welcome, @${escapeHtml(currentUser ? currentUser.login : "")}!
+                        </div>
+                        <div style="font-size:0.84375rem;color:var(--text-dim);max-width:280px;line-height:1.6;">
+                            Your session journal is empty. Log your first meditation above
+                            using the <strong>Commit to Journal</strong> button — it will be
+                            saved to <code>${escapeHtml(currentUser ? currentUser.login : "")}/${escapeHtml(currentRepo)}/sessions.json</code> on GitHub.
+                        </div>
+                    </div>`;
             }
 
             function renderStats(sessions) {
@@ -3903,9 +3968,8 @@
                 }
             }
 
-            /* Initialize */
+            /* Initialize — loadSessions() is called inside initAuth() after auth settles */
             initAuth();
-            loadSessions();
         </script>
     </body>
 </html>
