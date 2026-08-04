@@ -1342,6 +1342,119 @@
                     transform: translate(-50%, 0);
                 }
             }
+
+            /* ---------- tab panels (mobile-app style sections) ---------- */
+            body {
+                padding-bottom: 84px;
+            }
+            .tab-panel {
+                display: none;
+                animation: tabFadeIn 0.22s ease;
+            }
+            .tab-panel.active {
+                display: block;
+            }
+            @keyframes tabFadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(6px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* ---------- bottom tab bar ---------- */
+            .tab-bar {
+                position: fixed;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                z-index: 50;
+                display: flex;
+                align-items: stretch;
+                justify-content: space-around;
+                background: var(--bg-modal);
+                border-top: 1px solid var(--border);
+                padding-bottom: env(safe-area-inset-bottom, 0);
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
+            }
+            .tab-btn {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 4px;
+                background: none;
+                border: none;
+                padding: 9px 4px 8px;
+                color: var(--text-faint);
+                font-family: inherit;
+                font-size: 0.6875rem;
+                font-weight: 500;
+                letter-spacing: 0.01em;
+                cursor: pointer;
+                transition:
+                    color 0.2s,
+                    transform 0.1s;
+                -webkit-tap-highlight-color: transparent;
+            }
+            .tab-btn svg {
+                width: 22px;
+                height: 22px;
+                transition: transform 0.2s ease;
+            }
+            .tab-btn:active {
+                transform: scale(0.92);
+            }
+            .tab-btn.active {
+                color: var(--accent-strong);
+            }
+            .tab-btn.active svg {
+                transform: translateY(-1px);
+            }
+
+            /* Bottom nav stays fixed at the bottom of the viewport on every
+               screen size — full-width edge-to-edge on phones, and a
+               wider, roomier floating bar on tablets and desktop. */
+            @media (min-width: 640px) {
+                .tab-bar {
+                    max-width: min(1080px, 94vw);
+                    left: 50%;
+                    right: auto;
+                    transform: translateX(-50%);
+                    border-radius: 22px 22px 0 0;
+                    box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.25);
+                    bottom: 0;
+                }
+                .tab-btn {
+                    padding: 13px 4px 12px;
+                    font-size: 0.75rem;
+                    gap: 6px;
+                }
+                .tab-btn svg {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+            @media (min-width: 1000px) {
+                .tab-bar {
+                    max-width: 1160px;
+                    border-radius: 24px 24px 0 0;
+                }
+                .tab-btn {
+                    flex-direction: row;
+                    padding: 16px 8px;
+                    font-size: 0.84375rem;
+                }
+                .tab-btn svg {
+                    width: 20px;
+                    height: 20px;
+                }
+            }
         </style>
     </head>
     <body>
@@ -1514,6 +1627,27 @@
                 </svg>
             </header>
 
+            <!-- Tab navigation (fixed bottom bar on mobile, segmented control on desktop) -->
+            <nav class="tab-bar" id="tabBar" aria-label="Sections">
+                <button class="tab-btn active" data-tab="practice" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4.5" r="2"></circle><path d="M12 6.5v3.5"></path><path d="M9 10c-1.8 .6-3 2-3.5 4"></path><path d="M15 10c1.8 .6 3 2 3.5 4"></path><path d="M5.5 14h13"></path><path d="M8 14c0 2.5 1.8 4.5 4 4.5s4-2 4-4.5"></path></svg>
+                    <span>Practice</span>
+                </button>
+                <button class="tab-btn" data-tab="log" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.5 2"></path></svg>
+                    <span>Log</span>
+                </button>
+                <button class="tab-btn" data-tab="progress" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10"></path><path d="M12 19V5"></path><path d="M20 19v-7"></path></svg>
+                    <span>Progress</span>
+                </button>
+                <button class="tab-btn" data-tab="about" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 16v-4M12 8h.01"></path></svg>
+                    <span>About</span>
+                </button>
+            </nav>
+
+            <div class="tab-panel active" id="tabPanel-practice">
             <section class="about">
                 <p class="quote">
                     "What we know is a drop, what we don't know is an ocean."
@@ -1719,7 +1853,9 @@
                     text-align: center;
                 "
             >
-                <div
+                <button
+                    type="button"
+                    onclick="window.myZenShowTab && window.myZenShowTab('log')"
                     style="
                         font-size: 0.75rem;
                         letter-spacing: 0.06em;
@@ -1733,23 +1869,32 @@
                         align-items: center;
                         gap: 8px;
                         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+                        cursor: pointer;
+                        font-family: inherit;
+                        max-width: 420px;
+                        text-align: left;
+                        line-height: 1.5;
                     "
                 >
                     <span
-                        >Everything should be measured for quality &
-                        improvement</span
+                        >Everything should be measured for quality &amp;
+                        improvement. Measure and log your session in the next
+                        tab (Log tab)</span
                     >
                     <span
                         style="
                             font-size: 0.95rem;
                             line-height: 1;
                             color: var(--accent);
+                            flex-shrink: 0;
                         "
-                        >↓</span
+                        >→</span
                     >
-                </div>
+                </button>
             </div>
+            </div><!-- /tabPanel-practice -->
 
+            <div class="tab-panel" id="tabPanel-log">
             <!-- 3. Integrated Section: How Effectiveness is Measured & Log Session Widget -->
             <section id="depth" style="padding: 6px 0 12px">
                 <div class="card" style="padding: 24px; position: relative">
@@ -1764,19 +1909,9 @@
                             gap: 8px;
                         "
                     >
-                        <span
-                            class="label"
-                            style="
-                                font-size: 0.84375rem;
-                                letter-spacing: 0.04em;
-                                color: var(--text);
-                                font-weight: 500;
-                                text-transform: none;
-                            "
-                        >
-                            How effectiveness of a meditation session be
-                            measured? Using Patanjali's 8 Limbs
-                        </span>
+                        <h2 style="font-size:1.2rem;font-weight:500;margin:0;">
+How effectiveness of a meditation session be measured?<br>Using Patanjali's 8 Limbs
+</h2>
                         <span
                             id="inlineLogStatus"
                             style="font-size: 0.72rem; color: var(--text-faint)"
@@ -2001,7 +2136,9 @@
                 <div id="lsStage" style="display: none"></div>
                 <div id="lsDate" style="display: none"></div>
             </section>
+            </div><!-- /tabPanel-log -->
 
+            <div class="tab-panel" id="tabPanel-progress">
             <!-- 5. Consistency Heatmap & Session Log -->
             <section id="tide">
                 <div class="section-head">
@@ -2235,7 +2372,9 @@
                 </div>
                 <div id="logHolder"></div>
             </section>
+            </div><!-- /tabPanel-progress -->
 
+            <div class="tab-panel" id="tabPanel-about">
             <!-- 6. How Web App & GitHub Data Sync Works -->
             <section id="howWorksSection" style="padding: 20px 0">
                 <div class="card" style="padding: 24px; position: relative">
@@ -2435,7 +2574,7 @@
                         class="section-head"
                         style="justify-content: center; margin-bottom: 14px"
                     >
-                        <span class="label">Why I Built This</span>
+                        <span class="label"><h2 style="margin:0;font-size:1.2rem;font-weight:500;">Why I Built This</h2></span>
                     </div>
                     <p
                         style="
@@ -2568,6 +2707,7 @@
                 <span class="fmark">the ocean within</span>
                 Every drop counts. Come back and dive again.
             </footer>
+            </div><!-- /tabPanel-about -->
         </main>
 
         <!-- Info Modal -->
@@ -2790,6 +2930,44 @@
         <div class="toast" id="toast">Saved to GitHub repository!</div>
 
         <script>
+            /* ============================================================
+   Tab navigation (bottom nav bar / segmented control)
+   ============================================================ */
+            (function initTabs() {
+                const btns = Array.from(document.querySelectorAll(".tab-btn"));
+                const panels = {
+                    practice: document.getElementById("tabPanel-practice"),
+                    log: document.getElementById("tabPanel-log"),
+                    progress: document.getElementById("tabPanel-progress"),
+                    about: document.getElementById("tabPanel-about"),
+                };
+                function showTab(name, persist) {
+                    if (!panels[name]) return;
+                    Object.keys(panels).forEach((key) => {
+                        panels[key].classList.toggle("active", key === name);
+                    });
+                    btns.forEach((b) => {
+                        b.classList.toggle("active", b.dataset.tab === name);
+                    });
+                    window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+                    if (persist !== false) {
+                        try {
+                            localStorage.setItem("myzenActiveTab", name);
+                        } catch (e) {}
+                    }
+                }
+                btns.forEach((b) => {
+                    b.addEventListener("click", () => showTab(b.dataset.tab));
+                });
+                let initial = "practice";
+                try {
+                    const saved = localStorage.getItem("myzenActiveTab");
+                    if (saved && panels[saved]) initial = saved;
+                } catch (e) {}
+                showTab(initial, false);
+                window.myZenShowTab = showTab;
+            })();
+
             /* ============================================================
    Config & Constants
    ============================================================ */
