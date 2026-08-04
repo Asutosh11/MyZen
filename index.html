@@ -29,6 +29,7 @@
                 --bg: #0a0d13;
                 --bg-card: rgba(159, 178, 204, 0.07);
                 --bg-card-2: rgba(159, 178, 204, 0.12);
+                --bg-modal: #141820;
                 --border: rgba(159, 178, 204, 0.14);
                 --border-soft: rgba(159, 178, 204, 0.09);
                 --text: #eef1f5;
@@ -39,6 +40,7 @@
                 --bg: #0c120c;
                 --bg-card: rgba(150, 190, 140, 0.07);
                 --bg-card-2: rgba(150, 190, 140, 0.12);
+                --bg-modal: #141c14;
                 --border: rgba(150, 190, 140, 0.14);
                 --border-soft: rgba(150, 190, 140, 0.09);
                 --text: #eef2ea;
@@ -49,6 +51,7 @@
                 --bg: #120e0c;
                 --bg-card: rgba(205, 165, 135, 0.08);
                 --bg-card-2: rgba(205, 165, 135, 0.13);
+                --bg-modal: #1c1713;
                 --border: rgba(205, 165, 135, 0.16);
                 --border-soft: rgba(205, 165, 135, 0.1);
                 --text: #f2ece5;
@@ -59,6 +62,7 @@
                 --bg: #000000;
                 --bg-card: rgba(255, 255, 255, 0.06);
                 --bg-card-2: rgba(255, 255, 255, 0.1);
+                --bg-modal: #111111;
                 --border: rgba(255, 255, 255, 0.12);
                 --border-soft: rgba(255, 255, 255, 0.08);
                 --text: #f1f1ee;
@@ -73,6 +77,7 @@
                 --bg: #f5f4f0;
                 --bg-card: rgba(255, 255, 255, 0.85);
                 --bg-card-2: rgba(240, 238, 232, 0.9);
+                --bg-modal: #f0ede6;
                 --border: rgba(0, 0, 0, 0.1);
                 --border-soft: rgba(0, 0, 0, 0.07);
                 --text: #1a1d24;
@@ -1021,18 +1026,17 @@
             .modal-overlay {
                 position: fixed;
                 inset: 0;
-                background: rgba(0, 0, 0, 0.7);
+                background: rgba(0, 0, 0, 0.65);
                 display: none;
                 align-items: flex-end;
                 justify-content: center;
                 z-index: 100;
-                backdrop-filter: blur(6px);
             }
             .modal-overlay.open {
                 display: flex;
             }
             .modal-card {
-                background: var(--bg-card-2);
+                background: var(--bg-modal);
                 border: 1px solid var(--border);
                 border-radius: 20px 20px 0 0;
                 width: 100%;
@@ -1041,6 +1045,7 @@
                 overflow-y: auto;
                 padding: 26px 24px 34px;
                 animation: slideUp 0.25s ease;
+                box-shadow: 0 -4px 40px rgba(0, 0, 0, 0.5);
             }
             @media (min-width: 640px) {
                 .modal-overlay {
@@ -1249,15 +1254,31 @@
                 border-radius: 14px;
                 background: var(--accent);
                 color: #0a0d13;
-                font-weight: 500;
+                font-weight: 400;
                 font-size: 0.9375rem;
                 border: none;
                 cursor: pointer;
                 text-align: center;
-                transition: opacity 0.2s;
+                letter-spacing: 0.01em;
+                box-shadow: 0 4px 14px rgba(126, 231, 185, 0.25), 0 1px 3px rgba(0,0,0,0.3);
+                transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.15s ease, background 0.15s ease;
+                user-select: none;
+                -webkit-tap-highlight-color: transparent;
             }
             .commit-btn:hover {
-                opacity: 0.9;
+                opacity: 0.92;
+                box-shadow: 0 6px 20px rgba(126, 231, 185, 0.35), 0 2px 6px rgba(0,0,0,0.25);
+                transform: translateY(-1px);
+            }
+            .commit-btn:active {
+                transform: scale(0.96) translateY(1px);
+                box-shadow: 0 1px 4px rgba(126, 231, 185, 0.15), inset 0 1px 3px rgba(0,0,0,0.15);
+                opacity: 1;
+                transition: transform 0.06s ease, box-shadow 0.06s ease;
+            }
+            .commit-btn:focus-visible {
+                outline: 2px solid var(--accent);
+                outline-offset: 3px;
             }
             .zen-input {
                 width: 100%;
@@ -2020,6 +2041,55 @@
             </section>
 
             <section id="log">
+                <!-- Stats Row -->
+                <div id="statsWrap" class="disabled-section-wrap" style="margin-bottom:12px;">
+                    <div class="disabled-content">
+                        <div style="
+                            display: flex;
+                            gap: 12px;
+                            justify-content: space-between;
+                            flex-wrap: wrap;
+                        ">
+                            <div style="
+                                flex: 1; min-width: 90px;
+                                background: var(--bg-card);
+                                border: 1px solid var(--border-soft);
+                                border-radius: 14px;
+                                padding: 14px 16px;
+                                text-align: center;
+                            ">
+                                <div id="statHours" style="font-size:1.6rem;font-weight:700;color:var(--accent-strong);line-height:1;">0</div>
+                                <div style="font-size:0.72rem;color:var(--text-faint);margin-top:4px;letter-spacing:0.04em;">HOURS</div>
+                            </div>
+                            <div style="
+                                flex: 1; min-width: 90px;
+                                background: var(--bg-card);
+                                border: 1px solid var(--border-soft);
+                                border-radius: 14px;
+                                padding: 14px 16px;
+                                text-align: center;
+                            ">
+                                <div id="statStreak" style="font-size:1.6rem;font-weight:700;color:var(--accent-strong);line-height:1;">0</div>
+                                <div style="font-size:0.72rem;color:var(--text-faint);margin-top:4px;letter-spacing:0.04em;">DAY STREAK</div>
+                            </div>
+                            <div style="
+                                flex: 1; min-width: 90px;
+                                background: var(--bg-card);
+                                border: 1px solid var(--border-soft);
+                                border-radius: 14px;
+                                padding: 14px 16px;
+                                text-align: center;
+                            ">
+                                <div id="statDepth" style="font-size:1.6rem;font-weight:700;color:var(--accent-strong);line-height:1;">&mdash;</div>
+                                <div style="font-size:0.72rem;color:var(--text-faint);margin-top:4px;letter-spacing:0.04em;">PEAK DEPTH</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="disabled-overlay" style="border-radius:14px;">
+                        <div class="disabled-overlay-title" style="font-size:0.84rem;">Stats unlocked after sign-in</div>
+                    </div>
+                </div>
+
                 <div
                     class="section-head"
                     style="
@@ -2027,6 +2097,7 @@
                         align-items: center;
                         flex-wrap: wrap;
                         gap: 8px;
+                        margin-bottom: 8px;
                     "
                 >
                     <span class="label">Session Log</span>
@@ -2790,6 +2861,16 @@
             }
             function dateToApple(jsDate) {
                 return jsDate.getTime() / 1000 - 978307200;
+            }
+            function generateUUID() {
+                return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+                    /[xy]/g,
+                    function (c) {
+                        var r = (Math.random() * 16) | 0,
+                            v = c === "x" ? r : (r & 0x3) | 0x8;
+                        return v.toString(16).toUpperCase();
+                    },
+                );
             }
             function depthOf(session) {
                 if (
@@ -3607,16 +3688,6 @@
                             rawSessions[idx].statePath = statePathArray;
                         }
                     } else {
-                        function generateUUID() {
-                            return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
-                                /[xy]/g,
-                                function (c) {
-                                    var r = (Math.random() * 16) | 0,
-                                        v = c == "x" ? r : (r & 0x3) | 0x8;
-                                    return v.toString(16).toUpperCase();
-                                },
-                            );
-                        }
                         const newSession = {
                             id: generateUUID(),
                             date: dateToApple(new Date()),
@@ -3744,7 +3815,7 @@
         <div class="name">${l.name} <span style="font-size:0.75rem;color:var(--text-faint);font-weight:300;">— ${l.sub}</span></div>
         <div class="desc" style="margin-top:8px;line-height:1.6;">
           <div style="margin-bottom:5px;color:var(--text-dim);"><strong style="color:var(--accent-strong);">📜 Theory:</strong> ${l.theory}</div>
-          <div style="margin-bottom:5px;color:var(--text-dim);"><strong style="color:var(--text);">💡 What It Means:</strong> ${l.meaning}</div>
+          <div style="margin-bottom:5px;color:var(--text);">💡 What It Means:</strong> ${l.meaning}</div>
           <div style="color:var(--text);"><strong style="color:var(--accent);">🧘 How a Sadhak Feels:</strong> "${l.sadhakFeels}"</div>
         </div>
       </div>
@@ -3753,14 +3824,19 @@
             }
 
             function renderEmpty() {
-                document.getElementById("statHours").textContent = "0";
-                document.getElementById("statStreak").textContent = "0";
-                document.getElementById("statDepth").textContent = "—";
-                document.getElementById("lsTitle").textContent =
-                    "No sessions yet";
-                document.getElementById("lsStage").textContent =
-                    "The first dive is still ahead";
-                document.getElementById("lsDate").textContent = "";
+                const hoursEl = document.getElementById("statHours");
+                const streakEl = document.getElementById("statStreak");
+                const depthEl = document.getElementById("statDepth");
+                const lsTitle = document.getElementById("lsTitle");
+                const lsStage = document.getElementById("lsStage");
+                const lsDate = document.getElementById("lsDate");
+                
+                if (hoursEl) hoursEl.textContent = "0";
+                if (streakEl) streakEl.textContent = "0";
+                if (depthEl) depthEl.textContent = "—";
+                if (lsTitle) lsTitle.textContent = "No sessions yet";
+                if (lsStage) lsStage.textContent = "The first dive is still ahead";
+                if (lsDate) lsDate.textContent = "";
 
                 renderCalendar([]);
 
@@ -3835,12 +3911,20 @@
             }
 
             function renderLoggedInEmpty() {
-                document.getElementById("statHours").textContent = "0";
-                document.getElementById("statStreak").textContent = "0";
-                document.getElementById("statDepth").textContent = "—";
-                document.getElementById("lsTitle").textContent = "No sessions yet";
-                document.getElementById("lsStage").textContent = "Your first dive awaits";
-                document.getElementById("lsDate").textContent = "";
+                const hoursEl = document.getElementById("statHours");
+                const streakEl = document.getElementById("statStreak");
+                const depthEl = document.getElementById("statDepth");
+                const lsTitle = document.getElementById("lsTitle");
+                const lsStage = document.getElementById("lsStage");
+                const lsDate = document.getElementById("lsDate");
+
+                if (hoursEl) hoursEl.textContent = "0";
+                if (streakEl) streakEl.textContent = "0";
+                if (depthEl) depthEl.textContent = "—";
+                if (lsTitle) lsTitle.textContent = "No sessions yet";
+                if (lsStage) lsStage.textContent = "Your first dive awaits";
+                if (lsDate) lsDate.textContent = "";
+                
                 renderCalendar([]);
                 renderLimbGrid(0);
                 document.getElementById("logHolder").innerHTML = `
@@ -3867,13 +3951,13 @@
                     0,
                 );
                 const hours = totalMinutes / 60;
-                document.getElementById("statHours").textContent =
-                    hours >= 100 ? Math.round(hours) : hours.toFixed(1);
-                document.getElementById("statStreak").textContent =
-                    computeStreak(sessions);
+                const hoursEl = document.getElementById("statHours");
+                const streakEl = document.getElementById("statStreak");
+                const depthEl = document.getElementById("statDepth");
                 const deepest = Math.max(...sessions.map((s) => s.depth));
-                document.getElementById("statDepth").textContent =
-                    deepest + "/" + MAX_DEPTH;
+                if (hoursEl) hoursEl.textContent = hours >= 100 ? Math.round(hours) : hours.toFixed(1);
+                if (streakEl) streakEl.textContent = computeStreak(sessions);
+                if (depthEl) depthEl.textContent = deepest + "/" + MAX_DEPTH;
             }
 
             function dayKey(d) {
@@ -3913,23 +3997,41 @@
             }
 
             function renderLastSession(sessions) {
+                if (!sessions || sessions.length === 0) return;
                 const last = sessions[sessions.length - 1];
-                const limb = LIMBS[last.depth - 1];
-                document
-                    .getElementById("lastSessionHolder")
-                    .querySelector(".depth-circle .n").textContent = last.depth;
-                document.getElementById("lsTitle").textContent =
-                    `"${last.durationInMinutes} Minute Session"`;
-                document.getElementById("lsStage").textContent =
-                    `Stage ${last.depth}: ${limb.name}`;
-                document.getElementById("lsDate").textContent =
-                    last.jsDate.toLocaleString(undefined, {
-                        day: "2-digit",
-                        month: "short",
-                        year: "numeric",
-                        hour: "numeric",
-                        minute: "2-digit",
-                    });
+                const limb = LIMBS[(last.depth || 1) - 1] || LIMBS[0];
+                const dateStr = last.jsDate
+                    ? last.jsDate.toLocaleString(undefined, {
+                          day: "2-digit",
+                          month: "short",
+                          year: "numeric",
+                          hour: "numeric",
+                          minute: "2-digit",
+                      })
+                    : "";
+
+                // Populate hidden compatibility divs (used by other parts of the page)
+                const lsTitle = document.getElementById("lsTitle");
+                const lsStage = document.getElementById("lsStage");
+                const lsDate  = document.getElementById("lsDate");
+                if (lsTitle) lsTitle.textContent = `"${last.durationInMinutes} Minute Session"`;
+                if (lsStage) lsStage.textContent = `Stage ${last.depth}: ${limb.name}`;
+                if (lsDate)  lsDate.textContent  = dateStr;
+
+                // Build the last-session card inside the holder
+                const holder = document.getElementById("lastSessionHolder");
+                if (!holder) return;
+                holder.innerHTML = `
+                    <div class="depth-circle">
+                        <span class="n">${last.depth || "—"}</span>
+                        <span class="of">/${MAX_DEPTH}</span>
+                    </div>
+                    <div style="flex:1;min-width:0;">
+                        <div style="font-size:0.95rem;font-weight:600;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                            ${last.durationInMinutes} min · ${escapeHtml(limb.name)}
+                        </div>
+                        <div style="font-size:0.78rem;color:var(--text-dim);margin-top:2px;">${dateStr}</div>
+                    </div>`;
             }
 
             function renderCalendar(sessions) {
