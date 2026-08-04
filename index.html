@@ -2726,13 +2726,62 @@
 
             /* Security & String Helpers */
             function escapeHtml(str) {
-                if (!str) return "";
+                if (str === null || str === undefined) return "";
                 return String(str)
                     .replace(/&/g, "&amp;")
                     .replace(/</g, "&lt;")
                     .replace(/>/g, "&gt;")
                     .replace(/"/g, "&quot;")
                     .replace(/'/g, "&#039;");
+            }
+
+            /* ---------- Input / Data Validators ---------- */
+            // Allow only UUID-shaped IDs (alphanumeric, hyphens) — blocks injection via data-id
+            function sanitizeId(id) {
+                if (typeof id !== "string") return "";
+                return id.replace(/[^a-zA-Z0-9\-]/g, "").slice(0, 64);
+            }
+            // Allow only safe GitHub repo names
+            function sanitizeRepoName(name) {
+                if (typeof name !== "string") return "myzen";
+                return name.replace(/[^a-zA-Z0-9_\-.]/g, "").slice(0, 100) || "myzen";
+            }
+            // Returns a positive integer or the fallback
+            function validatePositiveInt(val, fallback) {
+                const n = parseInt(val, 10);
+                return Number.isFinite(n) && n > 0 ? n : fallback;
+            }
+            // Returns depth clamped to [1, MAX_DEPTH] or 1
+            function validateDepth(val) {
+                const n = parseInt(val, 10);
+                return Number.isFinite(n) && n >= 1 && n <= MAX_DEPTH ? n : 1;
+            }
+            // Returns a safe GitHub CDN avatar URL or empty string
+            function sanitizeAvatarUrl(url) {
+                try {
+                    const u = new URL(url);
+                    if (
+                        (u.hostname === "avatars.githubusercontent.com" ||
+                         u.hostname.endsWith(".githubusercontent.com")) &&
+                        (u.protocol === "https:")
+                    ) return url;
+                } catch (_) {}
+                return "";
+            }
+            // Validate and sanitize a raw session object from JSON
+            function validateSession(s) {
+                if (!s || typeof s !== "object") return null;
+                const id = sanitizeId(String(s.id || ""));
+                if (!id) return null;
+                const duration = validatePositiveInt(s.durationInMinutes, 1);
+                if (duration > 1440) return null; // sanity cap: 24 hours
+                // statePath must be an array of positive ints
+                if (!Array.isArray(s.statePath) || s.statePath.length === 0) return null;
+                const safePath = s.statePath.map((v) => validatePositiveInt(v, 1)).filter((v) => v <= MAX_DEPTH);
+                if (safePath.length === 0) return null;
+                const date = typeof s.date === "number" ? s.date : parseFloat(s.date);
+                if (!Number.isFinite(date)) return null;
+                return { id, date, statePath: safePath, durationInMinutes: duration };
             }
 
             /* Date Helpers */
@@ -2925,7 +2974,7 @@
 
                     currentToken = token;
                     currentUser = user;
-                    currentRepo = repoName || "myzen";
+                    currentRepo = sanitizeRepoName(repoName || "myzen");
                     localStorage.setItem("myzen_gh_token", token);
                     localStorage.setItem("myzen_gh_user", JSON.stringify(user));
                     localStorage.setItem("myzen_gh_repo", currentRepo);
@@ -2971,7 +3020,7 @@
                     container.innerHTML = `
       <div style="position:relative;">
         <button class="auth-pill" id="userMenuBtn">
-          <img class="auth-avatar" src="${escapeHtml(currentUser.avatar_url)}" alt="${escapeHtml(currentUser.login)}"/>
+          <img class="auth-avatar" src="${escapeHtml(sanitizeAvatarUrl(currentUser.avatar_url))}" alt="${escapeHtml(currentUser.login)}"/>
           <span>@${escapeHtml(currentUser.login)}</span>
         </button>
         <div class="auth-popover" id="userPop">
@@ -3131,7 +3180,12 @@
                         if (res.ok) {
                             const fileData = await res.json();
                             currentSHA = fileData.sha;
-                            rawSessions = JSON.parse(base64ToUtf8(fileData.content || ""));
+                            const parsed = JSON.parse(base64ToUtf8(fileData.content || ""));
+                            if (!Array.isArray(parsed)) throw new Error("sessions.json is not an array");
+                            // Validate and sanitize every session entry
+                            rawSessions = parsed
+                                .map(validateSession)
+                                .filter(Boolean);
                             processAndRenderSessions();
                             return;
                         } else if (res.status === 404) {
@@ -3920,21 +3974,32 @@
                     .reverse()
                     .slice(0, 60)
                     .map(
-                        (s) => `
+                        (s) => {
+                            const safeId = sanitizeId(s.id);
+                            const safeDepth = validateDepth(s.depth);
+                            const safeDur = validatePositiveInt(s.durationInMinutes, 1);
+                            const limbName = escapeHtml(LIMBS[safeDepth - 1]?.name || "");
+                            const dateStr = escapeHtml(
+                                s.jsDate.toLocaleDateString(undefined, {
+                                    month: "short", day: "numeric", year: "numeric",
+                                })
+                            );
+                            return `
     <tr>
-      <td class="col-date">${s.jsDate.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}</td>
-      <td class="col-depth">${s.depth}/${MAX_DEPTH} · ${LIMBS[s.depth - 1].name}</td>
-      <td>${s.durationInMinutes} min</td>
+      <td class="col-date">${dateStr}</td>
+      <td class="col-depth">${safeDepth}/${MAX_DEPTH} &middot; ${limbName}</td>
+      <td>${safeDur} min</td>
       ${
           showActions
               ? `
         <td style="text-align:right;">
-          <button class="table-act-btn edit-row-btn" data-id="${s.id}" title="Edit session">✏️</button>
-          <button class="table-act-btn table-del-btn del-row-btn" data-id="${s.id}" title="Delete session">🗑️</button>
+          <button class="table-act-btn edit-row-btn" data-id="${escapeHtml(safeId)}" title="Edit session">✏️</button>
+          <button class="table-act-btn table-del-btn del-row-btn" data-id="${escapeHtml(safeId)}" title="Delete session">🗑️</button>
         </td>`
               : ""
       }
-    </tr>`,
+    </tr>`;
+                        }
                     )
                     .join("");
 
@@ -3949,8 +4014,9 @@
                         .querySelectorAll(".edit-row-btn")
                         .forEach((btn) => {
                             btn.addEventListener("click", () => {
+                                const safeId = sanitizeId(btn.dataset.id);
                                 const s = parsedSessions.find(
-                                    (item) => item.id === btn.dataset.id,
+                                    (item) => sanitizeId(item.id) === safeId,
                                 );
                                 if (s) openReflectionModal(s);
                             });
@@ -3958,8 +4024,9 @@
                     document.querySelectorAll(".del-row-btn").forEach((btn) => {
                         btn.addEventListener("click", async () => {
                             if (confirm("Delete this meditation entry?")) {
+                                const safeId = sanitizeId(btn.dataset.id);
                                 rawSessions = rawSessions.filter(
-                                    (item) => item.id !== btn.dataset.id,
+                                    (item) => sanitizeId(item.id) !== safeId,
                                 );
                                 await saveSessionsToGitHub(rawSessions);
                             }
