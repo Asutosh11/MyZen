@@ -1,0 +1,27 @@
+# Operating System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment & Secrets
+.env
+*.env
+*.pem
+*.key
+*.token
+
+# IDE & Editor Configs
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# Build / Dependencies
+node_modules/
+dist/
+build/
+DerivedData/
+*.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcworkspace/xcuserdata/

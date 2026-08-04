@@ -79,24 +79,29 @@ It displays:
 
 ---
 
-# Measuring Meditation Depth
+# How effectiveness of a meditation session be measured? Patanjali's 8 Limbs
 
-Instead of scoring meditation, MyZen uses Patanjali's Eight Limbs as a reference.
+Instead of scoring meditation with arbitrary points, MyZen uses Patanjali's Eight Limbs as an internal ruler for attention depth during logged daily sessions:
 
-| Stage | Limb |
-|------:|------|
-| 1 | Yama |
-| 2 | Niyama |
-| 3 | Asana |
-| 4 | Pranayama |
-| 5 | Pratyahara |
-| 6 | Dharana |
-| 7 | Dhyana |
-| 8 | Samadhi |
+| Limb # | Limb Name | Description |
+|-------:|-----------|-------------|
+| 1 | Yama | Ethical Restraints |
+| 2 | Niyama | Inner Disciplines |
+| 3 | Asana | Steady Posture |
+| 4 | Pranayama | Breath Integration |
+| 5 | Pratyahara | Sensory Withdrawal |
+| 6 | Dharana | One-Pointed Focus |
+| 7 | Dhyana | Effortless Flow |
+| 8 | Samadhi | Pure Oneness |
 
-These are **not achievements** or levels to unlock.
+> **Note on Patanjali's 8 Limbs**: These are 8 limbs (interconnected branches of a single tree), not sequential stages or steps one after another. A sadhak does not need to fully perfect one stage before reaching another; they grow together and nourish each other during daily practice.
 
-They simply describe the deepest point of stillness reached during a meditation session.
+---
+
+# Practice Modes: Immediate Remedy vs Main Logged Sessions
+
+1. **3-Minute Immediate Remedy (Do Now)**: A fast, interactive breath exercise designed for immediate mind decluttering whenever you feel scattered, anxious, or overwhelmed.
+2. **Main Daily Sessions & Logging**: Dedicated meditation sits following Patanjali's 8 Limbs, where sadhaks record duration and evaluate the deepest internal state reached.
 
 ---
 
