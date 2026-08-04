@@ -4074,7 +4074,7 @@
                 const showActions = currentUser && currentToken;
                 const rows = [...sessions]
                     .reverse()
-                    .slice(0, 60)
+                    .slice(0, 10)
                     .map(
                         (s) => {
                             const safeId = sanitizeId(s.id);
