@@ -291,6 +291,11 @@
                 color: var(--text);
                 border-color: var(--border);
             }
+            .btn-log-secondary:disabled {
+                opacity: 0.45;
+                cursor: not-allowed;
+                transform: none;
+            }
 
             /* ---------- Step-by-Step Practice & Guide ---------- */
             .practice-step-grid {
@@ -1897,27 +1902,43 @@
             <div class="tab-panel" id="tabPanel-log">
             <!-- 3. Integrated Section: How Effectiveness is Measured & Log Session Widget -->
             <section id="depth" style="padding: 6px 0 12px">
-                <div class="card" style="padding: 24px; position: relative">
-                    <div
-                        class="section-head"
-                        style="
-                            margin-bottom: 14px;
-                            justify-content: space-between;
-                            align-items: center;
-                            text-align: left;
-                            flex-wrap: wrap;
-                            gap: 8px;
-                        "
-                    >
-                        <h2 style="font-size:1.2rem;font-weight:500;margin:0;">
-How effectiveness of a meditation session be measured?<br>Using Patanjali's 8 Limbs
-</h2>
-                        <span
-                            id="inlineLogStatus"
-                            style="font-size: 0.72rem; color: var(--text-faint)"
-                        ></span>
+                <div
+                    class="section-head"
+                    style="
+                        margin-bottom: 14px;
+                        justify-content: space-between;
+                        align-items: flex-end;
+                        text-align: left;
+                        flex-wrap: wrap;
+                        gap: 8px;
+                    "
+                >
+                    <div style="min-width: 0">
+                        <h2
+                            style="
+                                font-size: 1.2rem;
+                                font-weight: 500;
+                                margin: 0;
+                            "
+                        >
+                            How effectiveness of a meditation session be measured?
+                        </h2>
+                        <div
+                            style="
+                                margin-top: 4px;
+                                font-size: 0.78125rem;
+                                color: var(--text-faint);
+                            "
+                        >
+                            Using Patanjali's 8 Limbs
+                        </div>
                     </div>
-
+                    <span
+                        id="inlineLogStatus"
+                        style="font-size: 0.72rem; color: var(--text-faint)"
+                    ></span>
+                </div>
+                <div class="card" style="padding: 24px; position: relative">
                     <!-- Explanation: What is 8 Limbs & How it measures meditation -->
                     <div
                         style="
@@ -3382,13 +3403,25 @@ How effectiveness of a meditation session be measured?<br>Using Patanjali's 8 Li
                             "Logged in as @" + escapeHtml(currentUser.login);
                     if (commitArea)
                         commitArea.innerHTML = `
-                        <button class="commit-btn" id="inlineCommitBtn">Commit to Journal</button>`;
+                        <div class="action-btn-group" style="margin-top: 14px;">
+                            <button class="commit-btn" id="inlineCommitBtn">Commit to Journal</button>
+                            <button class="btn-log-secondary" id="inlineShareBtn" type="button">
+                                Share Progress Card
+                            </button>
+                        </div>`;
                     const inlineCommitBtn =
                         document.getElementById("inlineCommitBtn");
                     if (inlineCommitBtn)
                         inlineCommitBtn.addEventListener(
                             "click",
                             commitInlineSession,
+                        );
+                    const inlineShareBtn =
+                        document.getElementById("inlineShareBtn");
+                    if (inlineShareBtn)
+                        inlineShareBtn.addEventListener(
+                            "click",
+                            shareProgressCard,
                         );
 
                     container.innerHTML = `
@@ -3401,6 +3434,9 @@ How effectiveness of a meditation session be measured?<br>Using Patanjali's 8 Li
           <div class="pop-label" style="margin-bottom:4px;">GitHub Account</div>
           <div style="font-size:0.84375rem;color:var(--text);font-weight:500;">${escapeHtml(currentUser.name || currentUser.login)}</div>
           <div style="font-size:0.71875rem;color:var(--text-faint);margin-bottom:12px;">Repo: ${escapeHtml(currentUser.login)}/${escapeHtml(currentRepo)}</div>
+          <button id="shareNowBtn" class="btn-log-secondary" style="margin-bottom:8px;padding:8px;font-size:0.75rem;">
+            Share progress card
+          </button>
           <button id="syncNowBtn" class="btn-log-secondary" style="margin-bottom:8px;padding:8px;font-size:0.75rem;">
             🔄 Sync sessions.json
           </button>
@@ -3438,6 +3474,14 @@ How effectiveness of a meditation session be measured?<br>Using Patanjali's 8 Li
                                 .classList.remove("open");
                             loadSessions();
                         });
+                    const shareNowBtn =
+                        document.getElementById("shareNowBtn");
+                    if (shareNowBtn)
+                        shareNowBtn.addEventListener(
+                            "click",
+                            shareProgressCard,
+                        );
+                    updateShareButtonState();
                 } else {
                     if (statsWrap) statsWrap.classList.add("disabled");
                     if (tideWrap) tideWrap.classList.add("disabled");
@@ -4207,6 +4251,7 @@ How effectiveness of a meditation session be measured?<br>Using Patanjali's 8 Li
                 renderLog(sessions);
                 const peak = Math.max(...sessions.map((s) => s.depth));
                 renderLimbGrid(peak);
+                updateShareButtonState();
             }
 
             function renderLoggedInEmpty() {
@@ -4242,6 +4287,7 @@ How effectiveness of a meditation session be measured?<br>Using Patanjali's 8 Li
                             saved to <code>${escapeHtml(currentUser ? currentUser.login : "")}/${escapeHtml(currentRepo)}/sessions.json</code> on GitHub.
                         </div>
                     </div>`;
+                updateShareButtonState();
             }
 
             function renderStats(sessions) {
@@ -4295,6 +4341,1007 @@ How effectiveness of a meditation session be measured?<br>Using Patanjali's 8 Li
                     cursor.setDate(cursor.getDate() - 1);
                 }
                 return streak;
+            }
+
+            function updateShareButtonState() {
+                const hasSessions =
+                    Array.isArray(parsedSessions) && parsedSessions.length > 0;
+                const inlineShareBtn =
+                    document.getElementById("inlineShareBtn");
+                const popoverShareBtn =
+                    document.getElementById("shareNowBtn");
+                [inlineShareBtn, popoverShareBtn].forEach((btn) => {
+                    if (!btn) return;
+                    btn.disabled = !hasSessions;
+                    btn.title = hasSessions
+                        ? "Generate a share card from your meditation progress"
+                        : "Log at least one session to share your progress";
+                });
+            }
+
+            function escapeSvgText(str) {
+                return escapeHtml(str).replace(/"/g, "&quot;");
+            }
+
+            function buildProgressShareData() {
+                const sessions = Array.isArray(parsedSessions)
+                    ? parsedSessions
+                    : [];
+                const totalMinutes = sessions.reduce(
+                    (sum, s) => sum + s.durationInMinutes,
+                    0,
+                );
+                const totalHours = totalMinutes / 60;
+                const streak = sessions.length ? computeStreak(sessions) : 0;
+                const deepest = sessions.length
+                    ? Math.max(...sessions.map((s) => s.depth))
+                    : 0;
+                const latest = sessions.length
+                    ? sessions[sessions.length - 1]
+                    : null;
+                return {
+                    sessions,
+                    totalMinutes,
+                    totalHours,
+                    streak,
+                    deepest,
+                    latest,
+                };
+            }
+
+            function getShareTheme() {
+                const themeName =
+                    document.documentElement.getAttribute("data-theme") ||
+                    "abyssal";
+                const root = getComputedStyle(document.documentElement);
+                const paletteByTheme = {
+                    abyssal: {
+                        bgTop: "#171c29",
+                        bgBottom: "#0a0d14",
+                    },
+                    forest: {
+                        bgTop: "#243029",
+                        bgBottom: "#0f1714",
+                    },
+                    cocoa: {
+                        bgTop: "#261c17",
+                        bgBottom: "#140d0a",
+                    },
+                    dark: {
+                        bgTop: "#050505",
+                        bgBottom: "#000000",
+                    },
+                    light: {
+                        bgTop: "#f5f4f0",
+                        bgBottom: "#e8e5da",
+                    },
+                };
+                const palette = paletteByTheme[themeName] || paletteByTheme.abyssal;
+                return {
+                    bgTop: palette.bgTop,
+                    bgBottom: palette.bgBottom,
+                    panel: "rgba(0,0,0,0.32)",
+                    border: (
+                        root.getPropertyValue("--border") ||
+                        "rgba(255,255,255,0.14)"
+                    ).trim(),
+                    borderSoft: (
+                        root.getPropertyValue("--border-soft") ||
+                        "rgba(255,255,255,0.08)"
+                    ).trim(),
+                    text: (
+                        root.getPropertyValue("--text") || "#eef1f5"
+                    ).trim(),
+                    textDim: (
+                        root.getPropertyValue("--text-dim") || "#a8b4c4"
+                    ).trim(),
+                    textFaint: (
+                        root.getPropertyValue("--text-faint") || "#7a8898"
+                    ).trim(),
+                    accent: (
+                        root.getPropertyValue("--accent") || "#7ed3bf"
+                    ).trim(),
+                    accentStrong: (
+                        root.getPropertyValue("--accent-strong") || "#a3e6d4"
+                    ).trim(),
+                };
+            }
+
+            function roundRectPath(ctx, x, y, w, h, r) {
+                const radius = Math.min(r, w / 2, h / 2);
+                ctx.beginPath();
+                ctx.moveTo(x + radius, y);
+                ctx.arcTo(x + w, y, x + w, y + h, radius);
+                ctx.arcTo(x + w, y + h, x, y + h, radius);
+                ctx.arcTo(x, y + h, x, y, radius);
+                ctx.arcTo(x, y, x + w, y, radius);
+                ctx.closePath();
+            }
+
+            function drawRoundedRect(ctx, x, y, w, h, r, fill, stroke) {
+                roundRectPath(ctx, x, y, w, h, r);
+                if (fill) {
+                    ctx.fillStyle = fill;
+                    ctx.fill();
+                }
+                if (stroke) {
+                    ctx.strokeStyle = stroke;
+                    ctx.stroke();
+                }
+            }
+
+            function drawTrackedText(ctx, text, x, y, letterSpacing = 0) {
+                const chars = Array.from(String(text));
+                if (!letterSpacing) {
+                    ctx.fillText(text, x, y);
+                    return;
+                }
+                const totalWidth =
+                    chars.reduce((sum, ch) => sum + ctx.measureText(ch).width, 0) +
+                    letterSpacing * Math.max(0, chars.length - 1);
+                // Per-character fillText always draws relative to the CURRENT
+                // ctx.textAlign. If that's "center" (or "right"), each glyph
+                // gets re-centered/re-anchored on its own cursor position,
+                // which is what produced the uneven letter spacing. Force
+                // left alignment for the manual draw loop, then restore
+                // whatever alignment was active before.
+                const prevAlign = ctx.textAlign;
+                let startX = x;
+                if (prevAlign === "center") {
+                    startX = x - totalWidth / 2;
+                } else if (prevAlign === "right") {
+                    startX = x - totalWidth;
+                }
+                ctx.textAlign = "left";
+                let cursor = startX;
+                for (const ch of chars) {
+                    ctx.fillText(ch, cursor, y);
+                    cursor += ctx.measureText(ch).width + letterSpacing;
+                }
+                ctx.textAlign = prevAlign;
+            }
+
+            function wrapText(ctx, text, maxWidth) {
+                const words = String(text).split(/\s+/);
+                const lines = [];
+                let line = "";
+                for (const word of words) {
+                    const test = line ? `${line} ${word}` : word;
+                    if (ctx.measureText(test).width > maxWidth && line) {
+                        lines.push(line);
+                        line = word;
+                    } else {
+                        line = test;
+                    }
+                }
+                if (line) lines.push(line);
+                return lines;
+            }
+
+            function drawCenteredLines(ctx, lines, centerX, startY, lineHeight) {
+                lines.forEach((line, index) => {
+                    ctx.fillText(line, centerX, startY + index * lineHeight);
+                });
+            }
+
+            function getShareInnerSelfDepthLabel(level) {
+                switch (level) {
+                    case 1:
+                        return "Experienced a baseline of total social ease, feeling your heart empty of grudges and filled with kindness for all.";
+                    case 2:
+                        return "Touched a state of pure contentment and inner clarity; feeling balanced, clean, and beautifully ready for silence.";
+                    case 3:
+                        return "Settled into a perfectly still and easy posture, where your physical presence felt light, steady, and weightless.";
+                    case 4:
+                        return "Your physiological baseline and internal life-force slowed down wonderfully, bringing the nervous system to total ease.";
+                    case 5:
+                        return "Profound sensory withdrawal, where the external world faded away completely into a quiet, warm inner space.";
+                    case 6:
+                        return "Achieved absolute laser-focus, your mind resting perfectly on your chosen technique or focal point without drifting.";
+                    case 7:
+                        return "Entered a deep, effortless meditative flow where attention streamed automatically like an unbroken river of peace.";
+                    case 8:
+                        return "Touched absolute oneness, where individual boundaries completely melted away into immense, timeless spaciousness.";
+                    default:
+                        return "";
+                }
+            }
+
+            async function renderProgressShareCanvas(data) {
+                const width = 1200;
+                const height = 1200;
+                const scale = 2;
+                const theme = getShareTheme();
+                const latest = data.latest;
+                const latestLimb = latest
+                    ? LIMBS[(latest.depth || 1) - 1] || LIMBS[0]
+                    : LIMBS[0];
+                const latestDate = latest
+                    ? latest.jsDate.toLocaleDateString(undefined, {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                      })
+                    : "No session yet";
+                const latestTime = latest
+                    ? `${latest.durationInMinutes} min`
+                    : "-";
+                const username = currentUser
+                    ? `@${currentUser.login}`
+                    : "MyZen journal";
+                const repoLabel = currentUser
+                    ? `${currentUser.login}/${currentRepo}`
+                    : currentRepo;
+                const progressLabel = latest
+                    ? `Stage ${latest.depth}: ${latestLimb.name}`
+                    : "No session logged yet";
+                const footerNote = latest
+                    ? `"${latest.jsDate.toLocaleDateString(undefined, {
+                          month: "short",
+                          day: "numeric",
+                          year: "numeric",
+                      })}"`
+                    : "Log your first sit to begin the journey.";
+                const totalHours =
+                    data.totalHours >= 100
+                        ? Math.round(data.totalHours)
+                        : data.totalHours.toFixed(1);
+
+                await (document.fonts?.ready || Promise.resolve());
+
+                const canvas = document.createElement("canvas");
+                canvas.width = width * scale;
+                canvas.height = height * scale;
+                const ctx = canvas.getContext("2d");
+                if (!ctx) throw new Error("Canvas unavailable");
+                ctx.scale(scale, scale);
+                ctx.textBaseline = "alphabetic";
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = "high";
+
+                const bgGrad = ctx.createLinearGradient(0, 0, width, height);
+                bgGrad.addColorStop(0, theme.bg);
+                bgGrad.addColorStop(1, theme.surface);
+                ctx.fillStyle = bgGrad;
+                ctx.fillRect(0, 0, width, height);
+
+                drawRoundedRect(
+                    ctx,
+                    0,
+                    0,
+                    1200,
+                    1200,
+                    0,
+                    "transparent",
+                    null,
+                );
+
+                const fade = ctx.createLinearGradient(0, 0, 0, 1200);
+                fade.addColorStop(0, theme.bg);
+                fade.addColorStop(0.35, theme.bg);
+                fade.addColorStop(1, theme.surfaceSoft);
+                ctx.fillStyle = fade;
+                ctx.fillRect(0, 0, 1200, 1200);
+
+                ctx.strokeStyle = theme.borderSoft;
+                ctx.lineWidth = 1;
+                ctx.strokeRect(0.5, 0.5, 1199, 1199);
+
+                const topGlow = ctx.createRadialGradient(600, 74, 8, 600, 74, 110);
+                topGlow.addColorStop(0, theme.accent + "18");
+                topGlow.addColorStop(1, theme.accent + "00");
+                ctx.fillStyle = topGlow;
+                ctx.fillRect(0, 0, 1200, 220);
+
+                ctx.strokeStyle = theme.text;
+                ctx.lineWidth = 1.5;
+                ctx.globalAlpha = 0.95;
+                ctx.beginPath();
+                ctx.moveTo(0, 128);
+                ctx.bezierCurveTo(220, 124, 400, 129, 600, 128);
+                ctx.bezierCurveTo(820, 126, 1000, 131, 1200, 127);
+                ctx.stroke();
+
+                ctx.globalAlpha = 0.92;
+                const branches = [
+                    [[600, 49], [600, 68], [598, 80], [596, 95]],
+                    [[600, 49], [601, 68], [602, 80], [604, 95]],
+                    [[596, 86], [583, 96], [568, 107], [552, 126]],
+                    [[604, 86], [617, 96], [632, 107], [648, 126]],
+                    [[595, 95], [586, 113], [582, 129], [578, 149]],
+                    [[605, 95], [614, 113], [618, 129], [622, 149]],
+                    [[593, 149], [590, 175], [588, 201], [586, 233]],
+                    [[607, 149], [610, 175], [612, 201], [614, 233]],
+                ];
+                ctx.strokeStyle = theme.text;
+                branches.forEach((pts, idx) => {
+                    ctx.beginPath();
+                    ctx.moveTo(pts[0][0], pts[0][1]);
+                    ctx.bezierCurveTo(
+                        pts[1][0],
+                        pts[1][1],
+                        pts[2][0],
+                        pts[2][1],
+                        pts[3][0],
+                        pts[3][1],
+                    );
+                    ctx.lineWidth = idx < 2 ? 1.5 : 1.25;
+                    ctx.stroke();
+                });
+                const bubbles = [
+                    [604, 48, 22],
+                    [575, 48, 19],
+                    [628, 46, 20],
+                    [553, 60, 18],
+                    [645, 61, 18],
+                    [529, 84, 17],
+                    [675, 84, 17],
+                    [600, 92, 25],
+                    [565, 103, 16],
+                    [635, 103, 16],
+                    [500, 64, 14],
+                    [700, 64, 14],
+                ];
+                ctx.lineWidth = 1;
+                bubbles.forEach(([x, y, r], idx) => {
+                    ctx.beginPath();
+                    ctx.arc(x, y, r, 0, Math.PI * 2);
+                    ctx.globalAlpha = idx < 3 ? 0.42 : idx < 8 ? 0.56 : 0.35;
+                    ctx.strokeStyle = theme.text;
+                    ctx.stroke();
+                });
+                ctx.globalAlpha = 1;
+
+                const titleY = 276;
+                ctx.fillStyle = shareTeal;
+                ctx.textAlign = "center";
+                ctx.font = "600 24px Inter, sans-serif";
+                drawTrackedText(
+                    ctx,
+                    "TODAY'S MEDITATION QUALITY",
+                    600,
+                    titleY,
+                    5,
+                );
+                ctx.fillStyle = theme.text;
+                ctx.font = "300 26px Inter, sans-serif";
+                drawTrackedText(
+                    ctx,
+                    "DEPTH & ALIGNMENT PROFILE",
+                    600,
+                    titleY + 34,
+                    4,
+                );
+
+                drawRoundedRect(
+                    ctx,
+                    60,
+                    404,
+                    1080,
+                    430,
+                    34,
+                    theme.surfaceSoft,
+                    theme.border,
+                );
+                ctx.save();
+                ctx.shadowColor = "rgba(0,0,0,0.35)";
+                ctx.shadowBlur = 16;
+                ctx.shadowOffsetY = 10;
+                drawRoundedRect(
+                    ctx,
+                    78,
+                    422,
+                    1044,
+                    394,
+                    28,
+                    theme.bg,
+                    theme.borderSoft,
+                );
+                ctx.restore();
+
+                ctx.fillStyle = theme.text;
+                ctx.font = "300 106px Inter, sans-serif";
+                ctx.fillText(String(latest ? latest.depth : "—"), 600, 558);
+                ctx.fillStyle = theme.accentStrong;
+                ctx.font = "600 27px Inter, sans-serif";
+                drawTrackedText(ctx, progressLabel.toUpperCase(), 600, 620, 3);
+                ctx.fillStyle = theme.textFaint;
+                ctx.font = "500 17px Inter, sans-serif";
+                drawTrackedText(ctx, "MAXIMUM DEPTH ACHIEVED", 600, 646, 3);
+
+                ctx.strokeStyle = theme.border;
+                ctx.lineWidth = 1;
+                ctx.globalAlpha = 0.8;
+                ctx.beginPath();
+                ctx.moveTo(230, 686);
+                ctx.lineTo(970, 686);
+                ctx.stroke();
+                ctx.globalAlpha = 1;
+
+                ctx.fillStyle = theme.textFaint;
+                ctx.font = "500 16px Inter, sans-serif";
+                drawTrackedText(ctx, "DURATION", 390, 726, 2);
+                ctx.fillStyle = theme.text;
+                ctx.font = "300 24px Inter, sans-serif";
+                ctx.fillText(`"${latestTime}"`, 390, 762);
+                ctx.fillStyle = theme.textFaint;
+                ctx.font = "500 16px Inter, sans-serif";
+                drawTrackedText(ctx, "DATE", 810, 726, 2);
+                ctx.fillStyle = theme.text;
+                ctx.font = "300 24px Inter, sans-serif";
+                ctx.fillText(latestDate, 810, 762);
+
+                ctx.fillStyle = theme.textDim;
+                ctx.font = "italic 300 27px Inter, sans-serif";
+                const quoteLines = wrapText(
+                    ctx,
+                    latest
+                        ? `"Kept noticing the mind wander and kept gently returning — each time a little steadier."`
+                        : `"A quiet sit is still a meaningful sit."`,
+                    900,
+                );
+                drawCenteredLines(ctx, quoteLines.slice(0, 2), 600, 892, 30);
+
+                ctx.fillStyle = theme.textFaint;
+                ctx.font = "400 15px Inter, sans-serif";
+                drawTrackedText(
+                    ctx,
+                    `@${currentUser ? currentUser.login : "myzen"} • ${repoLabel}`,
+                    600,
+                    972,
+                    2,
+                );
+                ctx.font = "400 14px Inter, sans-serif";
+                drawTrackedText(
+                    ctx,
+                    `Patanjali's 8 Limbs as an internal ruler for depth`,
+                    600,
+                    1002,
+                    2,
+                );
+                ctx.fillStyle = theme.accentStrong;
+                ctx.font = "600 14px Inter, sans-serif";
+                drawTrackedText(
+                    ctx,
+                    `MYZEN`,
+                    600,
+                    1066,
+                    4,
+                );
+                ctx.font = "500 13px Inter, sans-serif";
+                drawTrackedText(
+                    ctx,
+                    `MEASURED WITH PATANJALI'S 8 LIMBS`,
+                    600,
+                    1090,
+                    3,
+                );
+
+                return new Promise((resolve, reject) => {
+                    canvas.toBlob(
+                        (blob) => {
+                            if (blob) resolve(blob);
+                            else reject(new Error("PNG export failed"));
+                        },
+                        "image/png",
+                    );
+                });
+            }
+
+            async function renderProgressShareCanvas(data) {
+                const width = 420;
+                const height = 420;
+                const scale = 4;
+                const theme = getShareTheme();
+                const latest = data.latest;
+                const latestLimb = latest
+                    ? LIMBS[(latest.depth || 1) - 1] || LIMBS[0]
+                    : LIMBS[0];
+                const latestDate = latest
+                    ? latest.jsDate.toLocaleDateString("en-GB", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                      })
+                    : "No session yet";
+                const latestTime = latest
+                    ? `${Math.trunc(latest.durationInMinutes)} mins`
+                    : "-";
+                const stageLabel = latest
+                    ? `STAGE ${latest.depth}: ${latestLimb.name}`
+                    : "NO SESSION YET";
+                const quoteText = latest
+                    ? `"${getShareInnerSelfDepthLabel(latest.depth)}"`
+                    : "A quiet sit is still a meaningful sit.";
+                const shareTeal = "#73b8b3";
+
+                await (document.fonts?.ready || Promise.resolve());
+
+                const canvas = document.createElement("canvas");
+                canvas.width = width * scale;
+                canvas.height = height * scale;
+                const ctx = canvas.getContext("2d");
+                if (!ctx) throw new Error("Canvas unavailable");
+                ctx.scale(scale, scale);
+                ctx.textBaseline = "alphabetic";
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = "high";
+                ctx.textAlign = "center";
+
+                const bgGrad = ctx.createLinearGradient(0, 0, 0, height);
+                bgGrad.addColorStop(0, theme.bgTop);
+                bgGrad.addColorStop(1, theme.bgBottom);
+                ctx.fillStyle = bgGrad;
+                ctx.fillRect(0, 0, width, height);
+
+                const alpha = (value) =>
+                    `${Math.round(Math.max(0, Math.min(1, value)) * 255)
+                        .toString(16)
+                        .padStart(2, "0")}`;
+                const ink = theme.text;
+
+                ctx.save();
+                ctx.translate(0, 40);
+                {
+                    const geoW = width;
+                    const geoH = 120;
+                    const centerX = geoW * 0.5;
+                    const treeScaleWidth = Math.min(geoW, geoH * 1.15);
+                    const ax = (fraction) =>
+                        centerX + (fraction - 0.5) * treeScaleWidth;
+
+                    ctx.strokeStyle = `${ink}${alpha(0.40)}`;
+                    ctx.lineWidth = 1.2;
+                    ctx.lineCap = "round";
+                    ctx.beginPath();
+                    ctx.moveTo(0, geoH * 0.78);
+                    ctx.quadraticCurveTo(
+                        geoW * 0.5,
+                        geoH * 0.76,
+                        geoW,
+                        geoH * 0.83,
+                    );
+                    ctx.stroke();
+
+                    ctx.strokeStyle = `${ink}${alpha(0.75)}`;
+                    ctx.lineCap = "round";
+                    ctx.beginPath();
+                    ctx.moveTo(ax(0.47), geoH * 0.80);
+                    ctx.bezierCurveTo(
+                        ax(0.49),
+                        geoH * 0.70,
+                        ax(0.46),
+                        geoH * 0.56,
+                        ax(0.50),
+                        geoH * 0.45,
+                    );
+                    ctx.lineTo(ax(0.56), geoH * 0.41);
+                    ctx.moveTo(ax(0.50), geoH * 0.45);
+                    ctx.lineTo(ax(0.45), geoH * 0.39);
+                    ctx.moveTo(ax(0.53), geoH * 0.80);
+                    ctx.bezierCurveTo(
+                        ax(0.53),
+                        geoH * 0.70,
+                        ax(0.50),
+                        geoH * 0.58,
+                        ax(0.51),
+                        geoH * 0.48,
+                    );
+                    ctx.moveTo(ax(0.50), geoH * 0.76);
+                    ctx.lineTo(ax(0.49), geoH * 0.55);
+                    ctx.stroke();
+
+                    const circles = [
+                        [8, -12, 48, 26, 0.35],
+                        [8, -12, 38, 20, 0.25],
+                        [-18, -18, 36, 20, 0.30],
+                        [20, -24, 42, 24, 0.40],
+                        [-8, -26, 44, 24, 0.32],
+                        [26, -6, 30, 18, 0.22],
+                        [4, -18, 50, 28, 0.28],
+                        [-24, -8, 32, 18, 0.38],
+                    ];
+                    circles.forEach(([dx, dy, w, h, op]) => {
+                        ctx.strokeStyle = `${ink}${alpha(op)}`;
+                        ctx.lineWidth = 0.75;
+                        ctx.beginPath();
+                        ctx.ellipse(
+                            ax(0.5) + dx,
+                            geoH * 0.40 + dy - 4,
+                            w / 2,
+                            h / 2,
+                            0,
+                            0,
+                            Math.PI * 2,
+                        );
+                        ctx.stroke();
+                    });
+
+                    for (let idx = 0; idx < 6; idx++) {
+                        ctx.strokeStyle = `${ink}${alpha(0.42)}`;
+                        ctx.lineWidth = 0.6;
+                        ctx.beginPath();
+                        const driftX = ax(0.62) + idx * 6;
+                        const driftY = geoH * 0.38 + (idx % 2) * 8;
+                        ctx.moveTo(driftX, driftY);
+                        ctx.quadraticCurveTo(
+                            driftX + 1.2,
+                            driftY - 3,
+                            driftX + 2.5,
+                            driftY - 2,
+                        );
+                        ctx.stroke();
+                    }
+                }
+                ctx.restore();
+
+                const shareFont =
+                    "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif";
+
+                ctx.fillStyle = shareTeal;
+                ctx.font = `700 10px ${shareFont}`;
+                drawTrackedText(ctx, "TODAY'S MEDITATION QUALITY", 210, 175, 2.5);
+                ctx.fillStyle = "rgba(255,255,255,0.75)";
+                ctx.font = `300 13px ${shareFont}`;
+                drawTrackedText(ctx, "DEPTH & ALIGNMENT PROFILE", 210, 193, 1.6);
+
+                drawRoundedRect(
+                    ctx,
+                    24,
+                    214,
+                    372,
+                    156,
+                    16,
+                    theme.panel,
+                    "rgba(255,255,255,0.08)",
+                );
+
+                ctx.fillStyle = "rgba(255,255,255,0.98)";
+                ctx.font = `300 28px ${shareFont}`;
+                ctx.fillText(String(latest ? latest.depth : "—"), 210, 274);
+
+                ctx.fillStyle = shareTeal;
+                ctx.font = `700 11px ${shareFont}`;
+                drawTrackedText(ctx, stageLabel, 210, 299, 2.0);
+                ctx.fillStyle = "rgba(255,255,255,0.40)";
+                ctx.font = `600 8px ${shareFont}`;
+                drawTrackedText(ctx, "MAXIMUM DEPTH ACHIEVED", 210, 312, 1.0);
+
+                ctx.strokeStyle = "rgba(255,255,255,0.10)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(58, 324);
+                ctx.lineTo(362, 324);
+                ctx.stroke();
+
+                ctx.fillStyle = "rgba(255,255,255,0.40)";
+                ctx.font = `600 8px ${shareFont}`;
+                drawTrackedText(ctx, "DURATION", 150, 343, 1.0);
+                ctx.fillStyle = "rgba(255,255,255,0.92)";
+                ctx.font = `300 13px ${shareFont}`;
+                ctx.fillText(`"${latestTime}"`, 150, 360);
+
+                ctx.fillStyle = "rgba(255,255,255,0.40)";
+                ctx.font = `600 8px ${shareFont}`;
+                drawTrackedText(ctx, "DATE", 270, 343, 1.0);
+                ctx.fillStyle = "rgba(255,255,255,0.92)";
+                ctx.font = `300 13px ${shareFont}`;
+                ctx.fillText(latestDate, 270, 360);
+
+                ctx.fillStyle = "rgba(255,255,255,0.65)";
+                ctx.font = `italic 300 11px ${shareFont}`;
+                const quoteLines = wrapText(ctx, quoteText, 306);
+                drawCenteredLines(ctx, quoteLines.slice(0, 3), 210, 388, 13);
+
+                ctx.fillStyle = shareTeal;
+                ctx.beginPath();
+                ctx.arc(166, 404, 3, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = "rgba(255,255,255,0.42)";
+                ctx.font = `300 9px ${shareFont}`;
+                ctx.fillText("Grounded and Present", 219, 407);
+
+                return new Promise((resolve, reject) => {
+                    canvas.toBlob(
+                        (blob) => {
+                            if (blob) resolve(blob);
+                            else reject(new Error("PNG export failed"));
+                        },
+                        "image/png",
+                    );
+                });
+            }
+
+            async function renderProgressShareCanvasIos(data) {
+                const width = 420;
+                const height = 420;
+                const scale = 4;
+                const theme = getShareTheme();
+                const latest = data.latest;
+                const latestLimb = latest
+                    ? LIMBS[(latest.depth || 1) - 1] || LIMBS[0]
+                    : LIMBS[0];
+                const latestDate = latest
+                    ? latest.jsDate.toLocaleDateString("en-GB", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                      })
+                    : "No session yet";
+                const latestTime = latest
+                    ? `${Math.trunc(latest.durationInMinutes)} mins`
+                    : "-";
+                const stageLabel = latest
+                    ? `STAGE ${latest.depth}: ${latestLimb.name}`
+                    : "NO SESSION YET";
+                const quoteText = latest
+                    ? `"${getShareInnerSelfDepthLabel(latest.depth)}"`
+                    : "A quiet sit is still a meaningful sit.";
+                const shareTeal = "#73b8b3";
+                const shareHeaderName = "MyZen Web";
+                const shareHeaderUser = currentUser
+                    ? `@${currentUser.login}`
+                    : "@myzen";
+
+                await (document.fonts?.ready || Promise.resolve());
+
+                const canvas = document.createElement("canvas");
+                canvas.width = width * scale;
+                canvas.height = height * scale;
+                const ctx = canvas.getContext("2d");
+                if (!ctx) throw new Error("Canvas unavailable");
+                ctx.scale(scale, scale);
+                ctx.textBaseline = "alphabetic";
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = "high";
+                ctx.textAlign = "center";
+
+                const bgGrad = ctx.createLinearGradient(0, 0, 0, height);
+                bgGrad.addColorStop(0, theme.bgTop);
+                bgGrad.addColorStop(1, theme.bgBottom);
+                ctx.fillStyle = bgGrad;
+                ctx.fillRect(0, 0, width, height);
+
+                const alpha = (value) =>
+                    `${Math.round(Math.max(0, Math.min(1, value)) * 255)
+                        .toString(16)
+                        .padStart(2, "0")}`;
+                const ink = theme.text;
+
+                ctx.save();
+                ctx.translate(0, 40);
+                {
+                    const geoW = width;
+                    const geoH = 120;
+                    const centerX = geoW * 0.5;
+                    const treeScaleWidth = Math.min(geoW, geoH * 1.15);
+                    const ax = (fraction) =>
+                        centerX + (fraction - 0.5) * treeScaleWidth;
+
+                    ctx.strokeStyle = `${ink}${alpha(0.40)}`;
+                    ctx.lineWidth = 1.15;
+                    ctx.lineCap = "round";
+                    ctx.beginPath();
+                    ctx.moveTo(40, geoH * 0.83);
+                    ctx.quadraticCurveTo(
+                        geoW * 0.5,
+                        geoH * 0.79,
+                        geoW - 40,
+                        geoH * 0.85,
+                    );
+                    ctx.stroke();
+
+                    ctx.strokeStyle = `${ink}${alpha(0.75)}`;
+                    ctx.lineWidth = 1.15;
+                    ctx.beginPath();
+                    ctx.moveTo(ax(0.50), geoH * 0.80);
+                    ctx.bezierCurveTo(
+                        ax(0.49),
+                        geoH * 0.69,
+                        ax(0.47),
+                        geoH * 0.56,
+                        ax(0.50),
+                        geoH * 0.45,
+                    );
+                    ctx.lineTo(ax(0.56), geoH * 0.41);
+                    ctx.moveTo(ax(0.50), geoH * 0.45);
+                    ctx.lineTo(ax(0.45), geoH * 0.39);
+                    ctx.moveTo(ax(0.53), geoH * 0.80);
+                    ctx.bezierCurveTo(
+                        ax(0.53),
+                        geoH * 0.69,
+                        ax(0.52),
+                        geoH * 0.56,
+                        ax(0.51),
+                        geoH * 0.48,
+                    );
+                    ctx.moveTo(ax(0.50), geoH * 0.76);
+                    ctx.lineTo(ax(0.49), geoH * 0.56);
+                    ctx.stroke();
+
+                    const canopy = [
+                        [-28, -20, 13, 0.35],
+                        [-16, -30, 13, 0.32],
+                        [0, -29, 14, 0.38],
+                        [16, -29, 13, 0.32],
+                        [30, -18, 13, 0.34],
+                        [-40, -6, 12, 0.34],
+                        [-20, -7, 13, 0.30],
+                        [0, -7, 14, 0.28],
+                        [21, -7, 13, 0.30],
+                    ];
+                    canopy.forEach(([dx, dy, r, op]) => {
+                        ctx.strokeStyle = `${ink}${alpha(op)}`;
+                        ctx.lineWidth = 0.7;
+                        ctx.beginPath();
+                        ctx.arc(
+                            ax(0.49) + dx,
+                            geoH * 0.44 + dy,
+                            r,
+                            0,
+                            Math.PI * 2,
+                        );
+                        ctx.stroke();
+                    });
+
+                    for (let idx = 0; idx < 6; idx++) {
+                        ctx.strokeStyle = `${ink}${alpha(0.42)}`;
+                        ctx.lineWidth = 0.6;
+                        ctx.beginPath();
+                        const driftX = ax(0.68) + idx * 6;
+                        const driftY = geoH * 0.32 + (idx % 2) * 7;
+                        ctx.moveTo(driftX, driftY);
+                        ctx.quadraticCurveTo(
+                            driftX + 1.2,
+                            driftY - 3,
+                            driftX + 2.5,
+                            driftY - 2,
+                        );
+                        ctx.stroke();
+                    }
+                }
+                ctx.restore();
+
+                const shareFont =
+                    "-apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, sans-serif";
+
+                ctx.save();
+                ctx.textAlign = "left";
+                ctx.fillStyle = "rgba(255,255,255,0.88)";
+                ctx.font = `700 11px ${shareFont}`;
+                ctx.fillText(shareHeaderName, 28, 28);
+                ctx.fillStyle = "rgba(255,255,255,0.56)";
+                ctx.font = `300 9px ${shareFont}`;
+                ctx.fillText(shareHeaderUser, 28, 42);
+                ctx.restore();
+
+                ctx.fillStyle = shareTeal;
+                ctx.font = `700 10px ${shareFont}`;
+                drawTrackedText(ctx, "TODAY'S MEDITATION QUALITY", 210, 175, 3.0);
+                ctx.fillStyle = "rgba(255,255,255,0.75)";
+                ctx.font = `300 10px ${shareFont}`;
+                drawTrackedText(ctx, "DEPTH & ALIGNMENT PROFILE", 210, 191, 2.0);
+
+                drawRoundedRect(
+                    ctx,
+                    24,
+                    214,
+                    372,
+                    156,
+                    16,
+                    theme.panel,
+                    "rgba(255,255,255,0.08)",
+                );
+
+                ctx.fillStyle = "rgba(255,255,255,0.98)";
+                ctx.font = `200 56px ${shareFont}`;
+                ctx.fillText(String(latest ? latest.depth : "—"), 210, 274);
+
+                ctx.fillStyle = shareTeal;
+                ctx.font = `700 11px ${shareFont}`;
+                drawTrackedText(ctx, stageLabel, 210, 289, 2.2);
+                ctx.fillStyle = "rgba(255,255,255,0.40)";
+                ctx.font = `600 8px ${shareFont}`;
+                drawTrackedText(ctx, "MAXIMUM DEPTH ACHIEVED", 210, 303, 1.2);
+                ctx.fillStyle = "rgba(255,255,255,0.34)";
+                ctx.font = `500 7px ${shareFont}`;
+                drawTrackedText(ctx, "AS PER PATANJALI'S 8 LIMBS", 210, 316, 1.1);
+
+                ctx.strokeStyle = "rgba(255,255,255,0.10)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(58, 329);
+                ctx.lineTo(362, 329);
+                ctx.stroke();
+
+                ctx.fillStyle = "rgba(255,255,255,0.40)";
+                ctx.font = `600 8px ${shareFont}`;
+                drawTrackedText(ctx, "DURATION", 150, 347, 1.0);
+                ctx.fillStyle = "rgba(255,255,255,0.92)";
+                ctx.font = `300 13px ${shareFont}`;
+                ctx.fillText(`"${latestTime}"`, 150, 364);
+
+                ctx.fillStyle = "rgba(255,255,255,0.40)";
+                ctx.font = `600 8px ${shareFont}`;
+                drawTrackedText(ctx, "DATE", 270, 347, 1.0);
+                ctx.fillStyle = "rgba(255,255,255,0.92)";
+                ctx.font = `300 13px ${shareFont}`;
+                ctx.fillText(latestDate, 270, 364);
+
+                ctx.fillStyle = "rgba(255,255,255,0.65)";
+                ctx.font = `italic 300 11px ${shareFont}`;
+                const quoteLines = wrapText(ctx, quoteText, 306);
+                drawCenteredLines(ctx, quoteLines.slice(0, 3), 210, 391, 13);
+
+                return new Promise((resolve, reject) => {
+                    canvas.toBlob(
+                        (blob) => {
+                            if (blob) resolve(blob);
+                            else reject(new Error("PNG export failed"));
+                        },
+                        "image/png",
+                    );
+                });
+            }
+
+            function downloadBlob(blob, filename) {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                setTimeout(() => URL.revokeObjectURL(url), 1000);
+            }
+
+            async function shareProgressCard() {
+                if (!Array.isArray(parsedSessions) || parsedSessions.length === 0) {
+                    showToast("Log at least one session before sharing.");
+                    return;
+                }
+
+                const data = buildProgressShareData();
+                const filename = `myzen-progress-${dayKey(new Date())}.png`;
+                const caption =
+                    `MyZen meditation progress: ${data.totalHours >= 100 ? Math.round(data.totalHours) : data.totalHours.toFixed(1)} total hours, ${data.streak} day streak, peak depth ${data.deepest}/${MAX_DEPTH}. Measured with Patanjali's 8 Limbs.`;
+
+                try {
+                    const pngBlob = await renderProgressShareCanvasIos(data);
+                    const file = new File([pngBlob], filename, {
+                        type: "image/png",
+                    });
+                    if (
+                        navigator.share &&
+                        (!navigator.canShare ||
+                            navigator.canShare({ files: [file] }))
+                    ) {
+                        try {
+                            await navigator.share({
+                                title: "MyZen Progress Card",
+                                text: caption,
+                                files: [file],
+                            });
+                            showToast("Progress card ready to share.");
+                            return;
+                        } catch (err) {
+                            if (err && err.name === "AbortError") return;
+                        }
+                    }
+
+                    downloadBlob(pngBlob, filename);
+                    try {
+                        await navigator.clipboard.writeText(
+                            `${caption} ${location.href}`,
+                        );
+                        showToast("Card downloaded and caption copied.");
+                    } catch (_) {
+                        showToast("Card downloaded.");
+                    }
+                } catch (err) {
+                    console.error("Share card generation failed:", err);
+                    showToast("Could not create the share card right now.");
+                }
             }
 
             function renderLastSession(sessions) {
