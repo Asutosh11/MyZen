@@ -431,6 +431,14 @@
                 min-height: 180px;
                 overflow: hidden;
             }
+            /* Stats row: no box when active (logged in) */
+            #statsWrap:not(.disabled) {
+                background: none;
+                border: none;
+                padding: 0;
+                min-height: 0;
+                border-radius: 0;
+            }
             .disabled-section-wrap.disabled .disabled-content {
                 opacity: 0.15;
                 pointer-events: none;
@@ -1260,21 +1268,33 @@
                 cursor: pointer;
                 text-align: center;
                 letter-spacing: 0.01em;
-                box-shadow: 0 4px 14px rgba(126, 231, 185, 0.25), 0 1px 3px rgba(0,0,0,0.3);
-                transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.15s ease, background 0.15s ease;
+                box-shadow:
+                    0 4px 14px rgba(126, 231, 185, 0.25),
+                    0 1px 3px rgba(0, 0, 0, 0.3);
+                transition:
+                    transform 0.12s ease,
+                    box-shadow 0.12s ease,
+                    opacity 0.15s ease,
+                    background 0.15s ease;
                 user-select: none;
                 -webkit-tap-highlight-color: transparent;
             }
             .commit-btn:hover {
                 opacity: 0.92;
-                box-shadow: 0 6px 20px rgba(126, 231, 185, 0.35), 0 2px 6px rgba(0,0,0,0.25);
+                box-shadow:
+                    0 6px 20px rgba(126, 231, 185, 0.35),
+                    0 2px 6px rgba(0, 0, 0, 0.25);
                 transform: translateY(-1px);
             }
             .commit-btn:active {
                 transform: scale(0.96) translateY(1px);
-                box-shadow: 0 1px 4px rgba(126, 231, 185, 0.15), inset 0 1px 3px rgba(0,0,0,0.15);
+                box-shadow:
+                    0 1px 4px rgba(126, 231, 185, 0.15),
+                    inset 0 1px 3px rgba(0, 0, 0, 0.15);
                 opacity: 1;
-                transition: transform 0.06s ease, box-shadow 0.06s ease;
+                transition:
+                    transform 0.06s ease,
+                    box-shadow 0.06s ease;
             }
             .commit-btn:focus-visible {
                 outline: 2px solid var(--accent);
@@ -2042,51 +2062,129 @@
 
             <section id="log">
                 <!-- Stats Row -->
-                <div id="statsWrap" class="disabled-section-wrap" style="margin-bottom:12px;">
+                <div
+                    id="statsWrap"
+                    class="disabled-section-wrap"
+                    style="margin-bottom: 28px"
+                >
                     <div class="disabled-content">
-                        <div style="
-                            display: flex;
-                            gap: 12px;
-                            justify-content: space-between;
-                            flex-wrap: wrap;
-                        ">
-                            <div style="
-                                flex: 1; min-width: 90px;
-                                background: var(--bg-card);
-                                border: 1px solid var(--border-soft);
-                                border-radius: 14px;
-                                padding: 14px 16px;
-                                text-align: center;
-                            ">
-                                <div id="statHours" style="font-size:1.6rem;font-weight:700;color:var(--accent-strong);line-height:1;">0</div>
-                                <div style="font-size:0.72rem;color:var(--text-faint);margin-top:4px;letter-spacing:0.04em;">HOURS</div>
+                        <div style="font-size:0.7rem;letter-spacing:0.08em;color:var(--text-faint);margin-bottom:10px;text-transform:uppercase;">Lifetime Stats</div>
+                        <div
+                            style="
+                                display: flex;
+                                gap: 12px;
+                                justify-content: space-between;
+                                flex-wrap: wrap;
+                            "
+                        >
+                            <div
+                                style="
+                                    flex: 1;
+                                    min-width: 90px;
+                                    background: var(--bg-card);
+                                    border: 1px solid var(--border-soft);
+                                    border-radius: 14px;
+                                    padding: 14px 16px;
+                                    text-align: center;
+                                "
+                            >
+                                <div
+                                    id="statHours"
+                                    style="
+                                        font-size: 1.6rem;
+                                        font-weight: 700;
+                                        color: var(--accent-strong);
+                                        line-height: 1;
+                                    "
+                                >
+                                    0
+                                </div>
+                                <div
+                                    style="
+                                        font-size: 0.72rem;
+                                        color: var(--text-faint);
+                                        margin-top: 4px;
+                                        letter-spacing: 0.04em;
+                                    "
+                                >
+                                    HOURS
+                                </div>
                             </div>
-                            <div style="
-                                flex: 1; min-width: 90px;
-                                background: var(--bg-card);
-                                border: 1px solid var(--border-soft);
-                                border-radius: 14px;
-                                padding: 14px 16px;
-                                text-align: center;
-                            ">
-                                <div id="statStreak" style="font-size:1.6rem;font-weight:700;color:var(--accent-strong);line-height:1;">0</div>
-                                <div style="font-size:0.72rem;color:var(--text-faint);margin-top:4px;letter-spacing:0.04em;">DAY STREAK</div>
+                            <div
+                                style="
+                                    flex: 1;
+                                    min-width: 90px;
+                                    background: var(--bg-card);
+                                    border: 1px solid var(--border-soft);
+                                    border-radius: 14px;
+                                    padding: 14px 16px;
+                                    text-align: center;
+                                "
+                            >
+                                <div
+                                    id="statStreak"
+                                    style="
+                                        font-size: 1.6rem;
+                                        font-weight: 700;
+                                        color: var(--accent-strong);
+                                        line-height: 1;
+                                    "
+                                >
+                                    0
+                                </div>
+                                <div
+                                    style="
+                                        font-size: 0.72rem;
+                                        color: var(--text-faint);
+                                        margin-top: 4px;
+                                        letter-spacing: 0.04em;
+                                    "
+                                >
+                                    DAY STREAK
+                                </div>
                             </div>
-                            <div style="
-                                flex: 1; min-width: 90px;
-                                background: var(--bg-card);
-                                border: 1px solid var(--border-soft);
-                                border-radius: 14px;
-                                padding: 14px 16px;
-                                text-align: center;
-                            ">
-                                <div id="statDepth" style="font-size:1.6rem;font-weight:700;color:var(--accent-strong);line-height:1;">&mdash;</div>
-                                <div style="font-size:0.72rem;color:var(--text-faint);margin-top:4px;letter-spacing:0.04em;">PEAK DEPTH</div>
+                            <div
+                                style="
+                                    flex: 1;
+                                    min-width: 90px;
+                                    background: var(--bg-card);
+                                    border: 1px solid var(--border-soft);
+                                    border-radius: 14px;
+                                    padding: 14px 16px;
+                                    text-align: center;
+                                "
+                            >
+                                <div
+                                    id="statDepth"
+                                    style="
+                                        font-size: 1.6rem;
+                                        font-weight: 700;
+                                        color: var(--accent-strong);
+                                        line-height: 1;
+                                    "
+                                >
+                                    &mdash;
+                                </div>
+                                <div
+                                    style="
+                                        font-size: 0.72rem;
+                                        color: var(--text-faint);
+                                        margin-top: 4px;
+                                        letter-spacing: 0.04em;
+                                    "
+                                >
+                                    PEAK DEPTH
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="disabled-overlay" style="border-radius:14px;">
-                        <div class="disabled-overlay-title" style="font-size:0.84rem;">Stats unlocked after sign-in</div>
+                    <div class="disabled-overlay" style="border-radius: 14px">
+                        <div
+                            class="disabled-overlay-title"
+                            style="font-size: 0.84rem"
+                        >
+                            Stats unlocked after sign-in
+                        </div>
                     </div>
                 </div>
 
@@ -2100,7 +2198,7 @@
                         margin-bottom: 8px;
                     "
                 >
-                    <span class="label">Session Log</span>
+                    <span class="label">Session Log - last 10</span>
                     <div
                         id="logAuthBadge"
                         style="
@@ -2815,7 +2913,10 @@
             // Allow only safe GitHub repo names
             function sanitizeRepoName(name) {
                 if (typeof name !== "string") return "myzen";
-                return name.replace(/[^a-zA-Z0-9_\-.]/g, "").slice(0, 100) || "myzen";
+                return (
+                    name.replace(/[^a-zA-Z0-9_\-.]/g, "").slice(0, 100) ||
+                    "myzen"
+                );
             }
             // Returns a positive integer or the fallback
             function validatePositiveInt(val, fallback) {
@@ -2833,9 +2934,10 @@
                     const u = new URL(url);
                     if (
                         (u.hostname === "avatars.githubusercontent.com" ||
-                         u.hostname.endsWith(".githubusercontent.com")) &&
-                        (u.protocol === "https:")
-                    ) return url;
+                            u.hostname.endsWith(".githubusercontent.com")) &&
+                        u.protocol === "https:"
+                    )
+                        return url;
                 } catch (_) {}
                 return "";
             }
@@ -2847,12 +2949,21 @@
                 const duration = validatePositiveInt(s.durationInMinutes, 1);
                 if (duration > 1440) return null; // sanity cap: 24 hours
                 // statePath must be an array of positive ints
-                if (!Array.isArray(s.statePath) || s.statePath.length === 0) return null;
-                const safePath = s.statePath.map((v) => validatePositiveInt(v, 1)).filter((v) => v <= MAX_DEPTH);
+                if (!Array.isArray(s.statePath) || s.statePath.length === 0)
+                    return null;
+                const safePath = s.statePath
+                    .map((v) => validatePositiveInt(v, 1))
+                    .filter((v) => v <= MAX_DEPTH);
                 if (safePath.length === 0) return null;
-                const date = typeof s.date === "number" ? s.date : parseFloat(s.date);
+                const date =
+                    typeof s.date === "number" ? s.date : parseFloat(s.date);
                 if (!Number.isFinite(date)) return null;
-                return { id, date, statePath: safePath, durationInMinutes: duration };
+                return {
+                    id,
+                    date,
+                    statePath: safePath,
+                    durationInMinutes: duration,
+                };
             }
 
             /* Date Helpers */
@@ -3017,7 +3128,11 @@
                     try {
                         currentUser = JSON.parse(savedUser);
                         // Await so loadSessions runs AFTER auth is settled
-                        const ok = await verifyGitHubToken(currentToken, currentRepo, false);
+                        const ok = await verifyGitHubToken(
+                            currentToken,
+                            currentRepo,
+                            false,
+                        );
                         if (!ok) {
                             // Token invalid — clear stale credentials
                             currentUser = null;
@@ -3261,8 +3376,13 @@
                         if (res.ok) {
                             const fileData = await res.json();
                             currentSHA = fileData.sha;
-                            const parsed = JSON.parse(base64ToUtf8(fileData.content || ""));
-                            if (!Array.isArray(parsed)) throw new Error("sessions.json is not an array");
+                            const parsed = JSON.parse(
+                                base64ToUtf8(fileData.content || ""),
+                            );
+                            if (!Array.isArray(parsed))
+                                throw new Error(
+                                    "sessions.json is not an array",
+                                );
                             // Validate and sanitize every session entry
                             rawSessions = parsed
                                 .map(validateSession)
@@ -3830,12 +3950,13 @@
                 const lsTitle = document.getElementById("lsTitle");
                 const lsStage = document.getElementById("lsStage");
                 const lsDate = document.getElementById("lsDate");
-                
+
                 if (hoursEl) hoursEl.textContent = "0";
                 if (streakEl) streakEl.textContent = "0";
                 if (depthEl) depthEl.textContent = "—";
                 if (lsTitle) lsTitle.textContent = "No sessions yet";
-                if (lsStage) lsStage.textContent = "The first dive is still ahead";
+                if (lsStage)
+                    lsStage.textContent = "The first dive is still ahead";
                 if (lsDate) lsDate.textContent = "";
 
                 renderCalendar([]);
@@ -3924,7 +4045,7 @@
                 if (lsTitle) lsTitle.textContent = "No sessions yet";
                 if (lsStage) lsStage.textContent = "Your first dive awaits";
                 if (lsDate) lsDate.textContent = "";
-                
+
                 renderCalendar([]);
                 renderLimbGrid(0);
                 document.getElementById("logHolder").innerHTML = `
@@ -3955,7 +4076,9 @@
                 const streakEl = document.getElementById("statStreak");
                 const depthEl = document.getElementById("statDepth");
                 const deepest = Math.max(...sessions.map((s) => s.depth));
-                if (hoursEl) hoursEl.textContent = hours >= 100 ? Math.round(hours) : hours.toFixed(1);
+                if (hoursEl)
+                    hoursEl.textContent =
+                        hours >= 100 ? Math.round(hours) : hours.toFixed(1);
                 if (streakEl) streakEl.textContent = computeStreak(sessions);
                 if (depthEl) depthEl.textContent = deepest + "/" + MAX_DEPTH;
             }
@@ -4013,10 +4136,12 @@
                 // Populate hidden compatibility divs (used by other parts of the page)
                 const lsTitle = document.getElementById("lsTitle");
                 const lsStage = document.getElementById("lsStage");
-                const lsDate  = document.getElementById("lsDate");
-                if (lsTitle) lsTitle.textContent = `"${last.durationInMinutes} Minute Session"`;
-                if (lsStage) lsStage.textContent = `Stage ${last.depth}: ${limb.name}`;
-                if (lsDate)  lsDate.textContent  = dateStr;
+                const lsDate = document.getElementById("lsDate");
+                if (lsTitle)
+                    lsTitle.textContent = `"${last.durationInMinutes} Minute Session"`;
+                if (lsStage)
+                    lsStage.textContent = `Stage ${last.depth}: ${limb.name}`;
+                if (lsDate) lsDate.textContent = dateStr;
 
                 // Build the last-session card inside the holder
                 const holder = document.getElementById("lastSessionHolder");
@@ -4075,18 +4200,24 @@
                 const rows = [...sessions]
                     .reverse()
                     .slice(0, 10)
-                    .map(
-                        (s) => {
-                            const safeId = sanitizeId(s.id);
-                            const safeDepth = validateDepth(s.depth);
-                            const safeDur = validatePositiveInt(s.durationInMinutes, 1);
-                            const limbName = escapeHtml(LIMBS[safeDepth - 1]?.name || "");
-                            const dateStr = escapeHtml(
-                                s.jsDate.toLocaleDateString(undefined, {
-                                    month: "short", day: "numeric", year: "numeric",
-                                })
-                            );
-                            return `
+                    .map((s) => {
+                        const safeId = sanitizeId(s.id);
+                        const safeDepth = validateDepth(s.depth);
+                        const safeDur = validatePositiveInt(
+                            s.durationInMinutes,
+                            1,
+                        );
+                        const limbName = escapeHtml(
+                            LIMBS[safeDepth - 1]?.name || "",
+                        );
+                        const dateStr = escapeHtml(
+                            s.jsDate.toLocaleDateString(undefined, {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                            }),
+                        );
+                        return `
     <tr>
       <td class="col-date">${dateStr}</td>
       <td class="col-depth">${safeDepth}/${MAX_DEPTH} &middot; ${limbName}</td>
@@ -4101,8 +4232,7 @@
               : ""
       }
     </tr>`;
-                        }
-                    )
+                    })
                     .join("");
 
                 document.getElementById("logHolder").innerHTML = `
