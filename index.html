@@ -3,7 +3,7 @@
     <head>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-        <title>MyZen — Meditate and record max depth</title>
+        <title>MyZen — Meditate and maintain daily record</title>
         <meta
             content="A living record of a daily meditation practice, synced from the MyZen app — hours, streaks, and the depth reached through Patanjali's eight limbs."
             name="description"
@@ -1860,9 +1860,13 @@
                                 <span class="step-num-badge">1</span>
                                 <div class="step-title">Prepare the Body</div>
                                 <div class="step-desc">
-                                    Do light stretching or movement first so
-                                    your body can sit upright and still without
-                                    restlessness.
+                                    Do some exercise, stretching or movement.
+                                    Make it a timetable everyday. So that your
+                                    body can sit upright and still without
+                                    restlessness and fatigue. When beginning a
+                                    session, find a comfortable place, on a
+                                    chair or on the floor with a mat, and sit
+                                    straight.
                                 </div>
                             </div>
 
@@ -1874,7 +1878,11 @@
                                 <div class="step-desc">
                                     Sit comfortably, close your eyes, and watch
                                     your breath flow naturally without forcing
-                                    it.
+                                    it. At first the breath will be fast paced,
+                                    which will slow down in a few mins. When
+                                    mind drifts away from thoughts, bring
+                                    attention back to breath as soon as you
+                                    notice
                                 </div>
                             </div>
 
@@ -1884,7 +1892,12 @@
                                     Anchor Focus Inward
                                 </div>
                                 <div class="step-desc">
-                                    Feel the breath sensation at the space
+                                    After a few mins, breath will slow down, its
+                                    not racing anymore. After few more mins,
+                                    breath will be felt at the nose and then at
+                                    the point between the eyebrows. When breath
+                                    becomes very very slow, forget the breath
+                                    and just focus & feel the point at the space
                                     between your eyebrows (<em>Kūṭastha</em>).
                                     Gently return focus here if thoughts wander.
                                 </div>
@@ -1894,8 +1907,13 @@
                                 <span class="step-num-badge">4</span>
                                 <div class="step-title">Rest in Stillness</div>
                                 <div class="step-desc">
-                                    Effortlessly remain aware. Let thoughts pass
-                                    like clouds—rest as the calm observer.
+                                    Remain aware. If mind gets drifted away with
+                                    thoughts, bring the attention back to the
+                                    point between the eyebrows as soon as you
+                                    notice. When ending the session, open the
+                                    eyes gently. Be in the same position for a
+                                    few moment, feel the changes, before getting
+                                    up.
                                 </div>
                             </div>
                         </div>
@@ -1941,17 +1959,8 @@
                         <span
                             >Everything should be measured for quality &amp;
                             improvement. Measure and log your session in the
-                            next tab (Log tab)</span
-                        >
-                        <span
-                            style="
-                                font-size: 0.95rem;
-                                line-height: 1;
-                                color: var(--accent);
-                                flex-shrink: 0;
-                            "
-                            >→</span
-                        >
+                            next tab &rarr; Log
+                        </span>
                     </button>
                 </div>
             </div>
@@ -4644,19 +4653,19 @@
             function getShareInnerSelfDepthLabel(level) {
                 switch (level) {
                     case 1:
-                        return "Experienced a baseline of total social ease, empty of grudges, filled with kindness for all.";
+                        return "Experienced total social ease, empty of grudges, filled with kindness for all.";
                     case 2:
-                        return "Touched a state of contentment and clarity; feeling balanced, clean, and ready for silence.";
+                        return "Touched a state of clarity; feeling balanced, clean, and ready for silence.";
                     case 3:
                         return "Settled into a perfectly still and easy posture.";
                     case 4:
-                        return "Breath and internal life-force slowed down, bringing the nervous system to total ease.";
+                        return "Breath slowed down, bringing the nervous system to total ease.";
                     case 5:
                         return "Sensory withdrawal, where the external world faded away into inner space.";
                     case 6:
                         return "Saw mind achieving focus on one point, also ocassions of drifting away with thoughts";
                     case 7:
-                        return "Finally entered a deep, effortless meditative flow where focus streamed automatically.";
+                        return "Entered a deep, effortless meditative flow where focus streamed automatically.";
                     case 8:
                         return "Finally touched absolute oneness, where individual boundaries completely melted away.";
                     default:
@@ -5411,7 +5420,7 @@
                 ctx.font = `600 8px ${shareFont}`;
                 drawTrackedText(ctx, "MAXIMUM DEPTH ACHIEVED", 210, 303, 1.2);
                 ctx.fillStyle = "rgba(255,255,255,0.34)";
-                ctx.font = `500 7px ${shareFont}`;
+                ctx.font = `500 8px ${shareFont}`;
                 drawTrackedText(
                     ctx,
                     "AS PER PATANJALI'S 8 LIMBS",
