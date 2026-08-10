@@ -15,7 +15,7 @@
 ## ✨ Philosophy
 
 > **Most apps ask:** *How long did you meditate?*  
-> **MyZen asks:** *How deep did you reach inside your own self?*
+> **MyZen asks:** *How deep did your inner search go?*
 
 Rather than gamifying streaks and badges, MyZen quietly records the **deepest state of awareness** reached during each session — using **Patanjali's Eight Limbs of Yoga** as an internal ruler.
 
