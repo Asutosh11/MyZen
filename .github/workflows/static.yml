@@ -1,9 +1,9 @@
-name: Deploy GitHub Pages
+name: Deploy GitHub Pages - gh-pages
 
 on:
   push:
     branches:
-      - gh-pages-2
+      - gh-pages
 
   workflow_dispatch:
 
@@ -25,10 +25,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Checkout gh-pages-2
+      - name: Checkout gh-pages
         uses: actions/checkout@v4
         with:
-          ref: gh-pages-2
+          ref: gh-pages
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -36,7 +36,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: ./web-app
 
       - name: Deploy to GitHub Pages
         id: deployment
