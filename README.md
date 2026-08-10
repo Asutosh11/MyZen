@@ -1,68 +1,103 @@
-# MyZen
+<div align="center">
 
-A minimalist meditation journal that measures **depth, not just duration**.
+# 🧘 MyZen
 
-Instead of tracking streaks and minutes, MyZen records the **deepest state of awareness** reached during each session using **Patanjali's Eight Limbs of Yoga** as an internal reference. Sessions sync to GitHub, powering a live dashboard of your journey.
+*A minimalist meditation journal that measures **depth, not just duration**.*
 
-&gt; **Most apps ask:** How long did you meditate?  
-&gt; **MyZen asks:** How deeply did you arrive?
+[![iOS](https://img.shields.io/badge/iOS-SwiftUI-0A84FF?logo=apple&logoColor=white)]()
+[![Web](https://img.shields.io/badge/Web-GitHub%20Pages-222?logo=github)]()
+[![License](https://img.shields.io/badge/license-MIT-4CAF50)]()
 
----
-
-## Features
-
-**iOS App**
-- Minimal, distraction-free logging
-- Record duration & deepest limb reached
-- Streaks, total hours, peak depth
-- Ambient themes, font customization
-- Shareable meditation cards
-- GitHub sync
-
-**Web Dashboard**
-- Live stats, streaks, and session history
-- Interactive Eight Limbs reference
-- Consistency heatmap & timeline
-- Responsive design
+</div>
 
 ---
 
-## Measuring Depth: Patanjali's 8 Limbs
+## ✨ Philosophy
+
+> **Most apps ask:** *How long did you meditate?*  
+> **MyZen asks:** *How deep did you reach inside your own self?*
+
+Rather than gamifying streaks and badges, MyZen quietly records the **deepest state of awareness** reached during each session — using **Patanjali's Eight Limbs of Yoga** as an internal ruler.
+
+---
+
+## 📱 iOS App
+
+| Feature | Description |
+|---------|-------------|
+| 🧘‍♂️ **Session Logging** | Record duration & deepest limb reached |
+| 🔥 **Streak Tracker** | Current streak & total hours |
+| 🎯 **Peak Depth** | Highest limb achieved across all sessions |
+| 🎨 **Themes** | Ambient color palettes & font customization |
+| 🖼️ **Share Cards** | Beautiful session summaries to share |
+| ☁️ **GitHub Sync** | Auto-push sessions to your repo |
+
+---
+
+## 🌐 Web Dashboard
+
+Automatically generated from your meditation journal:
+
+- 📊 Live meditation statistics
+- 🔥 Current streak & total hours
+- 🏔️ Peak depth tracking
+- 📜 Interactive Eight Limbs reference
+- 📅 Consistency heatmap & timeline
+- 📋 Full session history
+- 📱 Fully responsive design
+
+---
+
+## 🕉️ Measuring Depth: Patanjali's 8 Limbs
 
 | # | Limb | State |
 |---|------|-------|
-| 1 | Yama | Ethical Restraints |
-| 2 | Niyama | Inner Disciplines |
-| 3 | Asana | Steady Posture |
-| 4 | Pranayama | Breath Integration |
-| 5 | Pratyahara | Sensory Withdrawal |
-| 6 | Dharana | One-Pointed Focus |
-| 7 | Dhyana | Effortless Flow |
-| 8 | Samadhi | Pure Oneness |
+| 1 | 🛡️ Yama | Ethical Restraints |
+| 2 | 🧭 Niyama | Inner Disciplines |
+| 3 | 🪷 Asana | Steady Posture |
+| 4 | 🌬️ Pranayama | Breath Integration |
+| 5 | 🙈 Pratyahara | Sensory Withdrawal |
+| 6 | 🎯 Dharana | One-Pointed Focus |
+| 7 | 🌊 Dhyana | Effortless Flow |
+| 8 | ✨ Samadhi | Pure Oneness |
 
-&gt; These are interconnected branches, not sequential steps. They grow together through daily practice.
-
----
-
-## Practice Modes
-
-1. **3-Minute Immediate Remedy** — Quick breath exercise for moments of anxiety or overwhelm.
-2. **Main Daily Sessions** — Dedicated sits logged with duration and deepest limb reached.
+> 💡 *These are interconnected branches of a single tree — not sequential steps. They grow together through daily practice.*
 
 ---
 
-## Tech Stack
+## 🧘‍♀️ Practice Modes
 
-| iOS | Web | Sync |
-|-----|-----|------|
-| SwiftUI | HTML / CSS / JS | GitHub REST API |
-| UserDefaults | SVG | GitHub Pages |
-| ImageRenderer | | `sessions.json` |
+| Mode | Purpose |
+|------|---------|
+| ⚡ **3-Minute Immediate Remedy** | Quick breath exercise for anxiety or overwhelm |
+| 🧘 **Main Daily Sessions** | Dedicated sits logged with duration & deepest limb |
 
 ---
 
-## Why I Built This
+## ⚙️ Tech Stack
 
-Meditation is personal. Most apps gamify it with badges and productivity metrics. I wanted a quiet journal that simply reflects practice over time — documenting the journey toward Samadhi and the transformation along the way.
+| Platform | Technologies |
+|----------|-------------|
+| 📱 **iOS** | SwiftUI · UserDefaults · ImageRenderer |
+| 🌐 **Web** | HTML · CSS · Vanilla JS · SVG |
+| ☁️ **Sync** | GitHub REST API · GitHub Pages |
 
-&gt; *"What we know is a drop, what we don't know is an ocean."*
+```
+Meditation Session → sessions.json → GitHub Repo → Live Website
+```
+
+---
+
+## 🎯 Why I Built This
+
+Meditation is deeply personal. Most apps focus on productivity metrics — minutes, streaks, badges. I wanted something **quieter**: a journal that simply reflects practice over time, documenting the journey toward *Samadhi* and the transformation along the way.
+
+> *"What we know is a drop, what we don't know is an ocean."*
+
+---
+
+<div align="center">
+
+🧘‍♂️ *Made with stillness.*
+
+</div>
