@@ -21,9 +21,9 @@ async function loadTabContents() {
 /* ============================================================
    Config & Constants
    ============================================================ */
-const DEFAULT_DATA_URL = "sessions.json";
+const DEFAULT_DATA_URL = "web-app/sessions.json";
 const FALLBACK_RAW_URL =
-    "https://raw.githubusercontent.com/Asutosh11/myzen/main/sessions.json";
+    "https://raw.githubusercontent.com/Asutosh11/myzen/main/web-app/sessions.json";
 
 const LIMBS = [
     {
@@ -357,7 +357,7 @@ async function initAuth() {
     if (savedUser && currentToken) {
         try {
             currentUser = JSON.parse(savedUser);
-            // Await so loadSessions runs AFTER auth is settled
+            // Await so loadSessions() runs AFTER auth is settled
             const ok = await verifyGitHubToken(
                 currentToken,
                 currentRepo,
@@ -618,61 +618,112 @@ function base64ToUtf8(b64) {
 /* ============================================================
    Data Loading & GitHub API Sync
    ============================================================ */
-async function loadSessions() {
-    renderLimbGrid(0);
+   async function loadSessions() {
+       renderLimbGrid(0);
 
-    if (currentUser && currentToken) {
-        try {
-            const url = `https://api.github.com/repos/${currentUser.login}/${currentRepo}/contents/sessions.json`;
-            const res = await fetch(url, {
-                headers: {
-                    Authorization: `Bearer ${currentToken}`,
-                    Accept: "application/vnd.github+json",
-                },
-                cache: "no-store",
-            });
-            if (res.ok) {
-                const fileData = await res.json();
-                currentSHA = fileData.sha;
-                const parsed = JSON.parse(
-                    base64ToUtf8(fileData.content || ""),
-                );
-                if (!Array.isArray(parsed))
-                    throw new Error(
-                        "sessions.json is not an array",
-                    );
-                // Validate and sanitize every session entry
-                rawSessions = parsed
-                    .map(validateSession)
-                    .filter(Boolean);
-                processAndRenderSessions();
-                return;
-            } else if (res.status === 404) {
-                // Repo exists but sessions.json doesn't yet — new user or new repo
-                rawSessions = [];
-                parsedSessions = [];
-                renderLoggedInEmpty();
-                return;
-            }
-        } catch (e) {
-            console.warn(
-                "Could not fetch sessions from user GitHub repo...",
-                e,
-            );
-            // Fall through to logged-in empty state (not the blurred demo)
-            if (currentUser && currentToken) {
-                rawSessions = [];
-                parsedSessions = [];
-                renderLoggedInEmpty();
-                return;
-            }
-        }
-    }
+       if (currentUser && currentToken) {
+           try {
+               const owner = currentUser.login;
+               const repo = currentRepo;
 
-    rawSessions = [];
-    parsedSessions = [];
-    renderEmpty();
-}
+               const url =
+                   `https://api.github.com/repos/${encodeURIComponent(owner)}` +
+                   `/${encodeURIComponent(repo)}/contents/web-app/sessions.json`;
+
+               const res = await fetch(url, {
+                   headers: {
+                       Authorization: `Bearer ${currentToken}`,
+                       Accept: "application/vnd.github+json",
+                   },
+                   cache: "no-store",
+               });
+
+               if (!res.ok) {
+                   const err = await res.json().catch(() => ({}));
+
+                   console.error(
+                       "Failed to load sessions.json:",
+                       res.status,
+                       err
+                   );
+
+                   throw new Error(
+                       `GitHub sessions.json request failed: ${res.status} ${
+                           err.message || ""
+                       }`
+                   );
+               }
+
+               const data = await res.json();
+
+               // Save SHA so future PUT operations can update the
+               // same GitHub file without a conflict.
+               currentSHA = data.sha || null;
+
+               if (!data.content) {
+                   throw new Error(
+                       "GitHub returned sessions.json without content."
+                   );
+               }
+
+               const jsonText = base64ToUtf8(data.content);
+
+               const sessions = JSON.parse(jsonText);
+
+               if (!Array.isArray(sessions)) {
+                   throw new Error(
+                       "sessions.json does not contain a JSON array."
+                   );
+               }
+
+               rawSessions = sessions
+                   .map(validateSession)
+                   .filter(Boolean);
+
+               console.log(
+                   `Loaded ${rawSessions.length} sessions from ` +
+                   `${owner}/${repo}/web-app/sessions.json`
+               );
+
+               processAndRenderSessions();
+
+               return;
+           } catch (err) {
+               console.error("Session loading error:", err);
+
+               // Do NOT silently show an empty account.
+               showToast(
+                   `Could not load your GitHub sessions: ${err.message}`
+               );
+
+               rawSessions = [];
+               parsedSessions = [];
+
+               render([]);
+               return;
+           }
+       }
+
+       // Not logged in → use locally stored sessions if available.
+       try {
+           const local = localStorage.getItem("myzen_local_sessions");
+
+           if (local) {
+               const sessions = JSON.parse(local);
+
+               rawSessions = Array.isArray(sessions)
+                   ? sessions.map(validateSession).filter(Boolean)
+                   : [];
+           } else {
+               rawSessions = [];
+           }
+       } catch (err) {
+           console.error("Local session loading error:", err);
+           rawSessions = [];
+       }
+
+       processAndRenderSessions();
+   }
 
 function processAndRenderSessions() {
     parsedSessions = rawSessions
@@ -703,7 +754,7 @@ async function saveSessionsToGitHub(updatedRawSessions) {
     try {
         const owner = currentUser.login;
         const repo = currentRepo;
-        const url = `https://api.github.com/repos/${owner}/${repo}/contents/sessions.json`;
+        const url = `https://api.github.com/repos/${owner}/${repo}/contents/web-app/sessions.json`;
 
         if (!currentSHA) {
             const getRes = await fetch(url, {
