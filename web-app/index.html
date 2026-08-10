@@ -1,0 +1,490 @@
+<!doctype html>
+<html data-theme="abyssal" lang="en">
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <title>MyZen — Meditate and maintain daily record</title>
+        <meta
+            content="A living record of a daily meditation practice, synced from the MyZen app — hours, streaks, and the depth reached through Patanjali's eight limbs."
+            name="description"
+        />
+        <link href="https://fonts.googleapis.com/" rel="preconnect" />
+        <link
+            crossorigin=""
+            href="https://fonts.gstatic.com/"
+            rel="preconnect"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <main class="wrap">
+            <header>
+                <div class="top">
+                    <div>
+                        <div
+                            style="
+                                display: flex;
+                                align-items: center;
+                                gap: 10px;
+                                flex-wrap: wrap;
+                            "
+                        >
+                            <h1 style="margin: 0">MyZen</h1>
+                            <a
+                                href="https://github.com/Asutosh11/myzen"
+                                target="_blank"
+                                rel="noopener"
+                                class="open-source-tag"
+                                title="View Source Code on GitHub"
+                            >
+                                <svg
+                                    width="13"
+                                    height="13"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                                    />
+                                </svg>
+                                <span>Open Source</span>
+                            </a>
+                        </div>
+                        <div class="tagline">
+                            Meditate and maintain daily record
+                        </div>
+                    </div>
+                    <div class="icon-row">
+                        <div id="authPillContainer"></div>
+
+                        <button
+                            class="icon-btn icon-only"
+                            id="helpBtn"
+                            title="How this works"
+                        >
+                            <svg
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.6"
+                                viewBox="0 0 24 24"
+                            >
+                                <circle cx="12" cy="12" r="9.5"></circle>
+                                <path
+                                    d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.9.4-1.5 1-1.5 2.2"
+                                    stroke-linecap="round"
+                                ></path>
+                                <path
+                                    d="M12 17h.01"
+                                    stroke-linecap="round"
+                                ></path>
+                            </svg>
+                        </button>
+                        <button
+                            class="icon-btn icon-only"
+                            id="sizeBtn"
+                            title="Text size"
+                        >
+                            Aa
+                        </button>
+                        <div style="position: relative">
+                            <button
+                                class="icon-btn icon-only"
+                                id="themeBtn"
+                                title="Theme"
+                            >
+                                <svg
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M12 3a9 9 0 1 0 0 18c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.3 0-1 .9-2 2-2h2a4 4 0 0 0 4-4c0-4.4-4-7.4-9-7.4Z"
+                                    ></path>
+                                    <circle cx="8" cy="12" r="1"></circle>
+                                    <circle cx="11" cy="8" r="1"></circle>
+                                    <circle cx="15.5" cy="9" r="1"></circle>
+                                </svg>
+                            </button>
+                            <div class="popover" id="themePop">
+                                <div class="pop-label">Theme</div>
+                                <div
+                                    class="theme-opt active"
+                                    data-theme-choice="abyssal"
+                                >
+                                    <span class="swatch sw-abyssal"></span
+                                    >Abyssal Storm
+                                </div>
+                                <div
+                                    class="theme-opt"
+                                    data-theme-choice="forest"
+                                >
+                                    <span class="swatch sw-forest"></span>Forest
+                                    Moss
+                                </div>
+                                <div
+                                    class="theme-opt"
+                                    data-theme-choice="cocoa"
+                                >
+                                    <span class="swatch sw-cocoa"></span>Cocoa
+                                    Zen
+                                </div>
+                                <div class="theme-opt" data-theme-choice="dark">
+                                    <span class="swatch sw-dark"></span>Complete
+                                    Dark
+                                </div>
+                                <div
+                                    class="theme-opt"
+                                    data-theme-choice="light"
+                                >
+                                    <span class="swatch sw-light"></span>Light
+                                    Parchment
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <svg
+                    class="illustration"
+                    fill="none"
+                    stroke="var(--text-dim)"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    viewBox="0 0 300 170"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <g opacity=".45" stroke-width="1">
+                        <circle cx="118" cy="54" r="24"></circle>
+                        <circle cx="140" cy="42" r="22"></circle>
+                        <circle cx="162" cy="52" r="23"></circle>
+                        <circle cx="182" cy="62" r="20"></circle>
+                        <circle cx="153" cy="68" r="21"></circle>
+                        <circle cx="128" cy="71" r="19"></circle>
+                        <circle cx="96" cy="72" r="17"></circle>
+                        <circle cx="174" cy="40" r="18"></circle>
+                        <circle cx="148" cy="58" r="28"></circle>
+                    </g>
+                    <g opacity=".9" stroke-width="1.4">
+                        <path d="M146 66 C143 90 143 120 141 152"></path>
+                        <path d="M157 67 C159 93 161 121 163 152"></path>
+                        <path d="M152 84 C152 103 153 118 154 136"></path>
+                        <path d="M151 70 C140 61 131 52 122 40"></path>
+                        <path d="M151 70 C161 61 171 53 181 45"></path>
+                    </g>
+                    <g opacity=".55" stroke-width="1">
+                        <path d="M206 60 q6 -5 11 -1"></path>
+                        <path d="M220 52 q6 -5 11 -1"></path>
+                        <path d="M235 45 q6 -5 11 -1"></path>
+                        <path d="M215 75 q4 -3 8 0"></path>
+                        <path d="M232 69 q4 -3 8 0"></path>
+                        <path d="M248 61 q4 -3 8 0"></path>
+                    </g>
+                    <path
+                        d="M12 150 C95 143 205 144 288 156"
+                        stroke-width="1.2"
+                    ></path>
+                </svg>
+            </header>
+
+            <!-- Tab navigation (fixed bottom bar on mobile, segmented control on desktop) -->
+            <nav class="tab-bar" id="tabBar" aria-label="Sections">
+                <button
+                    class="tab-btn active"
+                    data-tab="practice"
+                    type="button"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="12" cy="4.5" r="2"></circle>
+                        <path d="M12 6.5v3.5"></path>
+                        <path d="M9 10c-1.8 .6-3 2-3.5 4"></path>
+                        <path d="M15 10c1.8 .6 3 2 3.5 4"></path>
+                        <path d="M5.5 14h13"></path>
+                        <path d="M8 14c0 2.5 1.8 4.5 4 4.5s4-2 4-4.5"></path>
+                    </svg>
+                    <span>Practice</span>
+                </button>
+                <button class="tab-btn" data-tab="log" type="button">
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M12 7v5l3.5 2"></path>
+                    </svg>
+                    <span>Log</span>
+                </button>
+                <button class="tab-btn" data-tab="progress" type="button">
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M4 19V10"></path>
+                        <path d="M12 19V5"></path>
+                        <path d="M20 19v-7"></path>
+                    </svg>
+                    <span>Progress</span>
+                </button>
+                <button class="tab-btn" data-tab="about" type="button">
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.6"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M12 16v-4M12 8h.01"></path>
+                    </svg>
+                    <span>About</span>
+                </button>
+            </nav>
+
+            <!-- Tab panel placeholders — content is loaded via fetch() in app.js -->
+            <div class="tab-panel active" id="tabPanel-practice"></div>
+            <div class="tab-panel" id="tabPanel-log"></div>
+            <div class="tab-panel" id="tabPanel-progress"></div>
+            <div class="tab-panel" id="tabPanel-about"></div>
+        </main>
+
+        <!-- Info Modal -->
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal-card">
+                <div class="modal-head">
+                    <h3 id="modalTitle">Title</h3>
+                    <button class="modal-close" id="modalClose">✕</button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+            </div>
+        </div>
+
+        <!-- Reflection Sheet Modal (Matching iOS App Design) -->
+        <div class="modal-overlay" id="reflectionOverlay">
+            <div class="modal-card">
+                <div class="modal-head">
+                    <button
+                        class="custom-dur-btn"
+                        id="reflectionCancelBtn"
+                        style="font-size: 0.875rem"
+                    >
+                        Cancel
+                    </button>
+                    <h3 id="reflectionModalTitle">Log Reflection</h3>
+                    <div style="width: 50px"></div>
+                </div>
+                <div class="modal-body">
+                    <!-- Duration Picker -->
+                    <div class="sheet-section">
+                        <div class="sheet-label">
+                            <span>Duration</span>
+                            <button class="custom-dur-btn" id="customDurBtn">
+                                ⏱ Custom...
+                            </button>
+                        </div>
+                        <div class="duration-picker">
+                            <div class="duration-slider-row">
+                                <input
+                                    type="range"
+                                    min="1"
+                                    max="180"
+                                    value="15"
+                                    class="duration-slider"
+                                    id="durationSlider"
+                                />
+                                <span class="duration-val" id="durationVal"
+                                    >"15 m"</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Depth Picker -->
+                    <div class="sheet-section">
+                        <div class="sheet-label">
+                            <span>Select Highest Internal Depth Reached</span>
+                            <button
+                                class="depth-info-toggle"
+                                id="sheetDepthInfoBtn"
+                            >
+                                <svg
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.6"
+                                    viewBox="0 0 24 24"
+                                    style="width: 13px; height: 13px"
+                                >
+                                    <circle cx="12" cy="12" r="9.5"></circle>
+                                    <path
+                                        d="M12 16v-4M12 8h.01"
+                                        stroke-linecap="round"
+                                    ></path>
+                                </svg>
+                                What is it?
+                            </button>
+                        </div>
+                        <div
+                            class="depth-select-grid"
+                            id="depthSelectGrid"
+                        ></div>
+
+                        <div class="depth-summary-box">
+                            <div class="depth-summary-head">
+                                MAXIMUM DEPTH ACHIEVED
+                            </div>
+                            <div
+                                class="depth-summary-title"
+                                id="depthSummaryTitle"
+                            >
+                                STAGE 4: PRANAYAMA
+                            </div>
+                            <div
+                                class="depth-summary-desc"
+                                id="depthSummaryDesc"
+                            ></div>
+                        </div>
+                    </div>
+
+                    <button class="commit-btn" id="commitReflectionBtn">
+                        Commit to Journal
+                    </button>
+                    <button
+                        class="btn-log-secondary"
+                        id="deleteReflectionBtn"
+                        style="
+                            margin-top: 10px;
+                            display: none;
+                            color: #ff6b6b;
+                            border-color: rgba(255, 107, 107, 0.2);
+                        "
+                    >
+                        Delete Entry
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- GitHub Auth Modal -->
+        <div class="modal-overlay" id="ghAuthOverlay">
+            <div class="modal-card" style="max-width: 480px">
+                <div class="modal-head">
+                    <h3>GitHub Synchronization</h3>
+                    <button class="modal-close" id="ghAuthClose">✕</button>
+                </div>
+                <div class="modal-body">
+                    <p
+                        style="
+                            font-size: 0.84375rem;
+                            color: var(--text-dim);
+                            line-height: 1.6;
+                            margin-bottom: 14px;
+                        "
+                    >
+                        Connect your GitHub account using a Personal Access
+                        Token (PAT). MyZen writes directly to
+                        <code>sessions.json</code> in your repository via
+                        GitHub's REST API—keeping your data 100% private and
+                        owned by you without third-party servers.
+                    </p>
+
+                    <div style="margin-bottom: 14px">
+                        <label
+                            style="
+                                font-size: 0.6875rem;
+                                letter-spacing: 0.12em;
+                                text-transform: uppercase;
+                                color: var(--text-faint);
+                            "
+                            >GitHub Personal Access Token (PAT)</label
+                        >
+                        <input
+                            type="password"
+                            id="ghTokenInput"
+                            class="zen-input"
+                            placeholder="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                        />
+                        <div
+                            style="
+                                font-size: 0.71875rem;
+                                color: var(--text-faint);
+                                margin-top: 6px;
+                                display: flex;
+                                justify-content: space-between;
+                            "
+                        >
+                            <a
+                                href="https://github.com/settings/tokens/new?scopes=repo&description=MyZen+Web+App"
+                                target="_blank"
+                                style="
+                                    color: var(--accent);
+                                    text-decoration: underline;
+                                "
+                                >Generate Token on GitHub ↗</a
+                            >
+                            <span
+                                id="toggleTokenVisibility"
+                                style="cursor: pointer; color: var(--text-dim)"
+                                >Show</span
+                            >
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 18px">
+                        <label
+                            style="
+                                font-size: 0.6875rem;
+                                letter-spacing: 0.12em;
+                                text-transform: uppercase;
+                                color: var(--text-faint);
+                            "
+                            >Repository Name</label
+                        >
+                        <input
+                            type="text"
+                            id="ghRepoInput"
+                            class="zen-input"
+                            value="myzen"
+                            placeholder="myzen"
+                        />
+                    </div>
+
+                    <div
+                        id="ghAuthError"
+                        style="
+                            font-size: 0.78125rem;
+                            color: #ff6b6b;
+                            margin-bottom: 12px;
+                            display: none;
+                        "
+                    ></div>
+
+                    <button class="commit-btn" id="saveGHAuthBtn">
+                        Connect Account &amp; Sync
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="toast" id="toast">Saved to GitHub repository!</div>
+
+        <script src="js/app.js"></script>
+    </body>
+</html>
