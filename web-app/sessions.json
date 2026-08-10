@@ -1,241 +1,98 @@
 [
   {
-    "id": "5AE0F833-307A-4B2C-9E0B-AF2ADF595DBC",
-    "date": 803912991.286826,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
-    "durationInMinutes": 55
-  },
-  {
-    "id": "5B0D37B5-E47C-49C4-B59A-6A3404E1A78B",
-    "date": 803915904.314567,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
-    "durationInMinutes": 15
-  },
-  {
-    "id": "0C7D2C99-DBD2-4BE6-A7E5-51C4046E2C1D",
-    "date": 803916873.029062,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
-    "durationInMinutes": 45
-  },
-  {
     "id": "E7D22A31-2507-456F-8565-5F77430A2E54",
     "date": 806811110.764189,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
+    "statePath": [1, 2, 3, 4, 5],
     "durationInMinutes": 25
   },
   {
     "id": "BE72ECEC-E0DA-4A48-A1D3-1D5B016C759D",
     "date": 806954474.840131,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
+    "statePath": [1, 2, 3, 4, 5],
     "durationInMinutes": 40
   },
   {
     "id": "BEE114EB-EC57-4DCF-B429-CFB2216DCCA7",
     "date": 806990373.349103,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
+    "statePath": [1, 2, 3, 4, 5],
     "durationInMinutes": 23
   },
   {
     "id": "7A66A6F7-F9CA-4461-85DB-657FE27EB823",
     "date": 807126345.785231,
-    "statePath": [
-      1,
-      2,
-      3,
-      4
-    ],
+    "statePath": [1, 2, 3, 4],
     "durationInMinutes": 15
   },
   {
     "id": "6E094146-7691-48E1-A0AC-E82CA1873CD0",
     "date": 807290841.608996,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
+    "statePath": [1, 2, 3, 4, 5],
     "durationInMinutes": 30
   },
   {
     "id": "6127ABD2-1D2D-4F33-B342-6FD8B527947D",
     "date": 807374422.862779,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
+    "statePath": [1, 2, 3, 4, 5],
     "durationInMinutes": 25
   },
   {
     "id": "B09C1246-D362-490F-BB2E-A1C3B4D4C3F0",
     "date": 807382702.441128,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6
-    ],
+    "statePath": [1, 2, 3, 4, 5, 6],
     "durationInMinutes": 21
   },
   {
     "id": "C9B4CF63-1129-4202-AE82-7C9E05A4A2BF",
     "date": 807453814.077962,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6
-    ],
+    "statePath": [1, 2, 3, 4, 5, 6],
     "durationInMinutes": 25
   },
   {
     "id": "045F97FC-1962-4575-B60C-19B22A4FF70E",
     "date": 807469749.544544,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5
-    ],
+    "statePath": [1, 2, 3, 4, 5],
     "durationInMinutes": 15
   },
   {
     "id": "92FDE7D7-4995-4A39-A21B-98919D69FE1D",
     "date": 807503402.931793,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6
-    ],
+    "statePath": [1, 2, 3, 4, 5, 6],
     "durationInMinutes": 27
   },
   {
     "id": "A8A31582-02CC-4789-B303-EABF343C2FD5",
     "date": 807545056.162,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7
-    ],
+    "statePath": [1, 2, 3, 4, 5, 6, 7],
     "durationInMinutes": 56
   },
   {
     "id": "F8C8D5A7-2B1F-4460-81FA-15D325F62627",
     "date": 807725429.8670001,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6
-    ],
+    "statePath": [1, 2, 3, 4, 5, 6],
     "durationInMinutes": 36
   },
   {
     "id": "8D026E5F-AC87-4D02-9D51-AC3557EB0A2D",
     "date": 807799764.414,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7
-    ],
+    "statePath": [1, 2, 3, 4, 5, 6, 7],
     "durationInMinutes": 45
   },
   {
     "id": "BAD5EDDE-D34F-4234-AEF5-9BD2366A755D",
     "date": 807873839.677,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6
-    ],
+    "statePath": [1, 2, 3, 4, 5, 6],
     "durationInMinutes": 27
   },
   {
     "id": "DC20968E-E030-4741-81F8-3B73DC685CE1",
     "date": 807940306.371,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7
-    ],
+    "statePath": [1, 2, 3, 4, 5, 6, 7],
     "durationInMinutes": 41
   },
   {
     "id": "05C2CEFE-2E02-41B7-9C33-A94A79EE4BFA",
     "date": 808027979.1860001,
-    "statePath": [
-      1,
-      2,
-      3,
-      4,
-      5,
-      6
-    ],
+    "statePath": [1, 2, 3, 4, 5, 6],
     "durationInMinutes": 32
   }
 ]

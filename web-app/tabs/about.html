@@ -1,0 +1,348 @@
+<!-- 6. How Web App & GitHub Data Sync Works -->
+<section id="howWorksSection" style="padding: 20px 0">
+    <div class="card" style="padding: 24px; position: relative">
+        <div
+            class="section-head"
+            style="
+                margin-bottom: 18px;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            "
+        >
+            <span class="label"
+                >How The Web App & GitHub Sync Work</span
+            >
+            <a
+                href="https://github.com/Asutosh11/myzen"
+                target="_blank"
+                rel="noopener"
+                class="open-source-tag"
+            >
+                <svg
+                    width="13"
+                    height="13"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                >
+                    <path
+                        d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                    />
+                </svg>
+                <span>100% Open Source Repository ↗</span>
+            </a>
+        </div>
+
+        <!-- Pictorial Diagram -->
+        <div class="sync-flow-wrapper">
+            <div class="sync-diagram">
+                <div class="sync-step">
+                    <div class="sync-step-badge">1</div>
+                    <div class="sync-step-icon">🧘</div>
+                    <div class="sync-step-title">
+                        Practice & Log
+                    </div>
+                    <div class="sync-step-desc">
+                        Enter session time and select deepest
+                        Patanjali limb state reached.
+                    </div>
+                </div>
+                <div class="sync-arrow">➔</div>
+                <div class="sync-step">
+                    <div class="sync-step-badge">2</div>
+                    <div class="sync-step-icon">🔑</div>
+                    <div class="sync-step-title">
+                        Browser PAT Auth
+                    </div>
+                    <div class="sync-step-desc">
+                        Authenticated via Personal Access Token
+                        stored locally in your browser.
+                    </div>
+                </div>
+                <div class="sync-arrow">➔</div>
+                <div class="sync-step">
+                    <div class="sync-step-badge">3</div>
+                    <div class="sync-step-icon">⚡</div>
+                    <div class="sync-step-title">
+                        Direct REST API
+                    </div>
+                    <div class="sync-step-desc">
+                        Encrypted HTTPS payload sent directly to
+                        GitHub. 0 middleman servers.
+                    </div>
+                </div>
+                <div class="sync-arrow">➔</div>
+                <div class="sync-step">
+                    <div class="sync-step-badge">4</div>
+                    <div class="sync-step-icon">📁</div>
+                    <div class="sync-step-title">
+                        Your GitHub Repo
+                    </div>
+                    <div class="sync-step-desc">
+                        Session committed straight to
+                        <code>sessions.json</code> in your own
+                        account!
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Context Grid -->
+        <div
+            style="
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 18px;
+            "
+        >
+            <div
+                style="
+                    background: var(--bg-card);
+                    border: 1px solid var(--border-soft);
+                    border-radius: 14px;
+                    padding: 18px;
+                "
+            >
+                <div
+                    style="
+                        font-size: 0.875rem;
+                        font-weight: 500;
+                        color: var(--accent-strong);
+                        margin-bottom: 6px;
+                    "
+                >
+                    🌐 What & How The Web App Works
+                </div>
+                <p
+                    style="
+                        font-size: 0.8125rem;
+                        color: var(--text-dim);
+                        line-height: 1.6;
+                    "
+                >
+                    MyZen is a minimalist meditation journal
+                    that measures
+                    <strong>depth, not just duration</strong>.
+                    The web app acts as your live personal
+                    reflection dashboard. Anyone can view the
+                    overall depth philosophy, but when you log
+                    in, it becomes your private interactive
+                    meditation journal.
+                </p>
+            </div>
+            <div
+                style="
+                    background: var(--bg-card);
+                    border: 1px solid var(--border-soft);
+                    border-radius: 14px;
+                    padding: 18px;
+                "
+            >
+                <div
+                    style="
+                        font-size: 0.875rem;
+                        font-weight: 500;
+                        color: var(--accent-strong);
+                        margin-bottom: 6px;
+                    "
+                >
+                    ⚡ GitHub Sync & Data Ownership
+                </div>
+                <p
+                    style="
+                        font-size: 0.8125rem;
+                        color: var(--text-dim);
+                        line-height: 1.6;
+                    "
+                >
+                    Your entries are saved to
+                    <code>sessions.json</code> in your own
+                    Github repository. The Login process creates
+                    a public Github repo in your own account, if
+                    it doesn't exist. Else uses existing. By
+                    signing in with a Personal Access Token,
+                    updates commit straight to your own GitHub
+                    via the REST API - no middleman servers.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 7. Why I Built This Section (Inside a Box with Meditation & Peace Icons) -->
+<section class="about" id="why" style="padding: 12px 0">
+    <div
+        class="card"
+        style="
+            padding: 26px 24px;
+            text-align: center;
+            position: relative;
+        "
+    >
+        <div
+            style="
+                font-size: 2.2rem;
+                margin-bottom: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 12px;
+            "
+        >
+            <span>🧘</span>
+            <span style="font-size: 1.6rem; opacity: 0.9"
+                >☮️</span
+            >
+            <span style="font-size: 1.6rem; opacity: 0.9"
+                >🕊️</span
+            >
+        </div>
+        <div
+            class="section-head"
+            style="justify-content: center; margin-bottom: 14px"
+        >
+            <span class="label"
+                ><h2
+                    style="
+                        margin: 0;
+                        font-size: 1.2rem;
+                        font-weight: 500;
+                    "
+                >
+                    Why I Built This
+                </h2></span
+            >
+        </div>
+        <p
+            style="
+                font-size: 0.9375rem;
+                color: var(--text);
+                font-weight: 400;
+                margin-bottom: 10px;
+            "
+        >
+            Meditation is deeply personal.
+        </p>
+        <p
+            style="
+                color: var(--text-dim);
+                font-size: 0.875rem;
+                margin-bottom: 6px;
+            "
+        >
+            Most apps focus on productivity metrics—minutes,
+            streaks, badges, and achievements.
+        </p>
+        <p
+            style="
+                color: var(--text-dim);
+                font-size: 0.875rem;
+                margin-bottom: 6px;
+            "
+        >
+            I wanted something quieter.
+        </p>
+        <p
+            style="
+                color: var(--text-dim);
+                font-size: 0.875rem;
+                margin-bottom: 12px;
+            "
+        >
+            A journal that simply reflects practice over time.
+            To motivate me to maintain consistency.
+        </p>
+        <p
+            style="
+                margin-top: 12px;
+                font-size: 0.84375rem;
+                color: var(--text-dim);
+                line-height: 1.6;
+                max-width: 640px;
+                margin-left: auto;
+                margin-right: auto;
+            "
+        >
+            The Goal of meditation is to finally reach Samadhi,
+            and during the process you keep changing as a
+            person. Before reaching that ultimate state, there
+            are intermediate states, which also need constant
+            practice to reach and I want to document my entire
+            journey.
+        </p>
+    </div>
+</section>
+
+<!-- 8. Stay In Touch / Connect Links -->
+<section class="connect" id="connect">
+    <div
+        class="section-head"
+        style="
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+        "
+    >
+        <span class="label">Stay In Touch</span>
+        <h2 style="margin-top: 8px">Follow along</h2>
+    </div>
+    <p>
+        I share reflections, meditation practice, silence, and
+        the journey inward on Instagram.
+    </p>
+    <div
+        style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+        "
+    >
+        <a
+            class="btn-primary"
+            href="https://instagram.com/searching_the_self"
+            rel="noopener"
+            target="_blank"
+            >@searching_the_self</a
+        >
+        <a
+            class="btn-primary"
+            href="https://github.com/Asutosh11/myzen"
+            rel="noopener"
+            style="
+                background: transparent;
+                color: var(--text);
+                border: 1px solid var(--border);
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+            "
+            target="_blank"
+        >
+            <svg
+                width="15"
+                height="15"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+            >
+                <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                />
+            </svg>
+            <span>GitHub Repo</span>
+            <span
+                class="open-source-tag"
+                style="font-size: 0.65rem; padding: 2px 6px"
+                >Open Source ↗</span
+            >
+        </a>
+    </div>
+</section>
+
+<footer>
+    <span class="fmark">the ocean within</span>
+    Every drop counts. Come back and dive again.
+</footer>

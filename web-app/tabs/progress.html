@@ -1,0 +1,255 @@
+<!-- 5. Consistency Heatmap & Session Log -->
+<section id="tide">
+    <div class="section-head">
+        <span class="label">Consistency</span
+        ><span class="desc">Brighter means longer.</span>
+    </div>
+    <div class="disabled-section-wrap" id="tideWrap">
+        <div class="disabled-content">
+            <div class="cal-wrap"><div id="calGrid"></div></div>
+            <div class="cal-legend">
+                <span>less</span>
+                <span
+                    class="cal-cell"
+                    style="background: var(--bg-card)"
+                ></span>
+                <span
+                    class="cal-cell"
+                    style="
+                        background: var(--accent);
+                        opacity: 0.25;
+                    "
+                ></span>
+                <span
+                    class="cal-cell"
+                    style="
+                        background: var(--accent);
+                        opacity: 0.55;
+                    "
+                ></span>
+                <span
+                    class="cal-cell"
+                    style="
+                        background: var(--accent);
+                        opacity: 0.85;
+                    "
+                ></span>
+                <span
+                    class="cal-cell"
+                    style="background: var(--accent-strong)"
+                ></span>
+                <span>more</span>
+            </div>
+        </div>
+        <div class="disabled-overlay">
+            <div class="disabled-overlay-title">
+                🔒 Consistency Heatmap Locked
+            </div>
+            <div class="disabled-overlay-desc">
+                Connect your GitHub account to unlock your
+                personal meditation consistency calendar and
+                view session frequency over time.
+            </div>
+            <button
+                class="btn-log-main"
+                style="
+                    width: auto;
+                    padding: 10px 22px;
+                    font-size: 0.84375rem;
+                "
+                onclick="openGHAuthModal()"
+            >
+                Sign In with GitHub
+            </button>
+        </div>
+    </div>
+</section>
+
+<section id="log">
+    <!-- Stats Row -->
+    <div
+        id="statsWrap"
+        class="disabled-section-wrap"
+        style="margin-bottom: 28px"
+    >
+        <div class="disabled-content">
+            <div
+                style="
+                    font-size: 0.7rem;
+                    letter-spacing: 0.08em;
+                    color: var(--text-faint);
+                    margin-bottom: 10px;
+                    text-transform: uppercase;
+                "
+            >
+                Lifetime Stats
+            </div>
+            <div
+                style="
+                    display: flex;
+                    gap: 12px;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                "
+            >
+                <div
+                    style="
+                        flex: 1;
+                        min-width: 90px;
+                        background: var(--bg-card);
+                        border: 1px solid var(--border-soft);
+                        border-radius: 14px;
+                        padding: 14px 16px;
+                        text-align: center;
+                    "
+                >
+                    <div
+                        id="statHours"
+                        style="
+                            font-size: 1.6rem;
+                            font-weight: 700;
+                            color: var(--accent-strong);
+                            line-height: 1;
+                        "
+                    >
+                        0
+                    </div>
+                    <div
+                        style="
+                            font-size: 0.72rem;
+                            color: var(--text-faint);
+                            margin-top: 4px;
+                            letter-spacing: 0.04em;
+                        "
+                    >
+                        HOURS
+                    </div>
+                </div>
+                <div
+                    style="
+                        flex: 1;
+                        min-width: 90px;
+                        background: var(--bg-card);
+                        border: 1px solid var(--border-soft);
+                        border-radius: 14px;
+                        padding: 14px 16px;
+                        text-align: center;
+                    "
+                >
+                    <div
+                        id="statStreak"
+                        style="
+                            font-size: 1.6rem;
+                            font-weight: 700;
+                            color: var(--accent-strong);
+                            line-height: 1;
+                        "
+                    >
+                        0
+                    </div>
+                    <div
+                        style="
+                            font-size: 0.72rem;
+                            color: var(--text-faint);
+                            margin-top: 4px;
+                            letter-spacing: 0.04em;
+                        "
+                    >
+                        DAY STREAK
+                    </div>
+                </div>
+                <div
+                    style="
+                        flex: 1;
+                        min-width: 90px;
+                        background: var(--bg-card);
+                        border: 1px solid var(--border-soft);
+                        border-radius: 14px;
+                        padding: 14px 16px;
+                        text-align: center;
+                    "
+                >
+                    <div
+                        id="statDepth"
+                        style="
+                            font-size: 1.6rem;
+                            font-weight: 700;
+                            color: var(--accent-strong);
+                            line-height: 1;
+                        "
+                    >
+                        &mdash;
+                    </div>
+                    <div
+                        style="
+                            font-size: 0.72rem;
+                            color: var(--text-faint);
+                            margin-top: 4px;
+                            letter-spacing: 0.04em;
+                        "
+                    >
+                        PEAK DEPTH
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="disabled-overlay"
+            style="border-radius: 14px"
+        >
+            <div
+                class="disabled-overlay-title"
+                style="font-size: 0.84rem"
+            >
+                Stats unlocked after sign-in
+            </div>
+        </div>
+    </div>
+
+    <div
+        class="section-head"
+        style="
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        "
+    >
+        <span class="label">Session Log - last 10</span>
+        <div
+            id="logAuthBadge"
+            style="
+                display: none;
+                font-size: 0.75rem;
+                color: var(--text-dim);
+                background: var(--bg-card);
+                border: 1px solid var(--border-soft);
+                padding: 5px 14px;
+                border-radius: 20px;
+                align-items: center;
+                gap: 6px;
+            "
+        >
+            <span>🔒 Session Log Preview</span>
+            <span style="opacity: 0.4">|</span>
+            <button
+                onclick="openGHAuthModal()"
+                style="
+                    background: none;
+                    border: none;
+                    color: var(--accent-strong);
+                    font-weight: 500;
+                    cursor: pointer;
+                    padding: 0;
+                    font-family: inherit;
+                    font-size: inherit;
+                    text-decoration: underline;
+                "
+            >
+                Sign in to log
+            </button>
+        </div>
+    </div>
+    <div id="logHolder"></div>
+</section>
